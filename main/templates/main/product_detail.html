@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ product.title }} | Professional Sign Shop{% endblock %}
+
+{% block content %}
+<section class="product-header py-5 bg-light">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                <li class="breadcrumb-item active">{{ product.title }}</li>
+            </ol>
+        </nav>
+        <div class="row align-items-center mt-4">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-black text-navy">{{ product.title }}</h1>
+                <p class="lead text-muted">{{ product.desc }}</p>
+                
+                <h5 class="mt-4 fw-bold">Key Features:</h5>
+                <ul class="list-unstyled">
+                    {% for feature in product.features %}
+                    <li class="mb-2"><i class="fas fa-check-circle text-orange me-2"></i> {{ feature }}</li>
+                    {% endfor %}
+                </ul>
+
+                <div class="mt-5">
+                    <a href="#quote-form" class="btn btn-warning btn-lg px-5 shadow">Get Pricing</a>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-5 mt-lg-0">
+                <div class="product-image-card shadow-lg rounded-4 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80" alt="{{ product.title }}" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="quote-form" class="py-5 bg-navy text-white text-center">
+    <div class="container">
+        <h2 class="fw-bold mb-3">Request a Quote for {{ product.title }}</h2>
+        <p class="mb-4">Our specialists will get back to you with a custom estimate within 24 hours.</p>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form class="bg-white p-4 rounded-4 shadow-sm text-dark">
+                    <div class="mb-3">
+                        <input type="text" class="form-control" placeholder="Your Name">
+                    </div>
+                    <div class="mb-3">
+                        <input type="email" class="form-control" placeholder="Your Email">
+                    </div>
+                    <div class="mb-3">
+                        <textarea class="form-control" rows="4" placeholder="Describe your project requirements..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-warning w-100 fw-bold">Send Request</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,51 @@
+/* Product Detail Page Styles */
+.text-navy { color: #002366; }
+
+.bg-navy { background-color: #002366; }
+
+.breadcrumb-item a {
+    color: #ff5500;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.product-header {
+    border-bottom: 1px solid #dee2e6;
+    padding: 80px 0;
+}
+
+.product-image-card {
+    border: 8px solid white;
+    transition: transform 0.3s ease;
+}
+
+.product-image-card:hover {
+    transform: scale(1.02);
+}
+
+/* Form Styling */
+.form-control {
+    padding: 12px;
+    border: 2px solid #f0f0f0;
+    border-radius: 8px;
+}
+
+.form-control:focus {
+    border-color: #ff5500;
+    box-shadow: none;
+}
+
+.btn-warning.shadow {
+    box-shadow: 0 10px 20px rgba(255, 85, 0, 0.2) !important;
+}
+
+@media (max-width: 768px) {
+    .product-header {
+        text-align: center;
+        padding: 40px 0;
+    }
+    .product-header ul {
+        display: inline-block;
+        text-align: left;
+    }
+}

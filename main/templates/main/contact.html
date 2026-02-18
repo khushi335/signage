@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contact Us | Get a Quote for Your Sign Project{% endblock %}
+
+{% block content %}
+<section class="contact-hero py-5 bg-navy text-white text-center">
+    <div class="container">
+        <h1 class="display-4 fw-black">Let's Bring Your Idea to Life</h1>
+        <p class="lead">Have a question about LED signs, T-shirts, or custom banners? We're here to help.</p>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-4">
+                <div class="contact-info-card p-4 bg-white shadow-sm rounded-4 h-100">
+                    <h2 class="h4 fw-bold mb-4 text-navy">Contact Information</h2>
+                    
+                    <div class="d-flex mb-4">
+                        <i class="fas fa-map-marker-alt text-orange me-3 mt-1"></i>
+                        <div>
+                            <h5 class="mb-1 fw-bold">Our Location</h5>
+                            <p class="text-muted small mb-0">4539 N 22ND ST STE R PHOENIX,AZ 85016</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex mb-4">
+                        <i class="fas fa-phone-alt text-orange me-3 mt-1"></i>
+                        <div>
+                            <h5 class="mb-1 fw-bold">Phone Number</h5>
+                            <p class="text-muted small mb-0">+1 602-842-3490</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex mb-4">
+                        <i class="fas fa-envelope text-orange me-3 mt-1"></i>
+                        <div>
+                            <h5 class="mb-1 fw-bold">Email Address</h5>
+                            <p class="text-muted small mb-0"> info@quantumcoresoftware.com</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex">
+                        <i class="fas fa-clock text-orange me-3 mt-1"></i>
+                        <div>
+                            <h5 class="mb-1 fw-bold">Business Hours</h5>
+                            <p class="text-muted small mb-0">Mon - Fri: 9:00 AM - 6:00 PM<br>Sat: By Appointment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="contact-form-wrap p-5 bg-white shadow-sm rounded-4">
+                    <h2 class="h4 fw-bold mb-4 text-navy">Send Us a Message</h2>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Full Name</label>
+                                <input type="text" class="form-control" placeholder="John Doe" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Email Address</label>
+                                <input type="email" class="form-control" placeholder="john@example.com" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Interested In</label>
+                            <select class="form-select">
+                                <option selected>Select a Product/Service</option>
+                                <option>LED Message Signs</option>
+                                <option>Custom T-Shirts/Apparel</option>
+                                <option>Vehicle Lettering</option>
+                                <option>Laser Engraving</option>
+                                <option>Banners & Flags</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Message / Project Details</label>
+                            <textarea class="form-control" rows="5" placeholder="Tell us about your project requirements..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-warning btn-lg px-5 fw-bold shadow">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="map-section">
+    <div class="container-fluid p-0">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2412648750746!2d-73.98784368459418!3d40.75797477932688!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480293%3A0x5119f0064600a280!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1614295445203!5m2!1sen!2sus" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+</section>
+{% endblock %}

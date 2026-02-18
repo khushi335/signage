@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Our Services | Design, Fabrication & Installation{% endblock %}
+
+{% block content %}
+<section class="services-hero d-flex align-items-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <span class="badge-tech mb-3">Precision Engineering</span>
+                <h1 class="display-3 fw-black text-white">Full-Service <br><span class="text-orange">Signage Solutions</span></h1>
+                <p class="lead text-silver opacity-75 mt-3">From technical blueprints to heavy-duty installation—we own the entire production lifecycle.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-10 bg-white">
+    <div class="container">
+        <div class="row g-4">
+            {% for service in services %}
+            <div class="col-lg-4 col-md-6">
+                <div class="service-premium-card">
+                    <div class="service-header">
+                        <div class="service-icon-wrap">
+                            <i class="fas {{ service.icon }}"></i>
+                        </div>
+                        <span class="step-indicator">0{{ forloop.counter }}</span>
+                    </div>
+                    <div class="service-body">
+                        <h3 class="h4 fw-bold text-navy">{{ service.title }}</h3>
+                        <p class="text-muted small mb-0">{{ service.desc }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="py-10 tech-section text-white">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <h6 class="text-orange fw-bold text-uppercase ls-2 mb-3">Hardware & Innovation</h6>
+                <h2 class="display-5 fw-black mb-4">Industrial-Grade <br><span class="text-warning">Fabrication Technology</span></h2>
+                <p class="text-silver mb-5 fs-5">We leverage the same technology used in aerospace and automotive branding to ensure your identity never fades.</p>
+                
+                <div class="row g-4">
+                    <div class="col-sm-6">
+                        <div class="tech-feature-item">
+                            <div class="feature-bar"></div>
+                            <h4 class="h6 fw-bold text-orange text-uppercase">UV-Stable Inks</h4>
+                            <p class="small text-silver opacity-75">Molecule-bonded pigments that resist 99% of sun-fading.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="tech-feature-item">
+                            <div class="feature-bar"></div>
+                            <h4 class="h6 fw-bold text-orange text-uppercase">Precision CNC</h4>
+                            <p class="small text-silver opacity-75">Micron-accurate cutting for metal, wood, and acrylic.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="tech-image-wrap p-2 bg-glass rounded-5">
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" class="img-fluid rounded-4 shadow-2xl" alt="Modern Fabrication">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

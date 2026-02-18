@@ -1,0 +1,44 @@
+/* --- Contact Page CSS --- */
+
+.bg-navy { background-color: #002366 !important; }
+.text-navy { color: #002366; }
+.text-orange { color: #ff5500; }
+
+.contact-hero {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #002366 0%, #001540 100%);
+}
+
+.contact-info-card i {
+    font-size: 1.25rem;
+}
+
+.contact-form-wrap .form-control, 
+.contact-form-wrap .form-select {
+    border: 2px solid #f1f1f1;
+    padding: 12px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.contact-form-wrap .form-control:focus {
+    border-color: #ff5500;
+    box-shadow: none;
+}
+
+.btn-warning.shadow {
+    background-color: #ff5500;
+    border: none;
+    color: white;
+    box-shadow: 0 10px 20px rgba(255, 85, 0, 0.2) !important;
+}
+
+.btn-warning.shadow:hover {
+    background-color: #002366;
+    transform: translateY(-2px);
+}
+
+.map-section iframe {
+    filter: grayscale(100%) invert(90%) contrast(90%); /* Makes map look modern/branded */
+    display: block;
+}

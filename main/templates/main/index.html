@@ -1,0 +1,683 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="hero-master d-flex align-items-center">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 py-5">
+                <div class="hero-content" data-aos="fade-right">
+                    <span class="badge-premium mb-3">
+                        <i class="fas fa-award text-warning me-2"></i>THE REGION'S #1 RATED FABRICATION HOUSE
+                    </span>
+                    <h1 class="display-1 fw-black text-white mt-2">Signs That <br><span class="text-gradient">Dominate the Market.</span></h1>
+                    <p class="lead text-white mb-5 w-75">We don't just print; we engineer. From high-output LED systems to bespoke fleet branding, we provide the visual infrastructure for local leaders.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="{% url 'contact' %}" class="btn btn-orange-lg px-5">Get Your Free Strategy Session</a>
+                        <a href="#products" class="btn btn-outline-glass px-5">View Products</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="py-10 bg-light">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <div class="image-stack position-relative">
+                    <img src="static/images/about_us.jpeg" class="img-fluid rounded-5 shadow-2xl" alt="Sign Workshop">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h6 class="text-orange fw-bold text-uppercase ls-2">Who We Are</h6>
+                <h2 class="display-5 fw-bold text-navy mb-4">Precision Driven. <br>Client Focused.</h2>
+                <p class="text-muted fs-5">Based in the heart of the region, we started with a single wide-format printer and a vision to provide better signage solutions. Today, we are a full-scale fabrication house specializing in everything from LED displays to custom vehicle wraps.</p>
+                <div class="row g-4 mt-2">
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center p-3 bg-white rounded-3 shadow-sm border-start border-orange border-4">
+                            <i class="fas fa-certificate text-orange fa-2x me-3"></i>
+                            <span class="fw-bold">Certified Installers</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center p-3 bg-white rounded-3 shadow-sm border-start border-success border-4">
+                            <i class="fas fa-leaf text-success fa-2x me-3"></i>
+                            <span class="fw-bold">Eco-Safe UV Inks</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stats-bar py-4 bg-navy text-white text-center">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-3">
+                <h2 class="fw-bold text-warning mb-0">500+</h2>
+                <p class="small text-uppercase mb-0">Projects Completed</p>
+            </div>
+            <div class="col-md-3">
+                <h2 class="fw-bold text-warning mb-0">15+</h2>
+                <p class="small text-uppercase mb-0">Years Experience</p>
+            </div>
+            <div class="col-md-3">
+                <h2 class="fw-bold text-warning mb-0">100%</h2>
+                <p class="small text-uppercase mb-0">Custom Designs</p>
+            </div>
+            <div class="col-md-3">
+                <h2 class="fw-bold text-warning mb-0">24h</h2>
+                <p class="small text-uppercase mb-0">Quote Turnaround</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="sign-shop-ultra">
+    <div class="fluid-wrap">
+        <div class="centered-header">
+            <span class="sub-label">Elite Signage & Visual Solutions</span>
+            <h2>Our Professional Services</h2>
+            <div class="gold-center-line"></div>
+            <p>Precision branding, high-format printing, and expert installation.</p>
+        </div>
+
+        <div class="ultra-grid">
+            <div class="grid-item">
+                <div class="image-holder">
+                    <img src="static/images/custom_apparel.jpeg" alt="Custom T-Shirt Printing">
+                </div>
+                <div class="item-text">
+                    <h3>Custom Apparel</h3>
+                    <p>T-Shirts & Promo Products</p>
+                </div>
+            </div>
+
+            <div class="grid-item">
+                <div class="image-holder">
+                    <img src="static/images/sign_design.jpeg" alt="Sign Design Services">
+                </div>
+                <div class="item-text">
+                    <h3>Sign Design</h3>
+                    <p>Creative Visual Branding</p>
+                </div>
+            </div>
+
+            <div class="grid-item">
+                <div class="image-holder">
+                    <img src="static/images/installation-1-1024x457.jpg" alt="Professional Sign Installation">
+                </div>
+                <div class="item-text">
+                    <h3>Sign Installations</h3>
+                    <p>Expert On-Site Setup</p>
+                </div>
+            </div>
+
+            <div class="grid-item">
+                <div class="image-holder">
+                    <img src="static/images/wideformatprinters.jpg" alt="Wide Format Printing">
+                </div>
+                <div class="item-text">
+                    <h3>Wide Format Printing</h3>
+                    <p>Banners & Large Graphics</p>
+                </div>
+            </div>
+
+            <div class="grid-item">
+                <div class="image-holder">
+                    <img src="static/images/laser_engraver_design.jpeg" alt="Laser Engraving">
+                </div>
+                <div class="item-text">
+                    <h3>Laser Engraver</h3>
+                    <p>Precision Etching Tech</p>
+                </div>
+            </div>
+
+            <div class="grid-item">
+                <div class="image-holder">
+                    <img src="static/images/UV-Printing-on-Acrylic.png" alt="UV Ink Printing">
+                </div>
+                <div class="item-text">
+                    <h3>UV Ink Printing</h3>
+                    <p>Durable Surface Printing</p>
+                </div>
+            </div>
+
+            <div class="grid-item">
+                <div class="image-holder">
+                    <img src="static/images/lamination.jpg" alt="Professional Lamination">
+                </div>
+                <div class="item-text">
+                    <h3>Lamination</h3>
+                    <p>Protective Finishing</p>
+                </div>
+            </div>
+
+            <div class="grid-item cta-gold">
+                <div class="cta-inner-box">
+                    <h3>Special Financing</h3>
+                    <p>Flexible Payment Options</p>
+                    <a href="#" class="cta-link">Inquire Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-10 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Our Simple <span class="text-navy">3-Step Process</span></h2>
+        </div>
+        <div class="row text-center g-4">
+            <div class="col-md-4">
+                <div class="process-step">
+                    <div class="step-num">1</div>
+                    <h4 class="fw-bold mt-3">Consultation</h4>
+                    <p class="text-muted">We discuss your goals, dimensions, and material needs.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="process-step">
+                    <div class="step-num">2</div>
+                    <h4 class="fw-bold mt-3">Design & Proof</h4>
+                    <p class="text-muted">Our graphic designers create a visual mockup for your approval.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="process-step">
+                    <div class="step-num">3</div>
+                    <h4 class="fw-bold mt-3">Fabrication</h4>
+                    <p class="text-muted">We build and install your sign using high-end technology.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="sign-shop-catalog">
+    <div class="fluid-container">
+        <div class="catalog-header">
+            <span class="gold-text">Browse Template Categories</span>
+            <h2>Custom Signage Solutions</h2>
+            <div class="gold-divider"></div>
+            <p>Select a category to view professional templates and custom options.</p>
+        </div>
+
+        <div class="catalog-grid">
+            <div class="category-card">
+                <div class="photo-frame">
+                    <img src="static/images/yard-signs.jpg" alt="Yard Signs">
+                </div>
+                <div class="card-label">
+                    <h3>Yard Signs</h3>
+                    <!--<a href="#" class="shop-link">View All</a>-->
+                </div>
+            </div>
+
+            <div class="category-card">
+                <div class="photo-frame">
+                    <img src="static/images/political-signs.jpg" alt="Political Signs">
+                </div>
+                <div class="card-label">
+                    <h3>Political Signs</h3>
+                    <!--<a href="#" class="shop-link">View All</a>-->
+                </div>
+            </div>
+
+            <div class="category-card">
+                <div class="photo-frame">
+                    <img src="static/images/real-estate-signs.jpg" alt="Real Estate Signs">
+                </div>
+                <div class="card-label">
+                    <h3>Real Estate Signs</h3>
+                    <!--<a href="#" class="shop-link">View All</a>-->
+                </div>
+            </div>
+
+            <div class="category-card">
+                <div class="photo-frame">
+                    <img src="static/images/car-magnets.jpg" alt="Car Magnets">
+                </div>
+                <div class="card-label">
+                    <h3>Car Magnets</h3>
+                    <!--<a href="#" class="shop-link">View All</a>-->
+                </div>
+            </div>
+
+            <div class="category-card">
+                <div class="photo-frame">
+                    <img src="static/images/sandwich-boards.jpg" alt="Sandwich Board Panels">
+                </div>
+                <div class="card-label">
+                    <h3>Sandwich Boards</h3>
+                    <!--<a href="#" class="shop-link">View All</a>-->
+                </div>
+            </div>
+
+            <div class="category-card">
+                <div class="photo-frame">
+                    <img src="static/images/banners.jpg" alt="Banners">
+                </div>
+                <div class="card-label">
+                    <h3>Banners</h3>
+                    <!--<a href="#" class="shop-link">View All</a>-->
+                </div>
+            </div>
+
+            <div class="category-card">
+                <div class="photo-frame">
+                    <img src="static/images/door-hangers.jpg" alt="Door Hangers">
+                </div>
+                <div class="card-label">
+                    <h3>Door Hangers</h3>
+                    <!--<a href="#" class="shop-link">View All</a>-->
+                </div>
+            </div>
+
+            <div class="category-card">
+                <div class="photo-frame">
+                    <img src="static/images/blank-yard-signs.jpg" alt="Blank Yard Signs">
+                </div>
+                <div class="card-label">
+                    <h3>Blank Yard Signs</h3>
+                    <!--<a href="#" class="shop-link">View All</a>-->
+                </div>
+            </div>
+
+            <div class="category-card">
+                <div class="photo-frame">
+                    <img src="static/images/parking-signs.jpg" alt="Parking Signs">
+                </div>
+                <div class="card-label">
+                    <h3>Parking Signs</h3>
+                    <!--<a href="#" class="shop-link">View All</a>-->
+                </div>
+            </div>
+
+            <div class="category-card">
+                <div class="photo-frame">
+                    <img src="static/images/sign-riders.jpg" alt="Sign Riders">
+                </div>
+                <div class="card-label">
+                    <h3>Sign Riders</h3>
+                    <!--<a href="#" class="shop-link">View All</a>-->
+                </div>
+            </div>
+
+            <div class="category-card">
+                <div class="photo-frame">
+                    <img src="static/images/street-signs.jpeg" alt="Street Signs">
+                </div>
+                <div class="card-label">
+                    <h3>Street Signs</h3>
+                    <!--<a href="#" class="shop-link">View All</a>-->
+                </div>
+            </div>
+
+            <div class="category-card">
+                <div class="photo-frame">
+                    <img src="static/images/bumper-stickers.jpg" alt="Bumper Stickers">
+                </div>
+                <div class="card-label">
+                    <h3>Bumper Stickers</h3>
+                    <!--<a href="#" class="shop-link">View All</a>-->
+                </div>
+            </div>
+
+            <div class="category-card">
+                <div class="photo-frame">
+                    <img src="static/images/business-cards.jpeg" alt="Business Cards">
+                </div>
+                <div class="card-label">
+                    <h3>Business Cards</h3>
+                    <!--<a href="#" class="shop-link">View All</a>-->
+                </div>
+            </div>
+
+            <div class="category-card">
+                <div class="photo-frame">
+                    <img src="static/images/roll-labels.jpg" alt="Roll Labels">
+                </div>
+                <div class="card-label">
+                    <h3>Roll Labels</h3>
+                    <!--<a href="#" class="shop-link">View All</a>-->
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="photo-frame">
+                    <img src="static/images/led_neon.jpg" alt="LED Neon Signs">
+                </div>
+                <div class="card-label">
+                    <h3>LED Neon Signs</h3>
+                    <!--<a href="#" class="shop-link">View All</a>-->
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="photo-frame">
+                    <img src="static/images/key_chains.jpeg" alt="Keychains & Plates">
+                </div>
+                <div class="card-label">
+                    <h3>Keychains & Plates</h3>
+                    <!--<a href="#" class="shop-link">View All</a>-->
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<section class="py-10 bg-navy text-white overflow-hidden">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-5">
+                <h2 class="display-5 fw-bold">Driven by <br>15 Years of <br>Technical Mastery.</h2>
+            </div>
+            <div class="col-lg-7">
+                <p class="lead opacity-75">Our team consists of structural engineers, graphic designers, and certified installers. We don't just sell signs; we consult on your brand's physical footprint to ensure compliance, safety, and aesthetic perfection.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="products" class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold display-5">Our Printing & <span class="text-orange">Signage Products</span></h2>
+            <p class="text-muted">High-quality solutions for businesses, events, and personal branding.</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="product-card">
+                    <i class="fas fa-lightbulb text-orange"></i>
+                    <h3>LED Message Signs</h3>
+                    <p>Electronic displays to catch every eye.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="product-card">
+                    <i class="fas fa-tshirt text-orange"></i>
+                    <h3>Custom Apparel</h3>
+                    <p>T-Shirts, Hoodies & Hats with UV ink.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="product-card">
+                    <i class="fas fa-car text-orange"></i>
+                    <h3>Vehicle Lettering</h3>
+                    <p>Turn your car into a mobile billboard.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="product-card">
+                    <i class="fas fa-cut text-orange"></i>
+                    <h3>Laser Engraving</h3>
+                    <p>Precision engraving on wood, metal & plastic.</p>
+                </div>
+            </div>
+            
+            <!--<div class="col-12 mt-5">-->
+            <!--    <div class="extra-products-box p-4 bg-white shadow-sm rounded-4">-->
+            <!--        <h4 class="mb-4 fw-bold text-center">More Custom Solutions</h4>-->
+            <!--        <div class="row text-center gy-3">-->
+            <!--            <div class="col-6 col-md-3">Advertising Flags</div>-->
+            <!--            <div class="col-6 col-md-3">Banners</div>-->
+            <!--            <div class="col-6 col-md-3">Business Cards</div>-->
+            <!--            <div class="col-6 col-md-3">Decals & Stickers</div>-->
+            <!--            <div class="col-6 col-md-3">Real Estate Signs</div>-->
+            <!--            <div class="col-6 col-md-3">Magnetic Signs</div>-->
+            <!--            <div class="col-6 col-md-3">LED Neon Signs</div>-->
+            <!--            <div class="col-6 col-md-3">Keychains & Plates</div>-->
+            <!--            <div class="col-6 col-md-3">Yard Signs</div>-->
+            <!--            <div class="col-6 col-md-3">Plastic Letters</div>-->
+            <!--            <div class="col-6 col-md-3">Promotional Items</div>-->
+            <!--            <div class="col-6 col-md-3 fw-bold text-orange">And Much More!</div>-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</section>
+
+<section id="materials" class="py-5 bg-dark text-white">
+    <div class="container">
+        <h2 class="text-center mb-5">Quality <span class="text-warning">Materials</span> for Every Sign</h2>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            <span class="material-tag">Acrylic</span>
+            <span class="material-tag">Aluminum</span>
+            <span class="material-tag">Coroplast</span>
+            <span class="material-tag">Foam Core</span>
+            <span class="material-tag">HDU Board</span>
+            <span class="material-tag">Poly Carbonate</span>
+            <span class="material-tag">Metal</span>
+            <span class="material-tag">Vinyl</span>
+            <span class="material-tag">Wood</span>
+        </div>
+    </div>
+</section>
+
+<section id="capabilities" class="py-10 bg-white">
+    <div class="container">
+        <div class="text-center mb-6">
+            <h2 class="display-4 fw-black text-navy">SpecialIZED Solutions</h2>
+            <p class="text-muted">A comprehensive ecosystem for your brand's physical presence.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="bento-card h-100 bg-navy text-white p-5 rounded-5 d-flex flex-column justify-content-between">
+                    <div>
+                        <div class="icon-box-orange mb-4 d-inline-block p-3 bg-orange rounded-4 text-white"><i class="fas fa-bolt fa-2x"></i></div>
+                        <h3>LED & Digital</h3>
+                        <p class="opacity-75">Programmable electronic message centers with ultra-bright Nits rating for daylight visibility.</p>
+                        <ul class="list-unstyled small mb-4">
+                            <li><i class="fas fa-check text-orange me-2"></i> Wireless Control</li>
+                            <li><i class="fas fa-check text-orange me-2"></i> Weather-Proof Seal</li>
+                        </ul>
+                    </div>
+                    <a href="{% url 'product_detail' 'led-message-signs' %}" class="btn btn-warning w-100">Configure Sign</a>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="row g-4 h-100">
+                    <div class="col-md-6">
+                        <div class="bento-card bg-light p-4 rounded-5 h-100 border-0">
+                            <i class="fas fa-truck-moving text-orange fa-2x mb-3"></i>
+                            <h4>Fleet Branding</h4>
+                            <p class="small text-muted">3M Certified vehicle wraps that turn your fleet into mobile billboards.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="bento-card bg-light p-4 rounded-5 h-100 border-0">
+                            <i class="fas fa-building text-orange fa-2x mb-3"></i>
+                            <h4>Architectural</h4>
+                            <p class="small text-muted">Custom channel letters and monument signs that define your building.</p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="bento-card bg-orange text-white p-4 rounded-5 d-flex align-items-center justify-content-between">
+                            <div class="w-75">
+                                <h4>UV-Cured Apparel & Merch</h4>
+                                <p class="mb-0 opacity-90">High-fidelity printing on premium workwear and promotional garments.</p>
+                            </div>
+                            <i class="fas fa-tshirt fa-4x opacity-25"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-10 bg-white">
+    <div class="container">
+        <h2 class="fw-bold mb-5 text-center">Industry-Specific Solutions</h2>
+        <div class="row g-3">
+            <div class="col-md-3">
+                <div class="industry-card bg-light p-4 text-center rounded-3">
+                    <i class="fas fa-hospital-alt text-orange mb-3"></i>
+                    <h6>Healthcare</h6>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="industry-card bg-light p-4 text-center rounded-3">
+                    <i class="fas fa-utensils text-orange mb-3"></i>
+                    <h6>Hospitality</h6>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="industry-card bg-light p-4 text-center rounded-3">
+                    <i class="fas fa-shopping-cart text-orange mb-3"></i>
+                    <h6>Retail Centers</h6>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="industry-card bg-light p-4 text-center rounded-3">
+                    <i class="fas fa-warehouse text-orange mb-3"></i>
+                    <h6>Industrial</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-6 bg-navy text-white text-center">
+    <div class="container px-lg-5">
+        <i class="fas fa-quote-left text-orange fa-3x mb-4"></i>
+        <h2 class="display-6 italic fw-light mb-4">"Our mission is to empower local businesses by providing high-impact visual communication that drives growth and builds community pride."</h2>
+        <h5 class="text-warning fw-bold">— Management Team</h5>
+    </div>
+</section>
+
+<section id="services" class="py-10 bg-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <img src="static/images/about_sign.jpeg" alt="Sign Fabrication" class="img-fluid rounded-5 shadow-lg">
+            </div>
+            <div class="col-lg-6 px-lg-5">
+                <h2 class="fw-bold mb-4">A Full-Service Sign Company</h2>
+                <p>We provide comprehensive sign services to meet all your signage needs. From <strong>Sign Design</strong> and <strong>Fabrication</strong> to <strong>Installation</strong> and <strong>Maintenance</strong>, our team ensures your brand stands out.</p>
+                <ul class="service-list list-unstyled">
+                    <li><i class="fas fa-check-circle text-orange me-2"></i> Wide Format & UV Ink Printing</li>
+                    <li><i class="fas fa-check-circle text-orange me-2"></i> Professional Lamination Services</li>
+                    <li><i class="fas fa-check-circle text-orange me-2"></i> Custom Financing Available</li>
+                    <li><i class="fas fa-check-circle text-orange me-2"></i> Indoor & Outdoor Experts</li>
+                </ul>
+                <div class="p-4 bg-orange-light rounded-4 mt-4">
+                    <p class="mb-0 italic text-dark">"One of our quality LED Message Signs. Thank you Anderson Parks!"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-10 bg-white">
+    <div class="container">
+        <h2 class="text-center fw-black mb-5">From Concept to Concrete</h2>
+        <div class="row g-0 timeline-row">
+            <div class="col-md-4 timeline-step">
+                <div class="step-blob">01</div>
+                <h5>Strategic Analysis</h5>
+                <p class="small text-muted">Site survey, permit zoning laws, and visibility calculations.</p>
+            </div>
+            <div class="col-md-4 timeline-step">
+                <div class="step-blob">02</div>
+                <h5>Technical Proofing</h5>
+                <p class="small text-muted">High-fidelity 3D mockups and color-match calibration.</p>
+            </div>
+            <div class="col-md-4 timeline-step">
+                <div class="step-blob">03</div>
+                <h5>Expert Deployment</h5>
+                <p class="small text-muted">Precision installation with final electrical safety certification.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="products-recap" class="py-6 bg-navy text-white">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-black">Our Specialized Solutions</h2>
+            <div class="heading-line mx-auto"></div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="service-card-modern">
+                    <i class="fas fa-bolt"></i>
+                    <h4>LED Signs</h4>
+                    <p>Digital message centers that grab attention 24/7.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-card-modern">
+                    <i class="fas fa-truck-moving"></i>
+                    <h4>Vehicle Wraps</h4>
+                    <p>High-performance vinyl for your mobile fleet.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-card-modern">
+                    <i class="fas fa-building"></i>
+                    <h4>Outdoor Signs</h4>
+                    <p>Durable building signs that withstand the elements.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="service-card-modern">
+                    <i class="fas fa-print"></i>
+                    <h4>Large Format</h4>
+                    <p>Banners, posters, and wall murals at scale.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-10 bg-white">
+    <div class="container">
+        <h2 class="text-center fw-black mb-5">What Our Clients Say</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="testimonial-card p-4">
+                    <p class="small italic">"The LED message center changed our business. We saw a 20% increase in walk-ins within the first month."</p>
+                    <hr>
+                    <h6 class="mb-0 fw-bold">Sarah Jenkins</h6>
+                    <small>Owner, Downtown Cafe</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial-card p-4">
+                    <p class="small italic">"Professional, fast, and the quality of the vinyl is top-notch. Our fleet looks amazing."</p>
+                    <hr>
+                    <h6 class="mb-0 fw-bold">Mark Thompson</h6>
+                    <small>Fleet Manager, Logistics Plus</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial-card p-4">
+                    <p class="small italic">"They handled our complex permit process and installation without a single hitch. Highly recommend."</p>
+                    <hr>
+                    <h6 class="mb-0 fw-bold">Dr. Emily Reed</h6>
+                    <small>Director, West Medical Center</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-10 bg-navy text-white text-center">
+    <div class="container">
+        <h2 class="display-5 fw-black mb-4">Ready to <span class="text-warning">Stand Out?</span></h2>
+        <p class="lead mb-5 px-lg-5">Join hundreds of local businesses that trust us for their signage and branding needs. Get a free custom quote today.</p>
+        <a href="{% url 'contact' %}" class="btn btn-warning btn-lg px-5 py-3 fw-bold">Request a Free Quote</a>
+    </div>
+</section>
+
+{% endblock %}

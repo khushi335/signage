@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Signage & Printing Solutions | Our Products{% endblock %}
+
+{% block content %}
+<header class="products-hero py-5">
+    <div class="container text-center text-white">
+        <h1 class="display-3 fw-black mb-3">Professional Signage Solutions</h1>
+        <p class="lead opacity-75">High-quality materials, expert design, and precision installation for every project.</p>
+    </div>
+</header>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-4">
+            {% for slug, details in products.items %}
+            <div class="col-lg-4 col-md-6">
+                <div class="list-product-card shadow-sm h-100">
+                    <div class="card-icon-wrap">
+                        <i class="fas {{ details.icon }} fa-3x"></i>
+                    </div>
+                    <div class="card-body-custom p-4">
+                        <h3 class="h4 fw-bold text-navy">{{ details.title }}</h3>
+                        <p class="text-muted small mb-4">{{ details.desc }}</p>
+                        
+                        <div class="features-preview mb-4">
+                            {% for feature in details.features|slice:":2" %}
+                            <span class="badge bg-soft-orange text-orange me-1">{{ feature }}</span>
+                            {% endfor %}
+                        </div>
+
+                        <a href="{% url 'product_detail' slug %}" class="btn btn-navy w-100 fw-bold py-2">
+                            View Details <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-orange text-white text-center">
+    <div class="container">
+        <h2 class="fw-bold mb-3">Don't see what you're looking for?</h2>
+        <p class="lead mb-4">We specialize in custom projects. If you have an idea, we can bring it to life.</p>
+        <a href="{% url 'contact' %}" class="btn btn-outline-light btn-lg px-5">Contact Our Design Team</a>
+    </div>
+</section>
+{% endblock %}

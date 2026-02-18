@@ -1,0 +1,56 @@
+/* --- Products List Styling --- */
+.products-hero {
+    background: linear-gradient(135deg, #002366 0%, #001540 100%);
+    padding: 80px 0;
+}
+
+.list-product-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-icon-wrap {
+    background: #f8f9fa;
+    padding: 40px 0;
+    text-align: center;
+    color: #ff5500;
+    transition: 0.3s;
+}
+
+.list-product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 35, 102, 0.1) !important;
+    border-color: #ff5500;
+}
+
+.list-product-card:hover .card-icon-wrap {
+    background: #ff5500;
+    color: #fff;
+}
+
+.text-navy { color: #002366; }
+.text-orange { color: #ff5500; }
+.bg-orange { background-color: #ff5500; }
+
+.bg-soft-orange {
+    background-color: rgba(255, 85, 0, 0.1);
+}
+
+.btn-navy {
+    background-color: #002366;
+    color: white;
+    transition: 0.3s;
+}
+
+.btn-navy:hover {
+    background-color: #ff5500;
+    color: white;
+}
+
+/* Typography Polish */
+.fw-black { font-weight: 900; }

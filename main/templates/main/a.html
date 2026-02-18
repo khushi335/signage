@@ -1,0 +1,239 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="hero-master">
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+            <div class="col-lg-7 py-5">
+                <div class="hero-content">
+                    <span class="eyebrow"><i class="fas fa-star text-orange me-2"></i>THE REGION'S PREMIER FABRICATION HOUSE</span>
+                    <h1 class="display-1 fw-black text-white mt-3">Signs That <br><span class="text-gradient">Define Brands.</span></h1>
+                    <p class="lead text-silver mb-5">From architectural LED systems to bespoke apparel, we engineer visual assets that command attention and drive commercial growth.</p>
+                    <div class="hero-btns">
+                        <a href="{% url 'contact' %}" class="btn btn-orange-lg me-3">Start Your Project <i class="fas fa-arrow-right ms-2"></i></a>
+                        <a href="{% url 'all_products' %}" class="btn btn-outline-glass">View Portfolio</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ticker-wrap bg-white border-bottom">
+    <div class="container py-4">
+        <div class="row align-items-center opacity-50 text-center fw-bold">
+            <div class="col-3 col-md-2">CORPORATE LOGO</div>
+            <div class="col-3 col-md-2">REAL ESTATE PRO</div>
+            <div class="col-3 col-md-2">CITY GOV</div>
+            <div class="col-3 col-md-2 d-none d-md-block">TECH SOLUTIONS</div>
+            <div class="col-3 col-md-2 d-none d-md-block">RETAIL GIANT</div>
+            <div class="col-3 col-md-2 d-none d-md-block">HOSPITALITY CO</div>
+        </div>
+    </div>
+</section>
+
+<section class="py-10 bg-light">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6">
+                <div class="img-reveal-wrap shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1572044162444-ad60f128bde2?auto=format&fit=crop&w=800&q=80" class="img-fluid rounded-4" alt="Craftsmanship">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h6 class="text-orange text-uppercase ls-2">Our Mission</h6>
+                <h2 class="display-5 fw-bold text-navy mb-4">Excellence in Every Pixel & Every Weld.</h2>
+                <p class="text-muted fs-5">We exist to bridge the gap between creative vision and physical reality. Our mission is to provide high-performance signage through sustainable manufacturing and unmatched technical precision.</p>
+                <div class="mission-checklist mt-4">
+                    <div class="d-flex mb-3"><i class="fas fa-check-circle text-orange me-3 mt-1"></i> <span>Zero-Waste Printing Processes</span></div>
+                    <div class="d-flex mb-3"><i class="fas fa-check-circle text-orange me-3 mt-1"></i> <span>Military-Grade Material Selection</span></div>
+                    <div class="d-flex"><i class="fas fa-check-circle text-orange me-3 mt-1"></i> <span>Lifetime Support & Maintenance</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-10">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-4 fw-black">Core Capabilities</h2>
+            <p class="text-muted">A full-service ecosystem for your brand's physical presence.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="bento-card h-100 bg-navy text-white">
+                    <i class="fas fa-microchip mb-4"></i>
+                    <h3>LED & Digital</h3>
+                    <p>Programmable electronic message centers with ultra-bright Nits rating.</p>
+                    <a href="{% url 'product_detail' 'led-message-signs' %}" class="btn-link">Learn Tech <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="row g-4 h-100">
+                    <div class="col-md-6">
+                        <div class="bento-card bg-light">
+                            <h3>Vehicle Wraps</h3>
+                            <p>3M Certified installation for maximum fleet durability.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="bento-card bg-light">
+                            <h3>Architectural</h3>
+                            <p>Channel letters and pylon signs built for longevity.</p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="bento-card bg-orange text-white">
+                            <h3>UV Apparel & Merch</h3>
+                            <p>High-fidelity printing on premium garments for your team.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-10 bg-navy text-white overflow-hidden">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-5">
+                <h2 class="display-5 fw-bold">Driven by <br>15 Years of <br>Technical Mastery.</h2>
+            </div>
+            <div class="col-lg-7">
+                <p class="lead opacity-75">Our team consists of structural engineers, graphic designers, and certified installers. We don't just sell signs; we consult on your brand's physical footprint to ensure compliance, safety, and aesthetic perfection.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-10 bg-light">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-md-4">
+                <div class="feature-box text-center">
+                    <div class="icon-circle shadow-lg"><i class="fas fa-shield-alt"></i></div>
+                    <h4 class="mt-4">Extreme Durability</h4>
+                    <p class="text-muted">Materials tested against high wind loads and intense UV exposure.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-box text-center">
+                    <div class="icon-circle shadow-lg"><i class="fas fa-layer-group"></i></div>
+                    <h4 class="mt-4">In-House Production</h4>
+                    <p class="text-muted">No middleman. We fabricate everything in our local workshop.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-box text-center">
+                    <div class="icon-circle shadow-lg"><i class="fas fa-hand-holding-usd"></i></div>
+                    <h4 class="mt-4">Smart Financing</h4>
+                    <p class="text-muted">Get the sign you need today with flexible payment structures.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-10 bg-dark text-white text-center">
+    <div class="container">
+        <h2 class="fw-bold mb-5">The Best In Us: Material Superiority</h2>
+        <div class="marquee">
+            <div class="marquee-content">
+                <span>Brushed Aluminum</span>
+                <span>Optically Clear Acrylic</span>
+                <span>HDU Sign Foam</span>
+                <span>Cast Vinyl</span>
+                <span>Polycarbonate</span>
+                <span>Corrugated Plastic</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-10">
+    <div class="container">
+        <h2 class="text-center fw-black display-5 mb-5">The Professional Path</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h4>Phase 1: Analysis</h4>
+                <p>Site survey, permit checking, and structural planning.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h4>Phase 2: Digital Proofing</h4>
+                <p>Full-scale digital mockups with color matching.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h4>Phase 3: Deployment</h4>
+                <p>Precision installation with comprehensive clean-up.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-10 bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="quote-card p-5 bg-white rounded-4 shadow-sm">
+                    <i class="fas fa-quote-right text-orange opacity-25 fa-3x"></i>
+                    <p class="fs-4 mt-3">"A level of professionalism rarely seen in the signage industry. Their LED signs are game-changers."</p>
+                    <h6 class="mt-4 fw-bold mb-0">Director of Marketing</h6>
+                    <small class="text-muted">Regional Hospital Group</small>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="quote-card p-5 bg-white rounded-4 shadow-sm">
+                    <i class="fas fa-quote-right text-orange opacity-25 fa-3x"></i>
+                    <p class="fs-4 mt-3">"They handled our fleet of 50 trucks with perfect consistency. The wraps are incredible."</p>
+                    <h6 class="mt-4 fw-bold mb-0">Operations Manager</h6>
+                    <small class="text-muted">North Star Logistics</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-orange text-white">
+    <div class="container">
+        <div class="row text-center g-4">
+            <div class="col-6 col-md-3 border-end"><h3>15k+</h3><p class="mb-0">Hours Crafted</p></div>
+            <div class="col-6 col-md-3 border-end"><h3>400+</h3><p class="mb-0">Businesses Partnered</p></div>
+            <div class="col-6 col-md-3 border-end"><h3>98%</h3><p class="mb-0">Referral Rate</p></div>
+            <div class="col-6 col-md-3"><h3>12mo</h3><p class="mb-0">Warranty Standard</p></div>
+        </div>
+    </div>
+</section>
+
+<section class="py-10">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-5">Common Questions</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-6 text-start">
+                <div class="mb-4">
+                    <h5 class="fw-bold"><i class="fas fa-question-circle text-orange me-2"></i> How long do LED signs last?</h5>
+                    <p class="text-muted">Our displays are rated for 100,000 hours of continuous use.</p>
+                </div>
+                <div>
+                    <h5 class="fw-bold"><i class="fas fa-question-circle text-orange me-2"></i> Do you handle permits?</h5>
+                    <p class="text-muted">Yes, we handle all local zoning and electrical permit applications.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-10 bg-navy text-white text-center position-relative overflow-hidden">
+    <div class="container">
+        <h2 class="display-3 fw-black mb-4">Make Your Brand Unmissable.</h2>
+        <a href="{% url 'contact' %}" class="btn btn-warning btn-lg px-5 py-3 fw-bold shadow">Request Your Consultation</a>
+    </div>
+</section>
+
+{% endblock %}

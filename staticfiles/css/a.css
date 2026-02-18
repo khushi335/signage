@@ -1,0 +1,85 @@
+/* --- Global Variables & Refinement --- */
+:root {
+    --navy: #001233;
+    --orange: #ff5e00;
+    --silver: #a0a0a0;
+    --glass: rgba(255, 255, 255, 0.1);
+}
+
+body { font-family: 'Montserrat', sans-serif; color: #333; }
+.py-10 { padding: 120px 0; }
+.fw-black { font-weight: 900; }
+.ls-2 { letter-spacing: 2px; }
+.bg-navy { background-color: var(--navy) !important; }
+.text-orange { color: var(--orange) !important; }
+
+/* --- Hero Mastery --- */
+.hero-master {
+    background: linear-gradient(rgba(0,18,51,0.85), rgba(0,18,51,0.85)), 
+                url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80') center/cover;
+    position: relative;
+}
+
+.text-gradient {
+    background: linear-gradient(to right, #ff5e00, #ffbb00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.eyebrow { font-weight: 700; color: var(--silver); letter-spacing: 1px; }
+
+/* --- Buttons --- */
+.btn-orange-lg {
+    background: var(--orange);
+    color: white;
+    padding: 18px 40px;
+    border-radius: 8px;
+    font-weight: 800;
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-orange-lg:hover { background: #e05200; transform: translateY(-3px); color: white; }
+
+.btn-outline-glass {
+    border: 2px solid var(--glass);
+    color: white;
+    padding: 18px 40px;
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+}
+
+/* --- Bento Cards --- */
+.bento-card {
+    padding: 40px;
+    border-radius: 20px;
+    transition: 0.4s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+.bento-card i { font-size: 2.5rem; color: var(--orange); }
+.bento-card:hover { transform: scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+
+/* --- Timeline --- */
+.timeline { border-left: 3px solid var(--orange); padding-left: 30px; margin-left: 20px; }
+.timeline-item { position: relative; padding-bottom: 40px; }
+.timeline-dot {
+    position: absolute; left: -39px; top: 0;
+    width: 15px; height: 15px; background: var(--orange);
+    border-radius: 50%;
+}
+
+/* --- Marquee Animation --- */
+.marquee { overflow: hidden; white-space: nowrap; background: #000; padding: 20px 0; }
+.marquee-content { display: inline-block; animation: marquee 20s linear infinite; }
+.marquee-content span { color: white; font-size: 1.5rem; font-weight: 800; margin-right: 50px; text-transform: uppercase; }
+
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .display-1 { font-size: 3rem; }
+    .py-10 { padding: 60px 0; }
+}
