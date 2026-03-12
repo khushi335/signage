@@ -7,6 +7,9 @@ from django.core.files.base import ContentFile
 from .models import AnonymousDesign, CartItem, Order, GalleryImage 
 from datetime import datetime, timedelta
 from django.http import Http404, JsonResponse
+from django.conf import settings
+from django.core.mail import send_mail
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -104,8 +107,56 @@ def material(request):
 
 def contact(request):
     if request.method == "POST":
-        # Logic to handle form submission would go here
-        pass
+        # Get form data
+        full_name = request.POST.get('full_name')
+        email = request.POST.get('email')
+        interested_in = request.POST.get('interested_in')
+        message = request.POST.get('message')
+
+        # Email subject and body
+        subject_admin = f"New Contact Form Submission - Accutech Sign Shop"
+        message_admin = f"""
+Name: {full_name}
+Email: {email}
+Interested In: {interested_in}
+Message: {message}
+"""  # Removed 'Company: Accutech Sign Shop' line for admin
+
+        subject_user = f"Thank you for contacting Accutech Sign Shop"
+        message_user = f"""
+Hi {full_name},
+
+Thank you for reaching out to Accutech Sign Shop! We received your message:
+
+{message}
+
+We will get back to you shortly.
+
+– Accutech Sign Shop
+"""
+
+        # Send email to admin(s)
+        admin_list = settings.ADMIN_EMAIL.split(',')  # Split multiple admins
+        send_mail(
+            subject_admin,
+            message_admin,
+            settings.DEFAULT_FROM_EMAIL,
+            admin_list,
+            fail_silently=False,
+        )
+
+        # Send confirmation email to user
+        send_mail(
+            subject_user,
+            message_user,
+            settings.DEFAULT_FROM_EMAIL,
+            [email],
+            fail_silently=False,
+        )
+
+        messages.success(request, "Your message has been sent successfully!")
+        return render(request, 'main/contact.html')
+
     return render(request, 'main/contact.html')
     
 def scratch_page(request):

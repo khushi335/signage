@@ -55,24 +55,34 @@
             <div class="col-lg-8">
                 <div class="contact-form-wrap p-5 bg-white shadow-sm rounded-4">
                     <h2 class="h4 fw-bold mb-4 text-navy">Send Us a Message</h2>
+                    {% if messages %}
+                        <div class="mb-3">
+                            {% for message in messages %}
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                     <form method="POST">
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label fw-bold">Full Name</label>
-                                <input type="text" class="form-control" placeholder="John Doe" required>
+                                <input type="text" name="full_name" class="form-control" placeholder="John Doe" required>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label fw-bold">Email Address</label>
-                                <input type="email" class="form-control" placeholder="john@example.com" required>
+                                <input type="email" name="email" class="form-control" placeholder="john@example.com" required>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Interested In</label>
-                            <select class="form-select">
+                            <select class="form-select" name="interested_in" required>
                                 <option selected>Select a Product/Service</option>
                                 <option>LED Message Signs</option>
-                                <option>Custom T-Shirts/Apparel</option>
+                                    <option>Custom T-Shirts/Apparel</option>
                                 <option>Vehicle Lettering</option>
                                 <option>Laser Engraving</option>
                                 <option>Banners & Flags</option>
@@ -81,7 +91,7 @@
                         </div>
                         <div class="mb-4">
                             <label class="form-label fw-bold">Message / Project Details</label>
-                            <textarea class="form-control" rows="5" placeholder="Tell us about your project requirements..."></textarea>
+                            <textarea class="form-control" name="message" rows="5" placeholder="Tell us about your project requirements..." required></textarea>
                         </div>
                         <button type="submit" class="btn btn-warning btn-lg px-5 fw-bold shadow">Send Message</button>
                     </form>

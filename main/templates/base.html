@@ -72,7 +72,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
-                 <img src="{% static 'images/accutech-logo.png' %}" alt=" Accutech Sign Shop Logo" height="80" class="me-2"> 
+                 <img src="{% static 'images/accutech-logo.png' %}" alt=" Accutech Sign Shop Logo" height="90" class="me-2"> 
                 
                 <!--<div class="brand-text">-->
                 <!--    <span class="d-block h4 mb-0 fw-black">PROFESSIONAL</span>-->
@@ -200,6 +200,20 @@
 
     // Run once on load
     calculatePrice();
+</script>
+<script>
+  // Wait for the DOM to load
+  document.addEventListener("DOMContentLoaded", function() {
+    var alert = document.getElementById('success-alert');
+    if(alert){
+      // Set timeout to hide after 5 seconds (5000ms)
+      setTimeout(function(){
+        // Bootstrap 5 way to close alerts programmatically
+        var bsAlert = new bootstrap.Alert(alert);
+        bsAlert.close();
+      }, 5000);
+    }
+  });
 </script>
 </body>
 </html>
