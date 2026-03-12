@@ -1,5 +1,6 @@
 from django.db import models
 import uuid
+from django.utils import timezone
 
 class AnonymousDesign(models.Model):
     # Unique ID for the visitor (stored in session)
@@ -17,10 +18,6 @@ class AnonymousDesign(models.Model):
         # This line MUST be indented with 4 spaces
         return f"Design {self.design_id} - Visitor {self.visitor_id[:8]}"
         
-
-
-
-
 
 class CartItem(models.Model):
     # This identifies the unique browser without a login
@@ -67,3 +64,12 @@ class Order(models.Model):
 
     def __str__(self):
         return f"Order {self.id} by {self.email}"
+        
+        
+class GalleryImage(models.Model):
+    title = models.CharField(max_length=255, blank=True)
+    image = models.ImageField(upload_to='gallery/')
+    uploaded_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.title or f"Image {self.id}"
