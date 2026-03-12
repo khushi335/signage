@@ -1,16 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404 
 import json
 import uuid
 import base64
-from django.http import JsonResponse
 from django.core.files.base import ContentFile
-from .models import AnonymousDesign
+from .models import AnonymousDesign, CartItem, Order, GalleryImage 
+from datetime import datetime, timedelta
+from django.http import Http404, JsonResponse
 
 # Create your views here.
 def index(request):
     return render(request,"main/index.html")
-
 
 # Move your dictionary outside the function so both views can use it
 PRODUCTS_DATA = {
@@ -108,8 +108,6 @@ def contact(request):
         pass
     return render(request, 'main/contact.html')
     
-
-
 def scratch_page(request):
     # Ensure the visitor has a unique session ID
     if not request.session.session_key:
@@ -143,16 +141,6 @@ def save_design_ajax(request):
             return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
 
     return JsonResponse({'status': 'invalid_method'}, status=405)
-    
-    
-    
-    
-import base64
-import uuid
-from django.shortcuts import render, redirect, get_object_or_404 # Added redirect & get_object_or_404
-from django.http import Http404, JsonResponse
-from django.core.files.base import ContentFile
-from .models import CartItem  # Replace with your actual model
 
 def configure_sign(request):
     """
@@ -169,12 +157,6 @@ def configure_sign(request):
         'design_data': design_data,
     }
     return render(request, 'main/configure_sign.html', context)
-
-import uuid
-import base64
-from django.shortcuts import render, redirect, get_object_or_404
-from django.core.files.base import ContentFile
-from .models import CartItem
 
 def add_to_cart(request):
     if request.method == "POST":
@@ -246,7 +228,6 @@ def remove_from_cart(request, item_id):
     item.delete()
     return redirect('cart_page')
     
-    
 def checkout(request):
     v_id = request.COOKIES.get('visitor_uuid')
     items = CartItem.objects.filter(visitor_id=v_id)
@@ -263,9 +244,6 @@ def checkout(request):
         'items': items,
         'cart_total': cart_total
     })
-    
-    
-from datetime import datetime, timedelta
 
 def final_checkout(request):
     v_id = request.COOKIES.get('visitor_uuid')
@@ -295,12 +273,6 @@ def final_checkout(request):
             'address': '123 Main St, Phoenix, AZ 85001, USA'
         }
     })
-    
-    
-    
-from django.shortcuts import render
-from .models import CartItem # Ensure you import your Cart model
-from datetime import datetime, timedelta
 
 def payment_success(request):
     # Get the visitor ID to find their specific cart
@@ -323,3 +295,7 @@ def payment_success(request):
     }
     
     return render(request, 'main/success.html', context)
+    
+def gallery(request):
+    images = GalleryImage.objects.order_by('-uploaded_at')  # newest first
+    return render(request, 'main/gallery.html', {'images': images})
