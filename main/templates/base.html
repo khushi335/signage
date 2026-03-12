@@ -60,8 +60,8 @@
     <div class="top-bar py-2 bg-dark text-white">
         <div class="container d-flex justify-content-between align-items-center">
             <div class="contact-info small">
-                <span class="me-3"><i class="fas fa-phone-alt text-warning me-2"></i>+1 602-842-3490</span>
-                <span class="d-none d-md-inline"><i class="fas fa-envelope text-warning me-2"></i> info@quantumcoresoftware.com</span>
+                <span class="me-3"><i class="fas fa-phone-alt text-warning me-2"></i>513-385-4000</span>
+                <span class="d-none d-md-inline"><i class="fas fa-envelope text-warning me-2"></i> proof@zoomtown.com</span>
             </div>
             <div class="top-features small fw-bold text-uppercase">
                 <span class="text-warning">Special Financing Available</span>
@@ -72,12 +72,12 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
-                <!-- <img src="{% static 'images/logo.png' %}" alt="Sign Shop Logo" height="50" class="me-2"> -->
+                 <img src="{% static 'images/accutech-logo.png' %}" alt=" Accutech Sign Shop Logo" height="80" class="me-2"> 
                 
-                <div class="brand-text">
-                    <span class="d-block h4 mb-0 fw-black">PROFESSIONAL</span>
-                    <small class="text-muted ls-wide">SIGN SHOP & PRINTING</small>
-                </div>
+                <!--<div class="brand-text">-->
+                <!--    <span class="d-block h4 mb-0 fw-black">PROFESSIONAL</span>-->
+                <!--    <small class="text-muted ls-wide">SIGN SHOP & PRINTING</small>-->
+                <!--</div>-->
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -99,6 +99,8 @@
         <li class="nav-item">
             <a class="nav-link px-3" href="{% url 'services' %}">Services</a>
         </li>
+        
+
         
         <li class="nav-item">
             <a class="nav-link px-3" href="{% url 'scratch' %}">Start from Scratch</a>
@@ -124,7 +126,7 @@
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-4">
-                    <h5 class="fw-bold text-warning mb-4">About Our Sign Shop</h5>
+                    <h5 class="fw-bold text-warning mb-4">Accutech Sign Shop</h5>
                     <p class="text-secondary">We are a full-service sign company providing end-to-end solutions from design to installation. Using UV Ink, Laser Engraving, and Wide Format Printing to bring your brand to life.</p>
                     <div class="social-icons mt-3">
                         <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
@@ -135,22 +137,22 @@
                 <div class="col-lg-4 px-lg-5">
                     <h5 class="fw-bold text-warning mb-4">Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#products" class="text-secondary text-decoration-none d-block mb-2">Signage Products</a></li>
-                        <li><a href="#services" class="text-secondary text-decoration-none d-block mb-2">Design & Installation</a></li>
-                        <li><a href="#materials" class="text-secondary text-decoration-none d-block mb-2">Material Types</a></li>
-                        <li><a href="#contact" class="text-secondary text-decoration-none d-block mb-2">Financing Options</a></li>
+                        <li><a href="{% url 'all_products' %}" class="text-secondary text-decoration-none d-block mb-2">Signage Products</a></li>
+                        <li><a href="{% url 'scratch' %}" class="text-secondary text-decoration-none d-block mb-2">Design & Installation</a></li>
+                        <li><a href="{% url 'materials' %}" class="text-secondary text-decoration-none d-block mb-2">Material Types</a></li>
+                        <li><a href="{% url 'contact' %}" class="text-secondary text-decoration-none d-block mb-2">Financing Options</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4">
                     <h5 class="fw-bold text-warning mb-4">Contact Info</h5>
-                    <p class="text-secondary mb-2"><i class="fas fa-map-marker-alt me-2 text-warning"></i> 4539 N 22ND ST STE R PHOENIX,AZ 85016</p>
-                    <p class="text-secondary mb-2"><i class="fas fa-phone-alt me-2 text-warning"></i> +1 602-842-3490</p>
-                    <p class="text-secondary"><i class="fas fa-clock me-2 text-warning"></i> Mon - Fri: 9:00 AM - 6:00 PM</p>
+                    <p class="text-secondary mb-2"><i class="fas fa-map-marker-alt me-2 text-warning"></i> 9316 Colerain Ave., Cincinnati OH 45251</p>
+                    <p class="text-secondary mb-2"><i class="fas fa-phone-alt me-2 text-warning"></i> 513-385-4000</p>
+                    <p class="text-secondary"><i class="fas fa-clock me-2 text-warning"></i> Mon - Fri: 9:00 AM - 5:00 PM</p>
                 </div>
             </div>
             <hr class="mt-5 border-secondary">
             <div class="text-center text-secondary small">
-                <p>&copy; 2026 Professional Sign Shop & Printing | Designed by <a href="https://quantumcoresoftware.com/">Quantum Core Software.</a></p>
+                <p>&copy; 2026 Accutech Sign Shop & Printing | Designed by <a href="https://quantumcoresoftware.com/">Quantum Core Software.</a></p>
             </div>
         </div>
     </footer>
