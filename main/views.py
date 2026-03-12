@@ -1,5 +1,11 @@
 from django.shortcuts import render
 from django.http import Http404 
+import json
+import uuid
+import base64
+from django.http import JsonResponse
+from django.core.files.base import ContentFile
+from .models import AnonymousDesign
 
 # Create your views here.
 def index(request):
@@ -101,3 +107,219 @@ def contact(request):
         # Logic to handle form submission would go here
         pass
     return render(request, 'main/contact.html')
+    
+
+
+def scratch_page(request):
+    # Ensure the visitor has a unique session ID
+    if not request.session.session_key:
+        request.session.create()
+    return render(request, "main/scratch.html")
+
+def save_design_ajax(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            visitor_id = request.session.session_key
+            
+            # 1. Handle the Base64 Image string from Canvas
+            format, imgstr = data['preview'].split(';base64,') 
+            ext = format.split('/')[-1] 
+            image_data = ContentFile(base64.b64decode(imgstr), name=f"design_{uuid.uuid4()}.{ext}")
+
+            # 2. Save to Database
+            design = AnonymousDesign.objects.create(
+                visitor_id=visitor_id,
+                design_json=data['design_json'],
+                preview_image=image_data
+            )
+
+            return JsonResponse({
+                'status': 'success', 
+                'message': 'Design saved to your session!',
+                'design_id': str(design.design_id)
+            })
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+
+    return JsonResponse({'status': 'invalid_method'}, status=405)
+    
+    
+    
+    
+import base64
+import uuid
+from django.shortcuts import render, redirect, get_object_or_404 # Added redirect & get_object_or_404
+from django.http import Http404, JsonResponse
+from django.core.files.base import ContentFile
+from .models import CartItem  # Replace with your actual model
+
+def configure_sign(request):
+    """
+    Renders the configuration page. 
+    Expects design_data (Base64) from the scratch editor.
+    """
+    design_data = request.POST.get('design_data', '')
+    
+    if not design_data:
+        # If user refreshes or hits the page without data, send them back
+        return redirect('design_scratch')
+
+    context = {
+        'design_data': design_data,
+    }
+    return render(request, 'main/configure_sign.html', context)
+
+import uuid
+import base64
+from django.shortcuts import render, redirect, get_object_or_404
+from django.core.files.base import ContentFile
+from .models import CartItem
+
+def add_to_cart(request):
+    if request.method == "POST":
+        # --- FIX 1: VISITOR TRACKING ---
+        # Get ID from cookie or session to keep the cart private to this browser
+        v_id = request.COOKIES.get('visitor_uuid') or str(uuid.uuid4())
+
+        # 1. Capture Metadata
+        size = request.POST.get('size')
+        sides = request.POST.get('sides')
+        material = request.POST.get('material')
+        finishing = request.POST.get('finishing')
+        mounting = request.POST.get('mounting')
+        quantity = int(request.POST.get('quantity', 1))
+
+        # --- FIX 2: REMOVE COMMAS ---
+        # Removed the commas that caused the "tuple" ValidationError
+        unit_price = 15.00
+        total_price = unit_price * quantity
+        
+        # 2. Process Image
+        design_data = request.POST.get('design_data')
+        if design_data and "base64," in design_data:
+            header, imgstr = design_data.split('base64,')
+            ext = header.split('/')[-1].split(';')[0]
+            filename = f"custom_sign_{uuid.uuid4()}.{ext}"
+            image_file = ContentFile(base64.b64decode(imgstr), name=filename)
+        else:
+            image_file = None
+
+        # 3. Save to Database
+        CartItem.objects.create(
+            visitor_id=v_id,  # Assigning the ID here
+            design_preview=image_file,
+            size=size,
+            sides=sides,
+            material=material,
+            finishing=finishing,
+            mounting=mounting,
+            quantity=quantity,
+            unit_price=unit_price,
+            total_price=total_price
+        )
+        
+        response = redirect('cart_page')
+        # Set the cookie so the user keeps their cart for 30 days
+        response.set_cookie('visitor_uuid', v_id, max_age=2592000)
+        return response
+
+    return redirect('scratch')
+
+def cart_page(request):
+    # Only fetch items belonging to THIS visitor
+    v_id = request.COOKIES.get('visitor_uuid')
+    if v_id:
+        items = CartItem.objects.filter(visitor_id=v_id).order_by('-created_at')
+    else:
+        items = CartItem.objects.none()
+
+    cart_total = sum(item.total_price for item in items)
+    
+    return render(request, 'main/cart_page.html', {
+        'items': items,
+        'cart_total': cart_total
+    })
+
+def remove_from_cart(request, item_id):
+    item = get_object_or_404(CartItem, id=item_id)
+    item.delete()
+    return redirect('cart_page')
+    
+    
+def checkout(request):
+    v_id = request.COOKIES.get('visitor_uuid')
+    items = CartItem.objects.filter(visitor_id=v_id)
+    cart_total = sum(item.total_price for item in items)
+
+    if not items:
+        return redirect('cart_page')
+
+    if request.method == "POST":
+        # Capture form data and save Order here (Logic for payment follows)
+        return redirect('secure_checkout') # Redirect to PayPal
+
+    return render(request, 'main/checkout.html', {
+        'items': items,
+        'cart_total': cart_total
+    })
+    
+    
+from datetime import datetime, timedelta
+
+def final_checkout(request):
+    v_id = request.COOKIES.get('visitor_uuid')
+    items = CartItem.objects.filter(visitor_id=v_id)
+    
+    # Pricing logic
+    cart_total = sum(item.total_price for item in items)
+    savings = 197.50  # Example savings
+    tax = 19.11
+    
+    # Calculate dynamic dates (Business days)
+    today = datetime.now()
+    dates = {
+        'economy': (today + timedelta(days=12)).strftime('%m/%d/%Y'),
+        'standard': (today + timedelta(days=8)).strftime('%m/%d/%Y'),
+        'rush': (today + timedelta(days=7)).strftime('%m/%d/%Y'),
+    }
+
+    return render(request, 'main/secure_checkout.html', {
+        'items': items,
+        'cart_total': cart_total,
+        'savings': savings,
+        'tax': tax,
+        'dates': dates,
+        'user_info': {
+            'name': 'John Dae',
+            'address': '123 Main St, Phoenix, AZ 85001, USA'
+        }
+    })
+    
+    
+    
+from django.shortcuts import render
+from .models import CartItem # Ensure you import your Cart model
+from datetime import datetime, timedelta
+
+def payment_success(request):
+    # Get the visitor ID to find their specific cart
+    v_id = request.COOKIES.get('visitor_uuid')
+    
+    # Optional: Logic to save these items into a permanent 'Order' model before deleting
+    # For now, we clear the cart
+    CartItem.objects.filter(visitor_id=v_id).delete()
+
+    # We recreate the context data needed for the success page display
+    today = datetime.now()
+    context = {
+        'user_info': {
+            'name': 'Valued Customer',  # In a real app, pull this from the saved Order model
+            'address': 'Your shipping address'
+        },
+        'dates': {
+            'standard': (today + timedelta(days=8)).strftime('%m/%d/%Y'),
+        }
+    }
+    
+    return render(request, 'main/success.html', context)

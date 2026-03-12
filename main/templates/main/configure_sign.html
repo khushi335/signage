@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+    :root { --gold: #D4AF37; --dark: #1a1a1a; --border: #ddd; }
+    body { background-color: #f4f4f4; font-family: 'Inter', sans-serif; color: #333; }
+    
+    .config-container { max-width: 1200px; margin: 40px auto; display: flex; gap: 30px; padding: 0 20px; align-items: flex-start; }
+    
+    /* Left Side: Preview */
+    .preview-section { flex: 1; position: sticky; top: 20px; }
+    .design-card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; border: 1px solid #eee; }
+    .design-card img { max-width: 100%; height: auto; border-radius: 4px; border: 1px solid #ccc; background: #fff; }
+    .promo-banner { background: #e74c3c; color: white; padding: 10px; border-radius: 6px; margin-top: 20px; font-weight: 700; font-size: 14px; text-transform: uppercase; }
+
+    /* Right Side: Configuration */
+    .options-section { flex: 1.2; background: white; padding: 35px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    h2 { font-weight: 700; margin-bottom: 25px; color: var(--dark); border-bottom: 2px solid #f0f0f0; padding-bottom: 15px; }
+    
+    .option-group { margin-bottom: 25px; }
+    .option-group label { display: block; font-weight: 700; margin-bottom: 12px; font-size: 13px; text-transform: uppercase; color: #666; letter-spacing: 0.5px; }
+    
+    .select-box, .qty-input { width: 100%; padding: 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 16px; transition: border-color 0.3s; background: #fafafa; }
+    .select-box:focus { border-color: var(--gold); outline: none; }
+    
+    .radio-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+    .radio-card { border: 1px solid var(--border); padding: 15px; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; position: relative; display: flex; flex-direction: column; }
+    .radio-card:hover { border-color: var(--gold); background: #fffdf5; }
+    .radio-card.active { border: 2px solid var(--gold); background: #fffdf5; box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1); }
+    .radio-card input { position: absolute; right: 15px; top: 15px; cursor: pointer; }
+    
+    .card-title { font-weight: 700; font-size: 15px; color: var(--dark); margin-bottom: 4px; }
+    .card-desc { font-size: 13px; color: #777; line-height: 1.4; padding-right: 25px; }
+    .price-addon { color: #27ae60; font-weight: bold; margin-left: 5px; }
+
+    /* Pricing Table */
+    .price-breakdown { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 12px; text-align: center; }
+    .price-breakdown th, .price-breakdown td { border: 1px solid #eee; padding: 12px 8px; }
+    .price-breakdown th { background: #f9f9f9; color: #888; text-transform: uppercase; }
+    .active-qty-row { background: #fffdf5; font-weight: 700; color: var(--gold); border: 2px solid var(--gold); }
+
+    /* Floating Summary */
+    .summary-box { background: var(--dark); color: white; padding: 25px; border-radius: 12px; margin-top: 30px; display: flex; justify-content: space-between; align-items: center; }
+    .price-label { font-size: 12px; opacity: 0.7; display: block; margin-bottom: 5px; }
+    .total-price { font-size: 32px; font-weight: 700; color: var(--gold); }
+    .btn-checkout { background: var(--gold); color: white; border: none; padding: 16px 35px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 18px; transition: transform 0.2s; }
+    .btn-checkout:hover { transform: translateY(-2px); background: #b8972f; }
+</style>
+
+<div class="config-container">
+    
+    <div class="preview-section">
+        <div class="design-card">
+            <h3 style="margin-bottom:15px; font-size: 16px;">DESIGN PREVIEW</h3>
+            {% if design_data %}
+                <img src="{{ design_data }}" alt="Custom Sign Preview" id="finalPreview">
+            {% else %}
+                <div style="padding: 60px; background: #f9f9f9; border: 2px dashed #ccc;">Design not loaded.</div>
+            {% endif %}
+            <div class="promo-banner"><i class="fas fa-shipping-fast"></i> Ships Next Day*</div>
+            <p style="font-size: 11px; color: #999; margin-top: 10px;">* Order within 1hr 20mins to qualify.</p>
+        </div>
+    </div>
+
+    <div class="options-section">
+        <h2>Select Your Options</h2>
+        
+        
+        <form id="signForm" action="{% url 'add_to_cart' %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="design_data" value="{{ design_data }}">
+
+            <div class="option-group">
+                <label>Size *</label>
+                <select class="select-box" name="size" id="signSize" onchange="updateUIAndPrice()">
+                    <option value="18x12" data-base="14.44">18" x 12" (Holes for Parking Signs)</option>
+                    <option value="24x18" data-base="22.50">24" x 18" (Standard Large)</option>
+                    <option value="12x12" data-base="10.99">12" x 12" (Square)</option>
+                </select>
+            </div>
+
+            <div class="option-group">
+                <label>Sides *</label>
+                <div class="radio-grid">
+                    <div class="radio-card active" onclick="selectRadio(this)">
+                        <span class="card-title">Single Sided</span>
+                        <input type="radio" name="sides" value="single" checked>
+                    </div>
+                    <div class="radio-card" onclick="selectRadio(this)">
+                        <span class="card-title">Double Sided <span class="price-addon">+50%</span></span>
+                        <input type="radio" name="sides" value="double">
+                    </div>
+                </div>
+            </div>
+
+            <div class="option-group">
+                <label>Material *</label>
+                <div class="radio-grid">
+                    <div class="radio-card active" onclick="selectRadio(this)">
+                        <span class="card-title">Aluminum (.040)</span>
+                        <span class="card-desc">Multi-purpose sign, rust-proof.</span>
+                        <input type="radio" name="material" value="040" checked>
+                    </div>
+                    <div class="radio-card" onclick="selectRadio(this)">
+                        <span class="card-title">Aluminum (.063) <span class="price-addon">+$5.00</span></span>
+                        <span class="card-desc">Thicker and withstands harsher climates.</span>
+                        <input type="radio" name="material" value="063">
+                    </div>
+                </div>
+            </div>
+
+            <div class="option-group">
+                <label>Finishing Options *</label>
+                <select class="select-box" name="finishing" id="finishing" onchange="updateUIAndPrice()">
+                    <option value="none" data-cost="0">I do not need a protective coating</option>
+                    <option value="glossy" data-cost="2.50">Protective Glossy Coating (+$2.50)</option>
+                    <option value="premium" data-cost="4.95">Premium Protective (Recommended!) (+$4.95)</option>
+                </select>
+            </div>
+
+            <div class="option-group">
+                <label>Stakes and Frames</label>
+                <div class="radio-grid">
+                    <div class="radio-card active" onclick="selectRadio(this)">
+                        <span class="card-title">No Mounting Needed</span>
+                        <input type="radio" name="mounting" value="none" checked>
+                    </div>
+                    <div class="radio-card" onclick="selectRadio(this)">
+                        <span class="card-title">6.5' U-Channel Post <span class="price-addon">+$35.79</span></span>
+                        <input type="radio" name="mounting" value="u-channel">
+                    </div>
+                    <div class="radio-card" onclick="selectRadio(this)">
+                        <span class="card-title">Parking Sign Post/Base <span class="price-addon">+$59.60</span></span>
+                        <input type="radio" name="mounting" value="post">
+                    </div>
+                </div>
+            </div>
+
+            <div class="option-group">
+                <label>Quantity</label>
+                <input type="number" class="qty-input" name="quantity" id="qty" value="1" min="1" oninput="updateUIAndPrice()">
+            </div>
+
+            <label>Bulk Pricing (Per Item)</label>
+            <table class="price-breakdown">
+                <thead>
+                    <tr><th>1+</th><th>5+</th><th>10+</th><th>20+</th><th>50+</th></tr>
+                </thead>
+                <tbody id="priceTableBody">
+                    </tbody>
+            </table>
+
+            <div class="summary-box">
+                <div>
+                    <span class="price-label">YOUR TOTAL PRICE</span>
+                    <span class="total-price" id="displayTotal">$0.00</span>
+                    <span id="unitPrice" style="display:block; font-size: 12px; color: #aaa; margin-top:5px;"></span>
+                </div>
+                <button type="submit" class="btn-checkout">ADD TO CART</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Bulk Discount Tiers
+    const discounts = [
+        { qty: 50, factor: 0.60 }, // 40% off
+        { qty: 20, factor: 0.75 }, // 25% off
+        { qty: 10, factor: 0.85 }, // 15% off
+        { qty: 5,  factor: 0.90 }, // 10% off
+        { qty: 1,  factor: 1.00 }  // Full price
+    ];
+
+    function selectRadio(element) {
+        const group = element.parentElement;
+        group.querySelectorAll('.radio-card').forEach(card => card.classList.remove('active'));
+        element.classList.add('active');
+        element.querySelector('input').checked = true;
+        updateUIAndPrice();
+    }
+
+    function updateUIAndPrice() {
+        const sizeSelect = document.getElementById('signSize');
+        const basePrice = parseFloat(sizeSelect.options[sizeSelect.selectedIndex].getAttribute('data-base'));
+        const quantity = parseInt(document.getElementById('qty').value) || 1;
+        
+        // 1. Calculate Add-ons
+        let addOns = 0;
+        
+        // Material
+        const material = document.querySelector('input[name="material"]:checked').value;
+        if (material === "063") addOns += 5.00;
+        
+        // Finishing
+        const finishSelect = document.getElementById('finishing');
+        addOns += parseFloat(finishSelect.options[finishSelect.selectedIndex].getAttribute('data-cost'));
+        
+        // Mounting
+        const mounting = document.querySelector('input[name="mounting"]:checked').value;
+        if (mounting === "u-channel") addOns += 35.79;
+        if (mounting === "post") addOns += 59.60;
+
+        // 2. Base + Add-ons per unit
+        let unitTotal = basePrice + addOns;
+        
+        // 3. Number of Sides (Multiplier)
+        const side = document.querySelector('input[name="sides"]:checked').value;
+        if (side === "double") unitTotal *= 1.5;
+
+        // 4. Apply Bulk Discount based on quantity
+        let discountFactor = 1.0;
+        for (let tier of discounts) {
+            if (quantity >= tier.qty) {
+                discountFactor = tier.factor;
+                break;
+            }
+        }
+
+        const discountedUnitPrice = unitTotal * discountFactor;
+        const grandTotal = discountedUnitPrice * quantity;
+
+        // 5. Update UI
+        document.getElementById('displayTotal').innerText = "$" + grandTotal.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        document.getElementById('unitPrice').innerText = `($${discountedUnitPrice.toFixed(2)} per item)`;
+
+        updateTable(unitTotal);
+    }
+
+    function updateTable(unitTotal) {
+        const tbody = document.getElementById('priceTableBody');
+        const quantity = parseInt(document.getElementById('qty').value) || 1;
+        
+        let rowHtml = "<tr>";
+        [1, 5, 10, 20, 50].forEach(q => {
+            let factor = 1.0;
+            for (let tier of discounts) { if (q >= tier.qty) { factor = tier.factor; break; } }
+            
+            let isCurrent = false;
+            if (quantity >= q && (q === 50 || quantity < [1, 5, 10, 20, 50][[1, 5, 10, 20, 50].indexOf(q)+1])) {
+                isCurrent = true;
+            }
+
+            const p = (unitTotal * factor).toFixed(2);
+            rowHtml += `<td class="${isCurrent ? 'active-qty-row' : ''}">$${p}</td>`;
+        });
+        rowHtml += "</tr>";
+        tbody.innerHTML = rowHtml;
+    }
+
+    // Initialize
+    window.onload = updateUIAndPrice;
+</script>
+
+{% endblock %}

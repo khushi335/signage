@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -139,3 +140,14 @@ MESSAGE_TAGS = {
     messages.ERROR: "danger",
     50: "critical"
 }
+
+
+
+# Use personal PayPal email (you can get this from your PayPal account)
+PAYPAL_PERSONAL_EMAIL = config('PAYPAL_PERSONAL_EMAIL')  # e.g., khushi@gmail.com
+
+# Use live PayPal URL (since personal accounts don't work on sandbox)
+PAYPAL_URL = config('PAYPAL_URL')
+PAYPAL_CLIENT_ID = config('PAYPAL_CLIENT_ID')
+PAYPAL_SECRET = config('PAYPAL_SECRET', default='')
+PAYPAL_MODE = config('PAYPAL_MODE', default='sandbox')

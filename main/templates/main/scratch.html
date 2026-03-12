@@ -1,0 +1,622 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+
+<style>
+
+:root{
+--gold:#D4AF37;
+--panel:#111;
+--border:#262626;
+--sidebar:80px;
+--panelw:350px;
+}
+
+.editor-wrapper{
+height:calc(100vh - 120px);
+display:flex;
+background:#000;
+overflow:hidden;
+font-family:'Inter';
+}
+
+.side-nav{
+width:var(--sidebar);
+background:#050505;
+border-right:1px solid var(--border);
+}
+
+.nav-tab{
+padding:18px 0;
+text-align:center;
+color:#777;
+cursor:pointer;
+font-size:10px;
+font-weight:700;
+border-left:3px solid transparent;
+}
+
+.nav-tab i{
+display:block;
+font-size:20px;
+margin-bottom:6px;
+}
+
+.nav-tab:hover,
+.nav-tab.active{
+color:var(--gold);
+background:#111;
+border-left-color:var(--gold);
+}
+
+.panel-container{
+width:var(--panelw);
+background:var(--panel);
+border-right:1px solid var(--border);
+padding:20px;
+display:none;
+overflow-y:auto;
+}
+
+.panel-container.active{display:block;}
+
+.panel-header{
+font-family:'Montserrat';
+font-size:11px;
+color:var(--gold);
+letter-spacing:2px;
+margin-bottom:15px;
+}
+
+.asset-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+}
+
+.asset-item{
+background:#1a1a1a;
+padding:10px;
+cursor:pointer;
+border-radius:6px;
+border:1px solid transparent;
+text-align:center;
+}
+
+.asset-item:hover{border-color:var(--gold)}
+
+.asset-item img{
+width:100%;
+height:70px;
+object-fit:cover;
+border-radius:4px;
+}
+
+.pattern-swatch{
+height:60px;
+border-radius:4px;
+cursor:pointer;
+border:1px solid #333;
+}
+
+.workspace{
+flex:1;
+display:flex;
+flex-direction:column;
+background:#0A0A0A;
+}
+
+.toolbar{
+height:60px;
+background:#050505;
+border-bottom:1px solid var(--border);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 20px;
+}
+
+.tool-btn{
+background:#1a1a1a;
+border:1px solid #333;
+color:white;
+padding:8px 10px;
+border-radius:5px;
+cursor:pointer;
+margin-right:5px;
+}
+
+.btn-main{
+background:var(--gold);
+border:none;
+padding:10px 18px;
+font-weight:700;
+cursor:pointer;
+border-radius:6px;
+}
+
+.canvas-area{
+flex:1;
+display:flex;
+align-items:center;
+justify-content:center;
+background-image:radial-gradient(#1a1a1a 1px,transparent 1px);
+background-size:20px 20px;
+}
+
+.layer-list{
+margin-top:10px;
+font-size:12px;
+}
+
+.layer-item{
+padding:6px;
+background:#1a1a1a;
+margin-bottom:4px;
+cursor:pointer;
+border-radius:4px;
+}
+
+</style>
+
+<div class="editor-wrapper">
+
+<!-- SIDEBAR -->
+
+<div class="side-nav">
+
+<div class="nav-tab active" onclick="switchPanel('tpl',this)">
+<i class="fas fa-layer-group"></i>Layouts
+</div>
+
+<div class="nav-tab" onclick="switchPanel('txt',this)">
+<i class="fas fa-font"></i>Text
+</div>
+
+<div class="nav-tab" onclick="switchPanel('shp',this)">
+<i class="fas fa-shapes"></i>Shapes
+</div>
+
+<div class="nav-tab" onclick="switchPanel('pat',this)">
+<i class="fas fa-fill-drip"></i>Patterns
+</div>
+
+<div class="nav-tab" onclick="document.getElementById('imgUpload').click()">
+<i class="fas fa-upload"></i>Upload
+</div>
+
+</div>
+
+<input type="file" id="imgUpload" hidden accept="image/*" onchange="uploadImage(this)">
+
+<!-- TEMPLATE PANEL -->
+
+<div id="panel-tpl" class="panel-container active">
+
+<div class="panel-header">Templates</div>
+
+<div class="asset-grid">
+
+<div class="asset-item" onclick="loadTemplate(0)">
+<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab">
+</div>
+
+<div class="asset-item" onclick="loadTemplate(1)">
+<img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f">
+</div>
+
+<div class="asset-item" onclick="loadTemplate(2)">
+<img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad">
+</div>
+
+<div class="asset-item" onclick="loadTemplate(3)">
+<img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c">
+</div>
+
+<div class="asset-item" onclick="loadTemplate(4)">
+<img src="https://images.unsplash.com/photo-1598032895397-b9472444bf93">
+</div>
+
+<div class="asset-item" onclick="loadTemplate(5)">
+<img src="https://images.unsplash.com/photo-1587017539504-67cfbddac569">
+</div>
+
+<div class="asset-item" onclick="loadTemplate(6)">
+<img src="https://images.unsplash.com/photo-1562157873-818bc0726f68">
+</div>
+
+<div class="asset-item" onclick="loadTemplate(7)">
+<img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f">
+</div>
+
+<div class="asset-item" onclick="loadTemplate(8)">
+<img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad">
+</div>
+
+<div class="asset-item" onclick="loadTemplate(9)">
+<img src="https://images.unsplash.com/photo-1598032895397-b9472444bf93">
+</div>
+
+<div class="asset-item" onclick="loadTemplate(10)">
+<img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c">
+</div>
+
+<div class="asset-item" onclick="loadTemplate(11)">
+<img src="https://images.unsplash.com/photo-1587017539504-67cfbddac569">
+</div>
+
+<div class="asset-item" onclick="loadTemplate(12)">
+<img src="https://images.unsplash.com/photo-1562157873-818bc0726f68">
+</div>
+
+<div class="asset-item" onclick="loadTemplate(13)">
+<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab">
+</div>
+
+<div class="asset-item" onclick="loadTemplate(14)">
+<img src="https://images.unsplash.com/photo-1598032895397-b9472444bf93">
+</div>
+
+<div class="asset-item" onclick="loadTemplate(15)">
+<img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad">
+</div>
+
+<div class="asset-item" onclick="loadTemplate(16)">
+<img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c">
+</div>
+
+<div class="asset-item" onclick="loadTemplate(17)">
+<img src="https://images.unsplash.com/photo-1562157873-818bc0726f68">
+</div>
+
+<div class="asset-item" onclick="loadTemplate(18)">
+<img src="https://images.unsplash.com/photo-1587017539504-67cfbddac569">
+</div>
+
+<div class="asset-item" onclick="loadTemplate(19)">
+<img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f">
+</div>
+
+</div>
+
+</div>
+
+<!-- TEXT PANEL -->
+
+<div id="panel-txt" class="panel-container">
+
+<div class="panel-header">Text</div>
+
+<button class="btn-main" onclick="addText()">ADD TEXT</button>
+
+<br><br>
+
+<button class="tool-btn" onclick="styleText('bold')"><i class="fas fa-bold"></i></button>
+<button class="tool-btn" onclick="styleText('italic')"><i class="fas fa-italic"></i></button>
+<button class="tool-btn" onclick="styleText('underline')"><i class="fas fa-underline"></i></button>
+
+<div class="panel-header">Layers</div>
+
+<div id="layers" class="layer-list"></div>
+
+</div>
+
+<!-- SHAPES PANEL -->
+
+<div id="panel-shp" class="panel-container">
+
+<div class="panel-header">Shapes</div>
+
+<div class="asset-grid">
+
+<div class="asset-item" onclick="addShape('rect')"><i class="fas fa-square fa-2x"></i></div>
+<div class="asset-item" onclick="addShape('circle')"><i class="fas fa-circle fa-2x"></i></div>
+<div class="asset-item" onclick="addShape('triangle')"><i class="fas fa-caret-up fa-2x"></i></div>
+<div class="asset-item" onclick="addShape('line')"><i class="fas fa-minus fa-2x"></i></div>
+<div class="asset-item" onclick="addShape('diamond')"><i class="fas fa-gem fa-2x"></i></div>
+<div class="asset-item" onclick="generateQR()"><i class="fas fa-qrcode fa-2x"></i></div>
+
+</div>
+
+</div>
+
+<!-- PATTERN PANEL -->
+
+<div id="panel-pat" class="panel-container">
+
+<div class="panel-header">Color</div>
+
+<input type="color" onchange="changeColor(this.value)">
+
+<div class="panel-header">Patterns</div>
+
+<div class="asset-grid">
+
+<div class="pattern-swatch" style="background: repeating-linear-gradient(45deg,#444,#444 10px,#222 10px,#222 20px);" onclick="pattern('stripes')"></div>
+
+<div class="pattern-swatch" style="background-image: radial-gradient(#555 2px,transparent 2px);background-size:15px 15px;" onclick="pattern('dots')"></div>
+
+</div>
+
+</div>
+
+<!-- WORKSPACE -->
+
+<div class="workspace">
+
+<div class="toolbar">
+
+<div>
+
+<button class="tool-btn" onclick="undo()">Undo</button>
+<button class="tool-btn" onclick="redo()">Redo</button>
+
+<button class="tool-btn" onclick="bringFront()">Layer Up</button>
+<button class="tool-btn" onclick="sendBack()">Layer Down</button>
+
+<button class="tool-btn" onclick="deleteObject()">Delete</button>
+
+</div>
+
+<div>
+
+<button class="tool-btn" onclick="switchSide()" id="sideBtn">FRONT</button>
+<button class="tool-btn" onclick="saveDesign()">Save Design</button>
+<form id="continueForm" method="POST" action="{% url 'configure_sign' %}" style="display:inline;">
+    {% csrf_token %}
+    <input type="hidden" name="design_data" id="design_data">
+    <button type="button" class="tool-btn" onclick="continueToOptions()">CONTINUE</button>
+</form>
+<button class="btn-main" onclick="download()">DOWNLOAD</button>
+
+</div>
+
+</div>
+
+<div class="canvas-area">
+
+<canvas id="c"></canvas>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const canvas=new fabric.Canvas('c',{
+width:900,
+height:500,
+backgroundColor:"#fff"
+})
+
+let history=[]
+let redoStack=[]
+
+function saveHistory(){
+redoStack=[]
+history.push(JSON.stringify(canvas))
+}
+
+canvas.on('object:added',saveHistory)
+canvas.on('object:modified',saveHistory)
+canvas.on('object:removed',saveHistory)
+
+function undo(){
+if(history.length<2)return
+redoStack.push(history.pop())
+canvas.loadFromJSON(history[history.length-1],()=>canvas.renderAll())
+}
+
+function redo(){
+if(!redoStack.length)return
+const state=redoStack.pop()
+history.push(state)
+canvas.loadFromJSON(state,()=>canvas.renderAll())
+}
+
+function switchPanel(id,btn){
+document.querySelectorAll(".panel-container").forEach(p=>p.classList.remove("active"))
+document.querySelectorAll(".nav-tab").forEach(t=>t.classList.remove("active"))
+document.getElementById("panel-"+id).classList.add("active")
+btn.classList.add("active")
+}
+
+function addText(){
+const t=new fabric.IText("Edit text",{left:100,top:100,fontSize:40,fontFamily:"Oswald"})
+canvas.add(t)
+updateLayers()
+}
+
+function styleText(type){
+const o=canvas.getActiveObject()
+if(!o||o.type!=="i-text")return
+if(type==="bold")o.fontWeight=o.fontWeight==="bold"?"normal":"bold"
+if(type==="italic")o.fontStyle=o.fontStyle==="italic"?"normal":"italic"
+if(type==="underline")o.underline=!o.underline
+canvas.renderAll()
+}
+
+function addShape(type){
+let s
+if(type==="rect")s=new fabric.Rect({width:120,height:80,fill:"#333"})
+if(type==="circle")s=new fabric.Circle({radius:50,fill:"#333"})
+if(type==="triangle")s=new fabric.Triangle({width:100,height:100,fill:"#333"})
+if(type==="line")s=new fabric.Line([0,0,200,0],{stroke:"black",strokeWidth:4})
+if(type==="diamond")s=new fabric.Rect({width:100,height:100,fill:"#333",angle:45})
+s.left=200
+s.top=200
+canvas.add(s)
+updateLayers()
+}
+
+
+
+function uploadImage(input) {
+    const file = input.files[0];
+    const reader = new FileReader();
+    reader.onload = e => {
+        fabric.Image.fromURL(e.target.result, img => {
+            img.scaleToWidth(200);
+            canvas.add(img);
+            updateLayers();
+        }, { crossOrigin: 'anonymous' }); // Added for security
+    };
+    reader.readAsDataURL(file);
+}
+
+function loadTemplate(i) {
+    const templates = [
+        "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab",
+        "https://images.unsplash.com/photo-1512436991641-6745cdb1723f",
+        "https://images.unsplash.com/photo-1585386959984-a4155224a1ad",
+        "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c",
+        "https://images.unsplash.com/photo-1598032895397-b9472444bf93",
+        "https://images.unsplash.com/photo-1587017539504-67cfbddac569",
+        "https://images.unsplash.com/photo-1562157873-818bc0726f68",
+        "https://images.unsplash.com/photo-1512436991641-6745cdb1723f",
+        "https://images.unsplash.com/photo-1585386959984-a4155224a1ad",
+        "https://images.unsplash.com/photo-1598032895397-b9472444bf93",
+        "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c",
+        "https://images.unsplash.com/photo-1587017539504-67cfbddac569",
+        "https://images.unsplash.com/photo-1562157873-818bc0726f68",
+        "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab",
+        "https://images.unsplash.com/photo-1598032895397-b9472444bf93",
+        "https://images.unsplash.com/photo-1585386959984-a4155224a1ad",
+        "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c",
+        "https://images.unsplash.com/photo-1562157873-818bc0726f68",
+        "https://images.unsplash.com/photo-1587017539504-67cfbddac569",
+        "https://images.unsplash.com/photo-1512436991641-6745cdb1723f"
+    ];
+
+    fabric.Image.fromURL(templates[i], function(img) {
+        // This ensures the template fits your 900x500 canvas perfectly
+        img.set({
+            scaleX: canvas.width / img.width,
+            scaleY: canvas.height / img.height,
+            originX: 'left',
+            originY: 'top'
+        });
+
+        // The crossOrigin: "anonymous" here and in the third argument 
+        // allows you to download/export the design later.
+        canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas), {
+            crossOrigin: 'anonymous'
+        });
+    }, { crossOrigin: 'anonymous' }); 
+}
+
+function changeColor(color){
+const o=canvas.getActiveObject()
+if(!o)return
+o.set("fill",color)
+canvas.renderAll()
+}
+
+function pattern(type){
+const o=canvas.getActiveObject()
+if(!o)return
+const pc=document.createElement("canvas")
+pc.width=20
+pc.height=20
+const ctx=pc.getContext("2d")
+ctx.fillStyle=o.fill||"#333"
+ctx.fillRect(0,0,20,20)
+ctx.strokeStyle="#fff"
+if(type==="stripes"){
+ctx.moveTo(0,0)
+ctx.lineTo(20,20)
+ctx.stroke()
+}else{
+ctx.beginPath()
+ctx.arc(10,10,3,0,Math.PI*2)
+ctx.fill()
+}
+o.set("fill",new fabric.Pattern({source:pc,repeat:"repeat"}))
+canvas.renderAll()
+}
+
+function generateQR(){
+const url=prompt("Enter URL")
+if(!url)return
+fabric.Image.fromURL(`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${url}`,img=>{
+canvas.add(img)
+})
+}
+
+function updateLayers(){
+const box=document.getElementById("layers")
+box.innerHTML=""
+canvas.getObjects().forEach((o,i)=>{
+const div=document.createElement("div")
+div.className="layer-item"
+div.innerText=o.type+" "+i
+div.onclick=()=>canvas.setActiveObject(o)
+box.appendChild(div)
+})
+}
+
+function bringFront(){
+const o=canvas.getActiveObject()
+if(o)canvas.bringForward(o)
+}
+
+function sendBack(){
+const o=canvas.getActiveObject()
+if(o)canvas.sendBackwards(o)
+}
+
+function deleteObject(){
+const o=canvas.getActiveObject()
+if(o)canvas.remove(o)
+}
+
+let side="front"
+let sides={front:null,back:null}
+
+function switchSide(){
+sides[side]=JSON.stringify(canvas)
+side=side==="front"?"back":"front"
+document.getElementById("sideBtn").innerText=side.toUpperCase()
+canvas.clear()
+if(sides[side])canvas.loadFromJSON(sides[side],()=>canvas.renderAll())
+else canvas.setBackgroundColor("#fff",canvas.renderAll.bind(canvas))
+}
+
+function download(){
+const link=document.createElement("a")
+link.download="design.png"
+link.href=canvas.toDataURL({multiplier:2})
+link.click()
+}
+
+
+
+function continueToOptions() {
+    const designImage = canvas.toDataURL({
+        format: 'jpeg', // JPEG is much smaller than PNG
+        quality: 0.8    // 80% quality saves a lot of space
+    });
+    
+    document.getElementById('design_data').value = designImage;
+    document.getElementById('continueForm').submit();
+}
+
+
+function saveDesign() {
+    const data = JSON.stringify(canvas.toJSON());
+    fetch('/save-design/', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json", "X-CSRFToken": "{{csrf_token}}" },
+        body: JSON.stringify({ design_json: data, preview: canvas.toDataURL() })
+    }).then(() => alert("Design saved successfully!"));
+}
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    .cart-wrapper { max-width: 1000px; margin: 50px auto; padding: 0 20px; }
+    .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 30px; }
+    
+    .cart-item { background: white; border-radius: 12px; padding: 20px; display: flex; gap: 25px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); align-items: center; }
+    .item-preview { width: 180px; height: 120px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 6px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .item-preview img { max-width: 100%; max-height: 100%; }
+
+    .item-details { flex: 2; }
+    .item-details h4 { margin: 0 0 10px 0; color: #D4AF37; text-transform: uppercase; font-size: 14px; }
+    .spec-list { font-size: 13px; color: #666; display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+    .spec-item b { color: #333; }
+
+    .item-pricing { flex: 1; text-align: right; }
+    .price-total { font-size: 22px; font-weight: 700; color: #333; display: block; }
+    .remove-btn { color: #e74c3c; font-size: 12px; cursor: pointer; text-decoration: none; margin-top: 10px; display: inline-block; }
+
+    .cart-summary-box { background: #1a1a1a; color: white; padding: 30px; border-radius: 12px; text-align: right; margin-top: 40px; }
+    .grand-total { font-size: 36px; color: #D4AF37; font-weight: 700; display: block; }
+    .checkout-btn { background: #D4AF37; color: white; padding: 15px 40px; border-radius: 8px; border: none; font-weight: 700; font-size: 18px; cursor: pointer; margin-top: 15px; }
+</style>
+
+<div class="cart-wrapper">
+    <div class="cart-header">
+        <h1>Shopping Cart ({{ items.count }} Items)</h1>
+        <a href="{% url 'scratch' %}" style="color: #D4AF37; font-weight: bold;">+ Add Another Design</a>
+    </div>
+
+    {% for item in items %}
+    <div class="cart-item">
+        <div class="item-preview">
+            {% if item.design_preview %}
+                <img src="{{ item.design_preview.url }}" alt="Your Design">
+            {% else %}
+                <span>No Preview</span>
+            {% endif %}
+        </div>
+
+        <div class="item-details">
+            <h4>Custom Sign - {{ item.size }}</h4>
+            <div class="spec-list">
+                <div class="spec-item"><b>Material:</b> {{ item.material }}</div>
+                <div class="spec-item"><b>Sides:</b> {{ item.sides|title }}</div>
+                <div class="spec-item"><b>Finishing:</b> {{ item.finishing }}</div>
+                <div class="spec-item"><b>Mounting:</b> {{ item.mounting }}</div>
+                <div class="spec-item"><b>Quantity:</b> {{ item.quantity }}</div>
+            </div>
+        </div>
+
+        <div class="item-pricing">
+            <span class="price-total">${{ item.total_price }}</span>
+            <a href="{% url 'remove_from_cart' item.id %}" class="remove-btn">
+                <i class="fas fa-trash"></i> Remove
+            </a>
+        </div>
+    </div>
+    {% empty %}
+    <div style="text-align: center; padding: 100px 0;">
+        <h3>Your cart is empty.</h3>
+        <p>Go back and create your first masterpiece!</p>
+        <a href="{% url 'scratch' %}" class="checkout-btn" style="text-decoration:none; display:inline-block;">START DESIGNING</a>
+    </div>
+    {% endfor %}
+
+    {% if items %}
+    <div class="cart-summary-box">
+        <span style="font-size: 14px; opacity: 0.7;">GRAND TOTAL</span>
+        <span class="grand-total">${{ cart_total }}</span>
+        <!--<a href="{% url 'checkout_page' %}" style="text-decoration: none;">-->
+        <!--    <button class="checkout-btn" style="width: 100%;">-->
+        <!--    PROCEED TO CHECKOUT <i class="fas fa-arrow-right"></i>-->
+        <!--    </button>-->
+        <!--</a>-->
+        <a href="#" style="text-decoration: none;">
+            <button class="checkout-btn" style="width: 100%;">
+            PROCEED TO CHECKOUT <i class="fas fa-arrow-right"></i>
+            </button>
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

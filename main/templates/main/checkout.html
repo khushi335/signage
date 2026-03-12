@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+    .checkout-container { max-width: 1100px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px; }
+    .checkout-form-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .order-summary-card { background: #f8f9fa; padding: 25px; border-radius: 12px; height: fit-content; position: sticky; top: 20px; }
+    
+    h2 { font-size: 22px; margin-bottom: 20px; color: #333; border-bottom: 2px solid #D4AF37; display: inline-block; padding-bottom: 5px; }
+    .form-section { margin-bottom: 30px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+    .form-group { margin-bottom: 15px; display: flex; flex-direction: column; }
+    
+    label { font-weight: 600; font-size: 13px; margin-bottom: 5px; color: #555; }
+    input, select { padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; outline: none; transition: border 0.3s; }
+    input:focus { border-color: #D4AF37; }
+    
+    .checkbox-group { flex-direction: row; align-items: center; gap: 10px; background: #fff9e6; padding: 10px; border-radius: 6px; }
+    .secure-badge { text-align: center; margin-top: 20px; color: #28a745; font-weight: bold; font-size: 14px; }
+    
+    .summary-item { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; }
+    .summary-total { border-top: 2px solid #ddd; margin-top: 15px; padding-top: 15px; font-size: 20px; font-weight: bold; }
+    
+    .pay-btn { background: #D4AF37; color: white; width: 100%; padding: 15px; border: none; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; margin-top: 20px; text-transform: uppercase; }
+</style>
+
+<div class="checkout-container">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="checkout-form-card">
+            
+            <div class="form-section">
+                <h2>Customer & Contact Info</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Email Address*</label>
+                        <input type="email" name="email" required placeholder="email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone*</label>
+                        <input type="text" name="phone" required placeholder="xxx - xxx - xxxx">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Shipping Information</h2>
+                <div class="form-group">
+                    <label>Ship-to Name*</label>
+                    <input type="text" name="ship_name" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Address 1*</label>
+                        <input type="text" name="ship_addr1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Address 2</label>
+                        <input type="text" name="ship_addr2">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>City*</label>
+                        <input type="text" name="ship_city" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Zip/Postal Code*</label>
+                        <input type="text" name="ship_zip" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Country*</label>
+                        <select name="ship_country" required>
+                            <option value="US">United States</option>
+                            <option value="CA">Canada</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>State*</label>
+                        <select name="ship_state" required>
+                            <option value="">Select State</option>
+                            <option value="AL">Alabama</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="CA">California</option>
+                            <option value="TX">Texas</option>
+                            </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="same_as_shipping" checked onchange="toggleBilling()">
+                <label for="same_as_shipping" style="margin:0">Billing and Shipping are the same</label>
+            </div>
+
+            <div id="billing-section" style="display: none; margin-top: 30px;">
+                <h2>Billing Information</h2>
+                <div class="form-group">
+                    <label>Name on Card*</label>
+                    <input type="text" name="bill_name">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Address 1*</label>
+                        <input type="text" name="bill_addr1">
+                    </div>
+                    <div class="form-group">
+                        <label>City*</label>
+                        <input type="text" name="bill_city">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="order-summary-card">
+        <h2>Order Summary</h2>
+        {% for item in items %}
+        <div class="summary-item">
+            <span>{{ item.quantity }}x {{ item.size }} {{ item.material }}</span>
+            <span>${{ item.total_price }}</span>
+        </div>
+        {% endfor %}
+        
+        <div class="summary-total">
+            <div class="summary-item">
+                <span>Grand Total:</span>
+                <span style="color: #D4AF37;">${{ cart_total }}</span>
+            </div>
+        </div>
+
+        <div class="item-pricing">
+            <a href="{% url 'secure_checkout' %}" style="text-decoration: none;">
+                <button type="button" class="pay-btn">
+                    Complete Order <i class="fas fa-chevron-right" style="margin-left: 10px;"></i>
+                </button>
+            </a>
+        </div>
+        
+        <div class="secure-badge">
+            <i class="fas fa-lock"></i> Your Purchase is 100% Secure
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleBilling() {
+        var billingSection = document.getElementById('billing-section');
+        var checkbox = document.getElementById('same_as_shipping');
+        billingSection.style.display = checkbox.checked ? 'none' : 'block';
+    }
+</script>
+
+{% endblock %}

@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+    :root { --gold: #D4AF37; --dark-bg: #1a1a1a; }
+    .secure-wrapper { max-width: 1100px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: 1.6fr 1fr; gap: 30px; }
+    .checkout-section { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 25px; }
+    .section-title { font-size: 20px; font-weight: 700; border-bottom: 2px solid #f1f1f1; padding-bottom: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .section-title span { background: var(--gold); color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+    
+    /* Shipping Options */
+    .shipping-option { border: 1px solid #ddd; padding: 15px; border-radius: 8px; margin-bottom: 10px; display: flex; align-items: center; cursor: pointer; transition: 0.3s; }
+    .shipping-option:hover { border-color: var(--gold); background: #fffdf5; }
+    .shipping-option input { margin-right: 15px; accent-color: var(--gold); }
+    .ship-info { flex-grow: 1; font-size: 14px; }
+    .ship-price { font-weight: 700; font-size: 16px; }
+
+    /* Info Cards */
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+    .info-card { background: #f9f9f9; padding: 15px; border-radius: 8px; font-size: 13px; line-height: 1.6; position: relative; border: 1px solid #eee; }
+    .edit-link { position: absolute; top: 15px; right: 15px; color: var(--gold); font-weight: bold; text-decoration: none; font-size: 12px; }
+
+    /* Summary Sidebar */
+    .summary-card { background: var(--dark-bg); color: white; padding: 30px; border-radius: 12px; position: sticky; top: 20px; }
+    .price-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 15px; }
+    .savings { color: #2ecc71; }
+    .total-row { border-top: 1px solid #444; margin-top: 20px; padding-top: 20px; font-size: 24px; font-weight: 700; color: var(--gold); }
+
+    /* Payment Tabs */
+    .payment-methods { display: flex; gap: 10px; margin-top: 20px; margin-bottom: 20px; }
+    .pay-tab { flex: 1; padding: 15px; border: 1px solid #ddd; border-radius: 8px; text-align: center; cursor: pointer; font-weight: 600; transition: 0.3s; }
+    .pay-tab.active { border-color: var(--gold); background: #fff9e6; color: var(--gold); }
+    
+    /* Form Inputs */
+    .card-input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 6px; font-size: 15px; }
+    .card-input:focus { border-color: var(--gold); outline: none; }
+</style>
+
+<div class="secure-wrapper">
+    <form id="payment-form" method="POST">
+        {% csrf_token %}
+        <div>
+            <div class="checkout-section">
+                <div class="section-title"><span>1</span> Choose Shipping Method</div>
+                <div class="shipping-option">
+                    <input type="radio" name="shipping" value="46.03" onchange="updateTotal(46.03)">
+                    <div class="ship-info">Economy (Get it by {{ dates.economy }})</div>
+                    <div class="ship-price">$46.03</div>
+                </div>
+                <div class="shipping-option">
+                    <input type="radio" name="shipping" value="48.45" checked onchange="updateTotal(48.45)">
+                    <div class="ship-info">Standard (Get it by {{ dates.standard }})</div>
+                    <div class="ship-price">$48.45</div>
+                </div>
+                <div class="shipping-option">
+                    <input type="radio" name="shipping" value="58.14" onchange="updateTotal(58.14)">
+                    <div class="ship-info">Rush (Get it by {{ dates.rush }})</div>
+                    <div class="ship-price">$58.14</div>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-card">
+                        <a href="{% url 'checkout_page' %}" class="edit-link">Edit</a>
+                        <strong>BILL TO:</strong><br>
+                        {{ user_info.name }}<br>
+                        {{ user_info.address }}
+                    </div>
+                    <div class="info-card">
+                        <a href="{% url 'checkout_page' %}" class="edit-link">Edit</a>
+                        <strong>SHIP TO:</strong><br>
+                        {{ user_info.name }}<br>
+                        {{ user_info.address }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkout-section">
+                <div class="section-title"><span>2</span> Select Payment Method</div>
+                <div class="payment-methods">
+                    <div class="pay-tab active" id="tab-card" onclick="setPayment('card')">
+                        <i class="fas fa-credit-card"></i> Credit Card
+                    </div>
+                    <div class="pay-tab" id="tab-paypal" onclick="setPayment('paypal')">
+                        <i class="fab fa-paypal"></i> PayPal
+                    </div>
+                </div>
+
+                <div id="card-fields">
+                    <input type="text" id="card-num" class="card-input" placeholder="Card Number" maxlength="19">
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="card-exp" class="card-input" placeholder="MM/YY" maxlength="5">
+                        <input type="text" id="card-cvv" class="card-input" placeholder="CVV" maxlength="4">
+                    </div>
+                    <input type="text" id="card-zip" class="card-input" placeholder="Billing Zip Code" maxlength="5">
+                </div>
+
+                <div id="paypal-fields" style="display: none; text-align: center; padding: 20px; border: 1px dashed var(--gold); border-radius: 8px;">
+                    <p style="color: #444; font-weight: 600;">Secure Redirection</p>
+                    <p style="font-size: 13px; color: #777;">You will be redirected to PayPal to pay the exact order total securely.</p>
+                    <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_150x38.png" alt="PayPal" style="margin-top: 10px;">
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div>
+        <div class="summary-card">
+            <h2 style="font-size: 18px; margin-bottom: 20px; border-bottom: 1px solid #444; padding-bottom: 10px;">Order Summary</h2>
+            <div class="price-row">
+                <span>Original Total:</span>
+                <span style="text-decoration: line-through; opacity: 0.6;">$359.00</span>
+            </div>
+            <div class="price-row savings">
+                <span>You Saved:</span>
+                <span>(${{ savings }})</span>
+            </div>
+            <div class="price-row">
+                <span>Cart Total:</span>
+                <span>${{ cart_total }}</span>
+            </div>
+            <div class="price-row">
+                <span>Shipping:</span>
+                <span id="display-shipping">$48.45</span>
+            </div>
+            <div class="price-row">
+                <span>Tax:</span>
+                <span>${{ tax }}</span>
+            </div>
+            
+            <div class="total-row">
+                <span>Order Total:</span>
+                <span id="grand-total">$229.06</span>
+            </div>
+
+            <button onclick="processPayment()" style="background: var(--gold); color: white; width: 100%; padding: 18px; border: none; border-radius: 8px; font-weight: 800; font-size: 18px; cursor: pointer; margin-top: 25px;">
+                SECURE CHECKOUT <i class="fas fa-lock" style="margin-left: 10px;"></i>
+            </button>
+
+            <div style="text-align: center; margin-top: 20px; font-size: 13px;">
+                <i class="fas fa-certificate" style="color: var(--gold);"></i> 100% Satisfaction Guaranteed
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentMethod = 'card';
+    let currentTotal = 229.06; // Default calculated total
+    const subtotal = parseFloat("{{ cart_total }}");
+    const tax = parseFloat("{{ tax }}");
+
+    function updateTotal(shipPrice) {
+        currentTotal = (subtotal + shipPrice + tax).toFixed(2);
+        document.getElementById('display-shipping').innerText = '$' + shipPrice.toFixed(2);
+        document.getElementById('grand-total').innerText = '$' + currentTotal;
+    }
+
+    function setPayment(method) {
+        currentMethod = method;
+        document.getElementById('tab-card').classList.toggle('active', method === 'card');
+        document.getElementById('tab-paypal').classList.toggle('active', method === 'paypal');
+        document.getElementById('card-fields').style.display = method === 'card' ? 'block' : 'none';
+        document.getElementById('paypal-fields').style.display = method === 'paypal' ? 'block' : 'none';
+    }
+
+    // Formatting for Credit Card
+    document.getElementById('card-num').addEventListener('input', e => {
+        e.target.value = e.target.value.replace(/\D/g, '').replace(/(.{4})/g, '$1 ').trim();
+    });
+    document.getElementById('card-exp').addEventListener('input', e => {
+        e.target.value = e.target.value.replace(/\D/g, '').replace(/(.{2})/, '$1/').trim();
+    });
+
+    function processPayment() {
+        if (currentMethod === 'paypal') {
+            const paypalBaseUrl = "https://www.paypal.com/ncp/payment/8ACJ49AE6HETN";
+            window.location.href = `${paypalBaseUrl}?amount=${currentTotal}&currency_code=USD`;
+        } else {
+            const num = document.getElementById('card-num').value;
+            const exp = document.getElementById('card-exp').value;
+            const cvv = document.getElementById('card-cvv').value;
+
+            if (num.length < 16 || exp.length < 5 || cvv.length < 3) {
+                alert("Please check your card details.");
+                return;
+            }
+            
+            // For Credit Card simulation
+            setTimeout(() => {
+                window.location.href = "{% url 'payment_success' %}";
+            }, 2500);
+        }
+    }
+</script>
+{% endblock %}
