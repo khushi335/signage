@@ -1,126 +1,281 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Gallery{% endblock %}
-
-{% block extra_css %}
-<!-- GLightbox CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
-{% endblock %}
-
 {% block content %}
 
 <style>
-/* Gallery CSS */
-.gallery-section .container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 40px 20px;
-}
 
-.gallery-section h1 {
-    text-align: center;
-    font-size: 3rem;
-    margin-bottom: 40px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #222;
-}
+/* =========================
+GLOBAL FIX (IMPORTANT)
+========================= */
 
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-}
-
-.gallery-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.gallery-item img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.4s ease;
-}
-
-.gallery-item:hover img {
-    transform: scale(1.1);
-}
-
-.gallery-item .overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));
-    color: #fff;
-    padding: 20px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    text-align: center;
-}
-
-.gallery-item:hover .overlay {
-    opacity: 1;
-}
-
-.overlay h3 {
+html, body {
     margin: 0;
-    font-size: 1.3rem;
-    font-weight: 600;
+    padding: 0;
+    overflow-x: hidden;
 }
 
-.overlay p {
-    font-size: 0.95rem;
-    margin-top: 8px;
+* {
+    box-sizing: border-box;
 }
 
-/* Responsive tweaks */
-@media (max-width: 768px) {
-    .gallery-section h1 {
-        font-size: 2.2rem;
-    }
-
-    .gallery-item .overlay {
-        padding: 15px;
-    }
+/* override bootstrap container issue */
+.container {
+    max-width: 100% !important;
+    padding: 0 !important;
 }
+
+/* =========================
+GALLERY WRAPPER
+========================= */
+
+.vh-gallery-page{
+    width:100%;
+    background:#fff;
+}
+
+/* =========================
+HEADER (MINIMAL)
+========================= */
+
+.gallery-header{
+    text-align:center;
+    padding:70px 20px 30px;
+}
+
+.gallery-header h1{
+    font-size:2.6rem;
+    font-weight:900;
+    color:#07111f;
+}
+
+/* =========================
+HORIZONTAL ROW STYLE GALLERY
+========================= */
+
+.gallery-section{
+    margin-bottom:60px;
+    padding:0 20px;
+}
+
+.gallery-scroll{
+    display:flex;
+    gap:16px;
+    overflow-x:auto;
+    padding:10px 5px 20px;
+    scroll-snap-type:x mandatory;
+}
+
+.gallery-scroll::-webkit-scrollbar{
+    height:6px;
+}
+
+.gallery-scroll::-webkit-scrollbar-thumb{
+    background:#ff6b00;
+    border-radius:10px;
+}
+
+/* IMAGE CARD */
+.g-item{
+    flex:0 0 auto;
+    width:300px;
+    height:220px;
+    border-radius:16px;
+    overflow:hidden;
+    cursor:pointer;
+    scroll-snap-align:start;
+    box-shadow:0 10px 30px rgba(0,0,0,0.12);
+    position:relative;
+    background:#eee;
+}
+
+.g-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:0.5s ease;
+}
+
+.g-item:hover img{
+    transform:scale(1.08);
+}
+
+/* =========================
+LIGHTBOX
+========================= */
+
+.lightbox{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.92);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+}
+
+.lightbox img{
+    max-width:92%;
+    max-height:88%;
+    border-radius:10px;
+}
+
+.lightbox.active{
+    display:flex;
+}
+
+.close-btn{
+    position:absolute;
+    top:20px;
+    right:25px;
+    font-size:40px;
+    color:#fff;
+    cursor:pointer;
+}
+
 </style>
 
-<div class="gallery-section">
-    <div class="container">
-        <h1>Our Gallery</h1>
-        <div class="gallery-grid">
-            {% for img in images %}
-            <div class="gallery-item">
-                <a href="{{ img.image.url }}" class="glightbox" data-title="{{ img.title }}">
-                    <img src="{{ img.image.url }}" alt="{{ img.title }}">
-                    <div class="overlay">
-                        <h3>{{ img.title }}</h3>
-                    </div>
-                </a>
+<div class="vh-gallery-page">
+
+    <!-- HEADER -->
+    <div class="gallery-header">
+        <h1>Gallery</h1>
+    </div>
+
+    <!-- ================= PHOTOGRAPHY ================= -->
+    <div class="gallery-section">
+        <div class="gallery-scroll">
+
+            <div class="g-item" onclick="openLightbox(this)">
+                <img src="{% static 'images/wedding.jpg' %}">
             </div>
-            {% endfor %}
+
+            <div class="g-item" onclick="openLightbox(this)">
+                <img src="{% static 'images/photo1.jpg' %}">
+            </div>
+
+            <div class="g-item" onclick="openLightbox(this)">
+                <img src="{% static 'images/photo2.jpg' %}">
+            </div>
+
+            <div class="g-item" onclick="openLightbox(this)">
+                <img src="{% static 'images/photo3.jpg' %}">
+            </div>
+
+            <div class="g-item" onclick="openLightbox(this)">
+                <img src="{% static 'images/photo4.jpg' %}">
+            </div>
+
+            <div class="g-item" onclick="openLightbox(this)">
+                <img src="{% static 'images/photo5.jpg' %}">
+            </div>
+
+            <div class="g-item" onclick="openLightbox(this)">
+                <img src="{% static 'images/graduation.jpg' %}">
+            </div>
+
+            <div class="g-item" onclick="openLightbox(this)">
+                <img src="{% static 'images/babyshower.jpg' %}">
+            </div>
+
+            <div class="g-item" onclick="openLightbox(this)">
+                <img src="{% static 'images/event.jpg' %}">
+            </div>
+
         </div>
     </div>
+
+    <!-- ================= VIDEOGRAPHY ================= -->
+    <div class="gallery-section">
+        <div class="gallery-scroll">
+
+            <div class="g-item" onclick="openLightbox(this)">
+                <img src="{% static 'images/videography.jpg' %}">
+            </div>
+
+            <div class="g-item" onclick="openLightbox(this)">
+                <img src="{% static 'images/photo3.jpg' %}">
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================= PRINTING ================= -->
+    <div class="gallery-section">
+        <div class="gallery-scroll">
+
+            <div class="g-item" onclick="openLightbox(this)">
+                <img src="{% static 'images/cap.jpg' %}">
+            </div>
+
+            <div class="g-item" onclick="openLightbox(this)">
+                <img src="{% static 'images/mug.jpg' %}">
+            </div>
+
+            <div class="g-item" onclick="openLightbox(this)">
+                <img src="{% static 'images/hoodie.jpg' %}">
+            </div>
+
+            <div class="g-item" onclick="openLightbox(this)">
+                <img src="{% static 'images/tshirt.jpg' %}">
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================= TRADITIONAL ================= -->
+    <div class="gallery-section">
+        <div class="gallery-scroll">
+
+            <div class="g-item" onclick="openLightbox(this)">
+                <img src="{% static 'images/dress1.jpg' %}">
+            </div>
+
+            <div class="g-item" onclick="openLightbox(this)">
+                <img src="{% static 'images/dress2.jpg' %}">
+            </div>
+
+            <div class="g-item" onclick="openLightbox(this)">
+                <img src="{% static 'images/dress3.jpg' %}">
+            </div>
+
+            <div class="g-item" onclick="openLightbox(this)">
+                <img src="{% static 'images/dress4.jpg' %}">
+            </div>
+
+            <div class="g-item" onclick="openLightbox(this)">
+                <img src="{% static 'images/dress5.jpg' %}">
+            </div>
+
+            <div class="g-item" onclick="openLightbox(this)">
+                <img src="{% static 'images/dress6.jpg' %}">
+            </div>
+
+            <div class="g-item" onclick="openLightbox(this)">
+                <img src="{% static 'images/dress7.jpg' %}">
+            </div>
+
+        </div>
+    </div>
+
 </div>
 
-{% endblock %}
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+    <span class="close-btn" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img">
+</div>
 
-{% block extra_js %}
-<!-- GLightbox JS -->
-<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 <script>
-const lightbox = GLightbox({
-    selector: '.glightbox',
-    touchNavigation: true,
-    loop: true,
-    autoplayVideos: true,
-});
+function openLightbox(el){
+    document.getElementById("lightbox-img").src =
+        el.querySelector("img").src;
+    document.getElementById("lightbox").classList.add("active");
+}
+
+function closeLightbox(){
+    document.getElementById("lightbox").classList.remove("active");
+}
 </script>
+
 {% endblock %}

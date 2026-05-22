@@ -1,75 +1,875 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Our Services | Design, Fabrication & Installation{% endblock %}
-
 {% block content %}
-<section class="services-hero d-flex align-items-center">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 mx-auto text-center">
-                <span class="badge-tech mb-3">Precision Engineering</span>
-                <h1 class="display-3 fw-black text-white">Full-Service <br><span class="text-orange">Signage Solutions</span></h1>
-                <p class="lead text-silver opacity-75 mt-3">From technical blueprints to heavy-duty installation—we own the entire production lifecycle.</p>
-            </div>
-        </div>
-    </div>
-</section>
 
-<section class="py-10 bg-white">
-    <div class="container">
-        <div class="row g-4">
-            {% for service in services %}
-            <div class="col-lg-4 col-md-6">
-                <div class="service-premium-card">
-                    <div class="service-header">
-                        <div class="service-icon-wrap">
-                            <i class="fas {{ service.icon }}"></i>
-                        </div>
-                        <span class="step-indicator">0{{ forloop.counter }}</span>
-                    </div>
-                    <div class="service-body">
-                        <h3 class="h4 fw-bold text-navy">{{ service.title }}</h3>
-                        <p class="text-muted small mb-0">{{ service.desc }}</p>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
+<style>
 
-<section class="py-10 tech-section text-white">
-    <div class="container">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-6">
-                <h6 class="text-orange fw-bold text-uppercase ls-2 mb-3">Hardware & Innovation</h6>
-                <h2 class="display-5 fw-black mb-4">Industrial-Grade <br><span class="text-warning">Fabrication Technology</span></h2>
-                <p class="text-silver mb-5 fs-5">We leverage the same technology used in aerospace and automotive branding to ensure your identity never fades.</p>
-                
-                <div class="row g-4">
-                    <div class="col-sm-6">
-                        <div class="tech-feature-item">
-                            <div class="feature-bar"></div>
-                            <h4 class="h6 fw-bold text-orange text-uppercase">UV-Stable Inks</h4>
-                            <p class="small text-silver opacity-75">Molecule-bonded pigments that resist 99% of sun-fading.</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="tech-feature-item">
-                            <div class="feature-bar"></div>
-                            <h4 class="h6 fw-bold text-orange text-uppercase">Precision CNC</h4>
-                            <p class="small text-silver opacity-75">Micron-accurate cutting for metal, wood, and acrylic.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="tech-image-wrap p-2 bg-glass rounded-5">
-                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" class="img-fluid rounded-4 shadow-2xl" alt="Modern Fabrication">
-                </div>
-            </div>
-        </div>
+/* =====================================================
+VOIAGE HUB SERVICES PAGE
+===================================================== */
+
+.vh-services-page{
+    --vh-navy:#07111f;
+    --vh-gold:#f59e0b;
+    --vh-orange:#ff6b00;
+    --vh-text:#6b7280;
+    --vh-white:#ffffff;
+    --vh-border:rgba(255,255,255,0.08);
+    background:#fff;
+    overflow:hidden;
+}
+
+/* =====================================================
+GLOBAL SECTION
+===================================================== */
+
+.vh-service-section{
+    position:relative;
+    padding:110px 0;
+    overflow:hidden;
+}
+
+.vh-service-bg{
+    position:absolute;
+    inset:0;
+    background:
+    radial-gradient(circle at top left, rgba(255,107,0,0.08), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(245,158,11,0.08), transparent 35%);
+}
+
+.vh-grid-bg{
+    position:absolute;
+    inset:0;
+    background-image:
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size:60px 60px;
+    opacity:0.4;
+}
+
+/* =====================================================
+HEADER
+===================================================== */
+
+.vh-header{
+    text-align:center;
+    margin-bottom:70px;
+    position:relative;
+    z-index:2;
+}
+
+.vh-tag{
+    display:inline-block;
+    font-size:0.78rem;
+    font-weight:800;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:var(--vh-orange);
+    margin-bottom:14px;
+}
+
+.vh-title{
+    font-size:3.4rem;
+    font-weight:900;
+    line-height:1.1;
+    color:var(--vh-navy);
+    margin-bottom:18px;
+}
+
+.vh-title span{
+    background:linear-gradient(
+        90deg,
+        var(--vh-orange),
+        var(--vh-gold)
+    );
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.vh-desc{
+    max-width:760px;
+    margin:auto;
+    color:var(--vh-text);
+    line-height:1.8;
+    font-size:1.05rem;
+}
+
+/* =====================================================
+SHOWCASE GRID
+===================================================== */
+
+.vh-showcase-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    grid-auto-rows:260px;
+    gap:22px;
+    position:relative;
+    z-index:2;
+    margin-bottom:100px;
+}
+
+.vh-showcase-item{
+    position:relative;
+    overflow:hidden;
+    border-radius:28px;
+    box-shadow:0 25px 70px rgba(0,0,0,0.12);
+}
+
+.vh-showcase-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:0.8s ease;
+}
+
+.vh-showcase-item:hover img{
+    transform:scale(1.08);
+}
+
+.vh-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,0.78),
+        rgba(0,0,0,0.15),
+        transparent
+    );
+}
+
+.vh-showcase-label{
+    position:absolute;
+    bottom:18px;
+    left:18px;
+
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(10px);
+
+    color:#fff;
+    font-size:0.85rem;
+    font-weight:700;
+
+    padding:10px 18px;
+    border-radius:999px;
+
+    border:1px solid rgba(255,255,255,0.15);
+}
+
+.vh-large{
+    grid-column:span 2;
+    grid-row:span 2;
+}
+
+.vh-tall{
+    grid-row:span 2;
+}
+
+/* =====================================================
+SERVICE CATEGORY SECTION
+===================================================== */
+
+.vh-category{
+    margin-bottom:110px;
+    position:relative;
+    z-index:2;
+}
+
+.vh-category-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    margin-bottom:35px;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.vh-category-title{
+    font-size:2.2rem;
+    font-weight:900;
+    color:var(--vh-navy);
+    margin-bottom:10px;
+}
+
+.vh-category-title span{
+    color:var(--vh-orange);
+}
+
+.vh-category-text{
+    color:var(--vh-text);
+    max-width:650px;
+    line-height:1.7;
+}
+
+/* =====================================================
+PRODUCT GRID
+===================================================== */
+
+.vh-product-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+}
+
+/* =====================================================
+CARD
+===================================================== */
+
+.vh-card{
+    background:#fff;
+    border-radius:28px;
+    overflow:hidden;
+    box-shadow:0 20px 50px rgba(0,0,0,0.08);
+    transition:0.45s ease;
+    border:1px solid rgba(0,0,0,0.06);
+}
+
+.vh-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 30px 70px rgba(0,0,0,0.12);
+}
+
+.vh-card-image{
+    position:relative;
+    height:300px;
+    overflow:hidden;
+}
+
+.vh-card-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:0.8s ease;
+}
+
+.vh-card:hover img{
+    transform:scale(1.08);
+}
+
+.vh-badge{
+    position:absolute;
+    top:18px;
+    left:18px;
+
+    background:rgba(255,255,255,0.14);
+    backdrop-filter:blur(10px);
+
+    color:#fff;
+    font-size:0.75rem;
+    font-weight:700;
+
+    padding:8px 14px;
+    border-radius:999px;
+}
+
+.vh-card-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,0.68),
+        transparent
+    );
+}
+
+.vh-card-body{
+    padding:24px;
+}
+
+.vh-card-body h3{
+    font-size:1.15rem;
+    font-weight:800;
+    color:var(--vh-navy);
+    margin-bottom:10px;
+}
+
+.vh-card-body p{
+    color:var(--vh-text);
+    line-height:1.7;
+    margin-bottom:20px;
+    font-size:0.94rem;
+}
+
+.vh-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+.vh-price{
+    color:var(--vh-orange);
+    font-weight:800;
+    font-size:1.1rem;
+}
+
+.vh-btn{
+    border:none;
+    padding:12px 18px;
+    border-radius:999px;
+
+    background:linear-gradient(
+        90deg,
+        var(--vh-orange),
+        var(--vh-gold)
+    );
+
+    color:#fff;
+    font-size:0.82rem;
+    font-weight:700;
+    transition:0.4s ease;
+}
+
+.vh-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* =====================================================
+RESPONSIVE
+===================================================== */
+
+@media(max-width:1200px){
+
+    .vh-product-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+}
+
+@media(max-width:991px){
+
+    .vh-service-section{
+        padding:90px 0;
+    }
+
+    .vh-showcase-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .vh-product-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .vh-title{
+        font-size:2.6rem;
+    }
+
+    .vh-large{
+        grid-column:span 2;
+    }
+}
+
+@media(max-width:767px){
+
+    .vh-showcase-grid{
+        grid-template-columns:1fr;
+        grid-auto-rows:240px;
+    }
+
+    .vh-product-grid{
+        grid-template-columns:1fr;
+    }
+
+    .vh-large,
+    .vh-tall{
+        grid-column:auto;
+        grid-row:auto;
+    }
+
+    .vh-title{
+        font-size:2rem;
+    }
+
+    .vh-category-title{
+        font-size:1.7rem;
+    }
+
+    .vh-card-image{
+        height:260px;
+    }
+}
+
+@media(max-width:575px){
+
+    .vh-service-section{
+        padding:70px 0;
+    }
+
+    .vh-title{
+        font-size:1.8rem;
+    }
+
+    .vh-showcase-grid{
+        gap:18px;
+    }
+
+    .vh-showcase-item,
+    .vh-card{
+        border-radius:22px;
+    }
+
+    .vh-card-body{
+        padding:20px;
+    }
+
+    .vh-bottom{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .vh-btn{
+        width:100%;
+    }
+}
+
+</style>
+
+<div class="vh-services-page">
+
+<section class="vh-service-section">
+
+<div class="vh-service-bg"></div>
+<div class="vh-grid-bg"></div>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="vh-header">
+
+        <h1 class="vh-title">
+            Creative Experiences
+            <span>Captured Beautifully</span>
+        </h1>
+
+        <p class="vh-desc">
+            Photography, videography, traditional fashion and premium printing —
+            beautifully designed for unforgettable celebrations and timeless memories.
+        </p>
+
     </div>
+
+    <!-- SHOWCASE GRID -->
+
+    <div class="vh-showcase-grid">
+
+        <div class="vh-showcase-item vh-large">
+            <img src="{% static 'images/wedding.jpg' %}" alt="">
+            <div class="vh-overlay"></div>
+            <div class="vh-showcase-label">Wedding Photography</div>
+        </div>
+
+        <div class="vh-showcase-item">
+            <img src="{% static 'images/photo1.jpg' %}" alt="">
+            <div class="vh-overlay"></div>
+            <div class="vh-showcase-label">Birthday Shoot</div>
+        </div>
+
+        <div class="vh-showcase-item">
+            <img src="{% static 'images/graduation.jpg' %}" alt="">
+            <div class="vh-overlay"></div>
+            <div class="vh-showcase-label">Graduation</div>
+        </div>
+
+        <div class="vh-showcase-item vh-tall">
+            <img src="{% static 'images/videography.jpg' %}" alt="">
+            <div class="vh-overlay"></div>
+            <div class="vh-showcase-label">Cinematic Videography</div>
+        </div>
+
+        <div class="vh-showcase-item">
+            <img src="{% static 'images/babyshower.jpg' %}" alt="">
+            <div class="vh-overlay"></div>
+            <div class="vh-showcase-label">Baby Shower</div>
+        </div>
+
+        <div class="vh-showcase-item">
+            <img src="{% static 'images/event.jpg' %}" alt="">
+            <div class="vh-overlay"></div>
+            <div class="vh-showcase-label">Events</div>
+        </div>
+
+    </div>
+
+    <!-- =====================================================
+    PHOTOGRAPHY
+    ====================================================== -->
+
+    <div class="vh-category">
+
+        <div class="vh-category-header">
+
+            <div>
+                <h2 class="vh-category-title">
+                    Photography <span>Services</span>
+                </h2>
+
+                <p class="vh-category-text">
+                    Premium photography sessions for weddings,
+                    birthdays, graduations and memorable celebrations.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="vh-product-grid">
+
+            <!-- CARD -->
+            <div class="vh-card">
+                <div class="vh-card-image">
+                    <img src="{% static 'images/photo1.jpg' %}" alt="">
+                    <div class="vh-card-overlay"></div>
+                    <div class="vh-badge">Photography</div>
+                </div>
+
+                <div class="vh-card-body">
+                    <h3>Birthday Photography</h3>
+                    <p>Beautifully captured birthday moments with cinematic editing.</p>
+
+                    <div class="vh-bottom">
+                        <div class="vh-price">$50</div>
+                        <button class="vh-btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vh-card">
+                <div class="vh-card-image">
+                    <img src="{% static 'images/photo2.jpg' %}" alt="">
+                    <div class="vh-card-overlay"></div>
+                    <div class="vh-badge">Photography</div>
+                </div>
+
+                <div class="vh-card-body">
+                    <h3>Event Photography</h3>
+                    <p>Professional event coverage with elegant storytelling.</p>
+
+                    <div class="vh-bottom">
+                        <div class="vh-price">$150</div>
+                        <button class="vh-btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vh-card">
+                <div class="vh-card-image">
+                    <img src="{% static 'images/photo4.jpg' %}" alt="">
+                    <div class="vh-card-overlay"></div>
+                    <div class="vh-badge">Fashion</div>
+                </div>
+
+                <div class="vh-card-body">
+                    <h3>Fashion Shoot</h3>
+                    <p>Creative fashion photography with premium styling direction.</p>
+
+                    <div class="vh-bottom">
+                        <div class="vh-price">$200</div>
+                        <button class="vh-btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vh-card">
+                <div class="vh-card-image">
+                    <img src="{% static 'images/photo5.jpg' %}" alt="">
+                    <div class="vh-card-overlay"></div>
+                    <div class="vh-badge">Wedding</div>
+                </div>
+
+                <div class="vh-card-body">
+                    <h3>Wedding Shoot</h3>
+                    <p>Elegant wedding portraits with cinematic compositions.</p>
+
+                    <div class="vh-bottom">
+                        <div class="vh-price">$60</div>
+                        <button class="vh-btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- =====================================================
+    VIDEOGRAPHY
+    ====================================================== -->
+
+    <div class="vh-category">
+
+        <div class="vh-category-header">
+
+            <div>
+                <h2 class="vh-category-title">
+                    Cinematic <span>Videography</span>
+                </h2>
+
+                <p class="vh-category-text">
+                    Emotional storytelling through cinematic films,
+                    commercials and event videography.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="vh-product-grid">
+
+            <div class="vh-card">
+                <div class="vh-card-image">
+                    <img src="{% static 'images/photo3.jpg' %}" alt="">
+                    <div class="vh-card-overlay"></div>
+                    <div class="vh-badge">Commercial</div>
+                </div>
+
+                <div class="vh-card-body">
+                    <h3>Ad Commercial</h3>
+                    <p>Professional cinematic commercial production for brands.</p>
+
+                    <div class="vh-bottom">
+                        <div class="vh-price">$500</div>
+                        <button class="vh-btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vh-card">
+                <div class="vh-card-image">
+                    <img src="{% static 'images/photo5.jpg' %}" alt="">
+                    <div class="vh-card-overlay"></div>
+                    <div class="vh-badge">Events</div>
+                </div>
+
+                <div class="vh-card-body">
+                    <h3>Event Video</h3>
+                    <p>Beautiful cinematic event coverage with creative editing.</p>
+
+                    <div class="vh-bottom">
+                        <div class="vh-price">$300</div>
+                        <button class="vh-btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vh-card">
+                <div class="vh-card-image">
+                    <img src="{% static 'images/photo1.jpg' %}" alt="">
+                    <div class="vh-card-overlay"></div>
+                    <div class="vh-badge">Cinema</div>
+                </div>
+
+                <div class="vh-card-body">
+                    <h3>Cinematic Story</h3>
+                    <p>Luxury storytelling films with emotional cinematic visuals.</p>
+
+                    <div class="vh-bottom">
+                        <div class="vh-price">$700</div>
+                        <button class="vh-btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- =====================================================
+    PRINTING
+    ====================================================== -->
+
+    <div class="vh-category">
+
+        <div class="vh-category-header">
+
+            <div>
+                <h2 class="vh-category-title">
+                    Custom <span>Printing</span>
+                </h2>
+
+                <p class="vh-category-text">
+                    Premium printing services for hoodies,
+                    mugs, caps and custom apparel.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="vh-product-grid">
+
+            <div class="vh-card">
+                <div class="vh-card-image">
+                    <img src="{% static 'images/cap.jpg' %}" alt="">
+                    <div class="vh-card-overlay"></div>
+                    <div class="vh-badge">Cap Print</div>
+                </div>
+
+                <div class="vh-card-body">
+                    <h3>Custom Cap</h3>
+                    <p>Premium embroidered and printed custom cap designs.</p>
+
+                    <div class="vh-bottom">
+                        <div class="vh-price">$25</div>
+                        <button class="vh-btn">Order Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vh-card">
+                <div class="vh-card-image">
+                    <img src="{% static 'images/mug.jpg' %}" alt="">
+                    <div class="vh-card-overlay"></div>
+                    <div class="vh-badge">Mug Print</div>
+                </div>
+
+                <div class="vh-card-body">
+                    <h3>Ceramic Mug</h3>
+                    <p>High quality custom mug printing with vibrant artwork.</p>
+
+                    <div class="vh-bottom">
+                        <div class="vh-price">$15</div>
+                        <button class="vh-btn">Order Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vh-card">
+                <div class="vh-card-image">
+                    <img src="{% static 'images/hoodie.jpg' %}" alt="">
+                    <div class="vh-card-overlay"></div>
+                    <div class="vh-badge">Hoodie</div>
+                </div>
+
+                <div class="vh-card-body">
+                    <h3>Custom Hoodie</h3>
+                    <p>Luxury hoodie printing with premium fabric finishing.</p>
+
+                    <div class="vh-bottom">
+                        <div class="vh-price">$45</div>
+                        <button class="vh-btn">Order Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vh-card">
+                <div class="vh-card-image">
+                    <img src="{% static 'images/tshirt.jpg' %}" alt="">
+                    <div class="vh-card-overlay"></div>
+                    <div class="vh-badge">T-Shirt</div>
+                </div>
+
+                <div class="vh-card-body">
+                    <h3>Basic T-Shirt</h3>
+                    <p>Professional t-shirt printing with clean premium design.</p>
+
+                    <div class="vh-bottom">
+                        <div class="vh-price">$20</div>
+                        <button class="vh-btn">Order Now</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- =====================================================
+    TRADITIONAL CLOTHING
+    ====================================================== -->
+
+    <div class="vh-category">
+
+        <div class="vh-category-header">
+
+            <div>
+                <h2 class="vh-category-title">
+                    Traditional <span>Clothing</span>
+                </h2>
+
+                <p class="vh-category-text">
+                    Elegant traditional dresses with cultural beauty,
+                    premium styling and timeless craftsmanship.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="vh-product-grid">
+
+            <div class="vh-card">
+                <div class="vh-card-image">
+                    <img src="{% static 'images/dress1.jpg' %}" alt="">
+                    <div class="vh-card-overlay"></div>
+                    <div class="vh-badge">Royal Wear</div>
+                </div>
+
+                <div class="vh-card-body">
+                    <h3>Royal Outfit</h3>
+                    <p>Luxury traditional outfit crafted with elegant detailing.</p>
+
+                    <div class="vh-bottom">
+                        <div class="vh-price">$120</div>
+                        <button class="vh-btn">Order Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vh-card">
+                <div class="vh-card-image">
+                    <img src="{% static 'images/dress2.jpg' %}" alt="">
+                    <div class="vh-card-overlay"></div>
+                    <div class="vh-badge">Silk Wear</div>
+                </div>
+
+                <div class="vh-card-body">
+                    <h3>Silk Traditional</h3>
+                    <p>Premium silk traditional dress with cultural elegance.</p>
+
+                    <div class="vh-bottom">
+                        <div class="vh-price">$150</div>
+                        <button class="vh-btn">Order Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vh-card">
+                <div class="vh-card-image">
+                    <img src="{% static 'images/dress5.jpg' %}" alt="">
+                    <div class="vh-card-overlay"></div>
+                    <div class="vh-badge">Festival</div>
+                </div>
+
+                <div class="vh-card-body">
+                    <h3>Festival Wear</h3>
+                    <p>Elegant festival dress designed with beautiful styling.</p>
+
+                    <div class="vh-bottom">
+                        <div class="vh-price">$90</div>
+                        <button class="vh-btn">Order Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vh-card">
+                <div class="vh-card-image">
+                    <img src="{% static 'images/dress7.jpg' %}" alt="">
+                    <div class="vh-card-overlay"></div>
+                    <div class="vh-badge">Traditional</div>
+                </div>
+
+                <div class="vh-card-body">
+                    <h3>Classic Dress</h3>
+                    <p>Traditional fashion styled beautifully for celebrations.</p>
+
+                    <div class="vh-bottom">
+                        <div class="vh-price">$90</div>
+                        <button class="vh-btn">Order Now</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 </section>
+</div>
+
 {% endblock %}

@@ -1,113 +1,604 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Contact Us | Get a Quote for Your Sign Project{% endblock %}
-
 {% block content %}
-<section class="contact-hero py-5 bg-navy text-white text-center">
+
+<style>
+
+/* =========================================================
+VOIAGE HUB CONTACT PAGE
+========================================================= */
+
+.vh-contact-page{
+    --vh-navy:#07111f;
+    --vh-gold:#f59e0b;
+    --vh-orange:#ff6b00;
+    --vh-text:#6b7280;
+    --vh-light:#f8fafc;
+    --vh-white:#ffffff;
+}
+
+/* =========================
+SECTION
+========================= */
+
+.vh-contact-section{
+    position:relative;
+    overflow:hidden;
+    background:#fff;
+    padding:100px 0;
+}
+
+/* background */
+
+.vh-contact-bg{
+    position:absolute;
+    inset:0;
+    background:
+        radial-gradient(circle at top left, rgba(255,107,0,0.08), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(245,158,11,0.08), transparent 35%);
+}
+
+.vh-contact-grid{
+    position:absolute;
+    inset:0;
+    background-image:
+        linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size:60px 60px;
+    opacity:0.5;
+}
+
+/* =========================
+HEADER
+========================= */
+
+.vh-contact-header{
+    text-align:center;
+    margin-bottom:70px;
+    position:relative;
+    z-index:2;
+}
+
+.vh-contact-tag{
+    font-size:0.78rem;
+    font-weight:800;
+    letter-spacing:4px;
+    color:var(--vh-orange);
+    text-transform:uppercase;
+    display:block;
+    margin-bottom:12px;
+}
+
+.vh-contact-title{
+    font-size:3.2rem;
+    font-weight:900;
+    color:var(--vh-navy);
+    margin-bottom:18px;
+    line-height:1.1;
+}
+
+.vh-contact-title span{
+    background:linear-gradient(
+        90deg,
+        var(--vh-orange),
+        var(--vh-gold)
+    );
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.vh-contact-desc{
+    max-width:700px;
+    margin:auto;
+    color:var(--vh-text);
+    font-size:1.05rem;
+    line-height:1.8;
+}
+
+/* =========================
+CONTACT WRAPPER
+========================= */
+
+.vh-contact-wrapper{
+    position:relative;
+    z-index:2;
+}
+
+.vh-contact-card{
+    background:#fff;
+    border-radius:32px;
+    overflow:hidden;
+    box-shadow:0 30px 80px rgba(0,0,0,0.08);
+}
+
+/* =========================
+LEFT SIDE
+========================= */
+
+.vh-contact-info{
+    background:linear-gradient(
+        135deg,
+        #07111f,
+        #0d1b32
+    );
+    height:100%;
+    padding:55px 45px;
+    position:relative;
+    overflow:hidden;
+}
+
+.vh-contact-info::before{
+    content:"";
+    position:absolute;
+    width:320px;
+    height:320px;
+    border-radius:50%;
+    background:rgba(255,107,0,0.12);
+    top:-120px;
+    right:-100px;
+    filter:blur(20px);
+}
+
+.vh-contact-info h3{
+    color:#fff;
+    font-size:2rem;
+    font-weight:800;
+    margin-bottom:18px;
+    position:relative;
+    z-index:2;
+}
+
+.vh-contact-info p{
+    color:rgba(255,255,255,0.78);
+    line-height:1.8;
+    margin-bottom:40px;
+    position:relative;
+    z-index:2;
+}
+
+/* info items */
+
+.vh-contact-list{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+    position:relative;
+    z-index:2;
+}
+
+.vh-contact-item{
+    display:flex;
+    align-items:flex-start;
+    gap:18px;
+}
+
+.vh-contact-icon{
+    width:58px;
+    height:58px;
+    border-radius:18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(255,255,255,0.08);
+
+    color:var(--vh-gold);
+    font-size:1.3rem;
+
+    flex-shrink:0;
+}
+
+.vh-contact-text h5{
+    color:#fff;
+    font-size:1rem;
+    font-weight:700;
+    margin-bottom:6px;
+}
+
+.vh-contact-text span,
+.vh-contact-text a{
+    color:rgba(255,255,255,0.75);
+    text-decoration:none;
+    line-height:1.7;
+}
+
+/* =========================
+FORM
+========================= */
+
+.vh-contact-form{
+    padding:55px 50px;
+    background:#fff;
+}
+
+.vh-form-group{
+    margin-bottom:22px;
+}
+
+.vh-form-label{
+    display:block;
+    margin-bottom:10px;
+    font-weight:700;
+    color:var(--vh-navy);
+}
+
+.vh-form-control{
+    width:100%;
+    border:none;
+    outline:none;
+
+    background:#f8fafc;
+
+    border:1px solid rgba(0,0,0,0.06);
+
+    padding:16px 18px;
+
+    border-radius:16px;
+
+    transition:0.3s ease;
+
+    color:#111827;
+}
+
+.vh-form-control:focus{
+    border-color:var(--vh-orange);
+    background:#fff;
+    box-shadow:0 0 0 4px rgba(255,107,0,0.08);
+}
+
+textarea.vh-form-control{
+    min-height:140px;
+    resize:none;
+}
+
+/* button */
+
+.vh-submit-btn{
+    border:none;
+    outline:none;
+
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+
+    padding:16px 28px;
+
+    border-radius:999px;
+
+    background:linear-gradient(
+        90deg,
+        var(--vh-orange),
+        var(--vh-gold)
+    );
+
+    color:#fff;
+    font-weight:700;
+
+    transition:0.4s ease;
+}
+
+.vh-submit-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 18px 35px rgba(255,107,0,0.25);
+}
+
+/* alerts */
+
+.alert{
+    border-radius:16px;
+    padding:14px 18px;
+    font-weight:600;
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media(max-width:991px){
+
+    .vh-contact-section{
+        padding:80px 0;
+    }
+
+    .vh-contact-title{
+        font-size:2.5rem;
+    }
+
+    .vh-contact-form,
+    .vh-contact-info{
+        padding:40px 32px;
+    }
+}
+
+@media(max-width:767px){
+
+    .vh-contact-title{
+        font-size:2rem;
+    }
+
+    .vh-contact-desc{
+        font-size:0.95rem;
+    }
+
+    .vh-contact-card{
+        border-radius:24px;
+    }
+
+    .vh-contact-form{
+        padding:35px 24px;
+    }
+
+    .vh-contact-info{
+        padding:40px 24px;
+    }
+}
+
+@media(max-width:575px){
+
+    .vh-contact-section{
+        padding:70px 0;
+    }
+
+    .vh-contact-title{
+        font-size:1.8rem;
+    }
+
+    .vh-submit-btn{
+        width:100%;
+        justify-content:center;
+    }
+}
+
+</style>
+
+<div class="vh-contact-page">
+
+<section class="vh-contact-section">
+
+    <!-- Background -->
+    <div class="vh-contact-bg"></div>
+    <div class="vh-contact-grid"></div>
+
     <div class="container">
-        <h1 class="display-4 fw-black">Let's Bring Your Idea to Life</h1>
-        <p class="lead">Have a question about LED signs, T-shirts, or custom banners? We're here to help.</p>
-    </div>
-</section>
 
-<section class="py-5 bg-light">
-    <div class="container">
-        <div class="row g-5">
-            <div class="col-lg-4">
-                <div class="contact-info-card p-4 bg-white shadow-sm rounded-4 h-100">
-                    <h2 class="h4 fw-bold mb-4 text-navy">Contact Information</h2>
-                    
-                    <div class="d-flex mb-4">
-                        <i class="fas fa-map-marker-alt text-orange me-3 mt-1"></i>
-                        <div>
-                            <h5 class="mb-1 fw-bold">Our Location</h5>
-                            <p class="text-muted small mb-0">9316 Colerain Ave., Cincinnati OH 45251</p>
-                        </div>
-                    </div>
+        <!-- HEADER -->
+        <div class="vh-contact-header">
 
-                    <div class="d-flex mb-4">
-                        <i class="fas fa-phone-alt text-orange me-3 mt-1"></i>
-                        <div>
-                            <h5 class="mb-1 fw-bold">Phone Number</h5>
-                            <p class="text-muted small mb-0">513-385-4000</p>
-                        </div>
-                    </div>
+            <span class="vh-contact-tag">
+                CONTACT VOIAGE HUB
+            </span>
 
-                    <div class="d-flex mb-4">
-                        <i class="fas fa-envelope text-orange me-3 mt-1"></i>
-                        <div>
-                            <h5 class="mb-1 fw-bold">Email Address</h5>
-                            <p class="text-muted small mb-0"> proof@zoomtown.com</p>
-                        </div>
-                    </div>
+            <h1 class="vh-contact-title">
+                Let’s Create
+                <span>Something Beautiful</span>
+            </h1>
 
-                    <div class="d-flex">
-                        <i class="fas fa-clock text-orange me-3 mt-1"></i>
-                        <div>
-                            <h5 class="mb-1 fw-bold">Business Hours</h5>
-                            <p class="text-muted small mb-0">Mon - Fri: 9:00 AM - 5:00 PM<br>Sat: By Appointment</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <p class="vh-contact-desc">
+                Reach out for photography, videography,
+                event coverage, or custom printing services.
+                We would love to hear about your project.
+            </p>
 
-            <div class="col-lg-8">
-                <div class="contact-form-wrap p-5 bg-white shadow-sm rounded-4">
-                    <h2 class="h4 fw-bold mb-4 text-navy">Send Us a Message</h2>
-                    {% if messages %}
-                        <div class="mb-3">
-                            {% for message in messages %}
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    {{ message }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                    <form method="POST">
-                        {% csrf_token %}
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold">Full Name</label>
-                                <input type="text" name="full_name" class="form-control" placeholder="John Doe" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label fw-bold">Email Address</label>
-                                <input type="email" name="email" class="form-control" placeholder="john@example.com" required>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Interested In</label>
-                            <select class="form-select" name="interested_in" required>
-                                <option selected>Select a Product/Service</option>
-                                <option>LED Message Signs</option>
-                                    <option>Custom T-Shirts/Apparel</option>
-                                <option>Vehicle Lettering</option>
-                                <option>Laser Engraving</option>
-                                <option>Banners & Flags</option>
-                                <option>Other</option>
-                            </select>
-                        </div>
-                        <div class="mb-4">
-                            <label class="form-label fw-bold">Message / Project Details</label>
-                            <textarea class="form-control" name="message" rows="5" placeholder="Tell us about your project requirements..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-warning btn-lg px-5 fw-bold shadow">Send Message</button>
-                    </form>
-                </div>
-            </div>
         </div>
+
+        <!-- CONTACT -->
+        <div class="vh-contact-wrapper">
+
+            <div class="vh-contact-card">
+
+                <div class="row g-0">
+
+                    <!-- LEFT -->
+                    <div class="col-lg-5">
+
+                        <div class="vh-contact-info">
+
+                            <h3>
+                                Get In Touch
+                            </h3>
+
+                            <p>
+                                Contact us for weddings, graduations,
+                                birthdays, baby showers, videography,
+                                and custom printing services.
+                            </p>
+
+                            <div class="vh-contact-list">
+
+                                <!-- LOCATION -->
+                                <div class="vh-contact-item">
+
+                                    <div class="vh-contact-icon">
+                                        <i class="bi bi-geo-alt-fill"></i>
+                                    </div>
+
+                                    <div class="vh-contact-text">
+                                        <h5>Location</h5>
+                                        <span>Maryland</span>
+                                    </div>
+
+                                </div>
+
+                                <!-- PHONE -->
+                                <div class="vh-contact-item">
+
+                                    <div class="vh-contact-icon">
+                                        <i class="bi bi-telephone-fill"></i>
+                                    </div>
+
+                                    <div class="vh-contact-text">
+                                        <h5>Call Us</h5>
+
+                                        <a href="tel:2403510826">
+                                            240-351-0826
+                                        </a>
+                                        <br>
+
+                                        <a href="tel:9147528910">
+                                            914-752-8910
+                                        </a>
+                                    </div>
+
+                                </div>
+
+                                <!-- EMAIL -->
+                                <div class="vh-contact-item">
+
+                                    <div class="vh-contact-icon">
+                                        <i class="bi bi-envelope-fill"></i>
+                                    </div>
+
+                                    <div class="vh-contact-text">
+                                        <h5>Email Address</h5>
+
+                                        <a href="mailto:Azeba1977@gmail.com">
+                                            Azeba1977@gmail.com
+                                        </a>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT -->
+                    <div class="col-lg-7">
+
+                        <div class="vh-contact-form">
+
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-success mb-4">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+
+                            <form method="POST">
+
+                                {% csrf_token %}
+
+                                <!-- NAME -->
+                                <div class="vh-form-group">
+
+                                    <label class="vh-form-label">
+                                        Full Name
+                                    </label>
+
+                                    <input
+                                        type="text"
+                                        name="full_name"
+                                        class="vh-form-control"
+                                        placeholder="Enter your full name"
+                                        required
+                                    >
+
+                                </div>
+
+                                <!-- EMAIL -->
+                                <div class="vh-form-group">
+
+                                    <label class="vh-form-label">
+                                        Email Address
+                                    </label>
+
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        class="vh-form-control"
+                                        placeholder="Enter your email"
+                                        required
+                                    >
+
+                                </div>
+
+                                <!-- INTEREST -->
+                                <div class="vh-form-group">
+
+                                    <label class="vh-form-label">
+                                        Interested In
+                                    </label>
+
+                                    <select
+                                        name="interested_in"
+                                        class="vh-form-control"
+                                        required
+                                    >
+
+                                        <option value="">
+                                            Select Service
+                                        </option>
+
+                                        <option>
+                                            Photography
+                                        </option>
+
+                                        <option>
+                                            Videography
+                                        </option>
+
+                                        <option>
+                                            Wedding Coverage
+                                        </option>
+
+                                        <option>
+                                            Event Coverage
+                                        </option>
+
+                                        <option>
+                                            Printing Services
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                                <!-- MESSAGE -->
+                                <div class="vh-form-group">
+
+                                    <label class="vh-form-label">
+                                        Message
+                                    </label>
+
+                                    <textarea
+                                        name="message"
+                                        class="vh-form-control"
+                                        placeholder="Tell us about your project..."
+                                        required
+                                    ></textarea>
+
+                                </div>
+
+                                <!-- BUTTON -->
+                                <button type="submit" class="vh-submit-btn">
+
+                                    Send Message
+
+                                    <i class="bi bi-arrow-right"></i>
+
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
+
 </section>
 
-<section class="map-section">
-  <div class="container map-container">
-    <iframe 
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3067.058113528491!2d-84.55543968462846!3d39.20385887953073!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88403c90b2aee89f%3A0x8c9c6c90f3a66a6f!2s9316%20Colerain%20Ave%2C%20Cincinnati%2C%20OH%2045251!5e0!3m2!1sen!2sus!4v1699435760000!5m2!1sen!2sus" 
-      allowfullscreen="" 
-      loading="lazy">
-    </iframe>
-  </div>
-</section>
+</div>
+
 {% endblock %}

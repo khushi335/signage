@@ -3,745 +3,1483 @@
 
 {% block content %}
 
-<section class="hero-master d-flex align-items-center">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-8 py-5">
-                <div class="hero-content" data-aos="fade-right">
-                    <span class="badge-premium mb-3">
-                        <i class="fas fa-award text-warning me-2"></i>THE REGION'S #1 RATED FABRICATION HOUSE
-                    </span>
-                    <h1 class="display-1 fw-black text-white mt-2">Signs That <br><span class="text-gradient">Dominate the Market.</span></h1>
-                    <p class="lead text-white mb-5 w-75">We don't just print; we engineer. From high-output LED systems to bespoke fleet branding, we provide the visual infrastructure for local leaders.</p>
-                    <div class="d-flex flex-wrap gap-3">
-                        <a href="{% url 'contact' %}" class="btn btn-orange-lg px-5">Get Your Free Strategy Session</a>
-                        <a href="{% url 'all_products' %}" class="btn btn-outline-glass px-5">View Products</a>
+{% load static %}
+
+<section class="hero-master position-relative overflow-hidden">
+
+    <!-- Background Effects -->
+    <div class="hero-overlay"></div>
+    <div class="hero-grid"></div>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+
+    <div class="container position-relative hero-z-index">
+
+        <div class="row align-items-center min-vh-100 py-5">
+
+            <!-- LEFT CONTENT -->
+            <div class="col-lg-6 mb-5 mb-lg-0">
+
+                <div class="hero-content">
+
+                    <!-- Premium Badge -->
+                    <div class="hero-badge mb-4">
+                        <i class="fas fa-camera-retro me-2"></i>
+                        VOIAGE HUB • PRINT • PHOTOGRAPHY • VIDEOGRAPHY
+                    </div>
+
+                    <!-- Heading -->
+                    <h1 class="hero-title">Timeless Visuals. <span>Crafted for your Legacy.</span></h1>
+
+                    <!-- SEO Friendly Description -->
+                    <p class="hero-description">
+                        Voiage Hub delivers premium custom printing, professional photography,
+                        cinematic videography, hoodie printing, mug printing, cap branding,
+                        business media production, and high-end visual marketing solutions
+                        designed to help brands grow online and offline.
+                    </p>
+
+                    <!-- Buttons -->
+                    <div class="hero-buttons">
+                        <a href="#" class="btn-hero-primary">
+                            Book Consultation
+                            <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+
+                        <a href="#" class="btn-hero-secondary">
+                            Explore Services
+                        </a>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="hero-stats">
+
+                        <div class="stat-box">
+                            <h3>500+</h3>
+                            <p>Projects Delivered</p>
+                        </div>
+
+                        <div class="stat-box">
+                            <h3>4K / 8K</h3>
+                            <p>Video Production</p>
+                        </div>
+
+                        <div class="stat-box">
+                            <h3>100%</h3>
+                            <p>Client Satisfaction</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="col-lg-6">
+
+                <!-- Main Carousel -->
+                <div id="voiageHeroCarousel"
+                     class="carousel slide premium-carousel"
+                     data-bs-ride="carousel">
+
+                    <!-- Indicators -->
+                    <div class="carousel-indicators custom-indicators">
+
+                        <button type="button"
+                                data-bs-target="#voiageHeroCarousel"
+                                data-bs-slide-to="0"
+                                class="active"></button>
+
+                        <button type="button"
+                                data-bs-target="#voiageHeroCarousel"
+                                data-bs-slide-to="1"></button>
+
+                        <button type="button"
+                                data-bs-target="#voiageHeroCarousel"
+                                data-bs-slide-to="2"></button>
+
+                    </div>
+
+                    <div class="carousel-inner rounded-5 overflow-hidden">
+
+                        <!-- PRINTING -->
+                        <div class="carousel-item active">
+
+                            <div class="service-card">
+
+                                <img src="{% static 'images/printing-main.jpeg' %}"
+                                     class="service-main-image"
+                                     alt="Custom Printing Services by Voiage Hub">
+
+                                <div class="service-overlay"></div>
+
+                                <div class="service-content">
+
+                                    <span class="service-tag">
+                                        Premium Printing
+                                    </span>
+
+                                    <h2>
+                                        Custom Printing Solutions
+                                    </h2>
+
+                                    <p>
+                                        Premium cap printing, hoodie branding,
+                                        mug printing and merchandise production.
+                                    </p>
+
+                                    <!-- Mini Gallery -->
+                                    <div class="mini-gallery">
+
+                                        <div class="mini-image">
+                                            <img src="{% static 'images/cap.jpg' %}" alt="Custom Cap Printing">
+                                        </div>
+
+                                        <div class="mini-image">
+                                            <img src="{% static 'images/mug.jpg' %}" alt="Mug Printing">
+                                        </div>
+
+                                        <div class="mini-image">
+                                            <img src="{% static 'images/hoodie.jpg' %}" alt="Hoodie Printing">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- VIDEOGRAPHY -->
+                        <div class="carousel-item">
+
+                            <div class="service-card">
+
+                                <img src="{% static 'images/dress1.jpg' %}"
+                                     class="service-main-image"
+                                     alt="Professional Videography Services">
+
+                                <div class="service-overlay"></div>
+
+                                <div class="service-content">
+
+                                    <span class="service-tag">
+                                        Traditional Kurti
+                                    </span>
+
+                                    <h2>
+                                        Traditional Dress
+                                    </h2>
+
+                                    <!--<p>-->
+                                    <!--    Commercial videos, cinematic reels,-->
+                                    <!--    drone footage and corporate storytelling.-->
+                                    <!--</p>-->
+
+                                    <div class="mini-gallery">
+
+                                        <div class="mini-image">
+                                            <img src="{% static 'images/dress2.jpg' %}" alt="Corporate Video">
+                                        </div>
+
+                                        <div class="mini-image">
+                                            <img src="{% static 'images/dress3.jpg' %}" alt="Drone Cinematography">
+                                        </div>
+
+                                        <div class="mini-image">
+                                            <img src="{% static 'images/dress4.jpg' %}" alt="Commercial Production">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- PHOTOGRAPHY -->
+                        <div class="carousel-item">
+
+                            <div class="service-card">
+
+                                <img src="{% static 'images/photo-main.jpg' %}"
+                                     class="service-main-image"
+                                     alt="Professional Photography Services">
+
+                                <div class="service-overlay"></div>
+
+                                <div class="service-content">
+
+                                    <span class="service-tag">
+                                        Luxury Photography
+                                    </span>
+
+                                    <h2>
+                                        Professional Photography
+                                    </h2>
+
+                                    <p>
+                                        Brand photography, portraits,
+                                        commercial shoots and event coverage.
+                                    </p>
+
+                                    <div class="mini-gallery">
+
+                                        <div class="mini-image">
+                                            <img src="{% static 'images/photo1.jpg' %}" alt="Corporate Photography">
+                                        </div>
+
+                                        <div class="mini-image">
+                                            <img src="{% static 'images/photo2.jpg' %}" alt="Brand Photoshoot">
+                                        </div>
+
+                                        <div class="mini-image">
+                                            <img src="{% static 'images/photo3.jpg' %}" alt="Studio Photography">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Controls -->
+                    <button class="carousel-control-prev"
+                            type="button"
+                            data-bs-target="#voiageHeroCarousel"
+                            data-bs-slide="prev">
+
+                        <span class="carousel-control-prev-icon"></span>
+
+                    </button>
+
+                    <button class="carousel-control-next"
+                            type="button"
+                            data-bs-target="#voiageHeroCarousel"
+                            data-bs-slide="next">
+
+                        <span class="carousel-control-next-icon"></span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="about" class="py-5 py-md-5 bg-light-section-override">
+    <div class="container my-lg-4">
+        <div class="row align-items-center g-4 g-lg-5">
+            
+            <!-- Left Side: Visual Asset Containment -->
+            <div class="col-lg-6 col-md-10 mx-auto">
+                <div class="about-image-wrapper position-relative">
+                    <!-- Standardized image paths mapped for rendering efficiency -->
+                    <img src="{% static 'images/header.jpg' %}" class="img-fluid rounded-4 shadow-sm asset-cover-photo" alt="Voiage Hub Production Studio">
+                </div>
+            </div>
+            
+            <!-- Right Side: Brand Value Proposition Copy -->
+            <div class="col-lg-6">
+                <div class="about-content-cluster text-center text-lg-start">
+                    <h6 class="text-uppercase tracking-widest fw-bold about-brand-pretitle">Who We Are</h6>
+                    <h2 class="display-6 fw-black text-navy-modifier mb-4">Capturing Reality with Perfection.</h2>
+                    
+                    <p class="text-secondary-modifier mb-4">
+                        Voiage Hub is a premier multi-media creative engine built for modern brands. We unify high-end commercial print solutions with executive corporate photography and stunning, multi-part cinematic video series. 
+                    </p>
+                    <p class="text-secondary-modifier mb-4">
+                        Whether engineering high-impact physical assets or directing cinematic media distributions, we design the exact visual infrastructure needed to anchor your industry presence.
+                    </p>
+                    
+                    <!-- Feature Indicators Responsive Grid Layout -->
+                    <div class="row g-3 text-start mt-2">
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center p-3 bg-white rounded-3 shadow-sm surface-card-edge-orange">
+                                <div class="icon-frame me-3 bg-orange-light">
+                                    <i class="fas fa-film text-orange-modifier"></i>
+                                </div>
+                                <span class="fw-bold text-navy-modifier small-title-override">Cinematic Storytelling</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center p-3 bg-white rounded-3 shadow-sm surface-card-edge-navy">
+                                <div class="icon-frame me-3 bg-navy-light">
+                                    <i class="fas fa-print text-navy-modifier"></i>
+                                </div>
+                                <span class="fw-bold text-navy-modifier small-title-override">Fine Art Press Solutions</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 </section>
 
-<!--<section class="configurator-section">-->
-<!--    <div class="container">-->
-<!--        <div class="configurator-wrapper">-->
+<section class="sign-shop-ultra py-5 py-md-6 bg-services-light position-relative overflow-hidden">
+    <!-- Fine geometric canvas architectural pattern -->
+    <div class="services-canvas-mesh"></div>
+
+    <div class="fluid-wrap container position-relative z-index-10">
+        
+        <!-- Section Header Context Box -->
+        <div class="centered-header text-center mb-5 max-w-sub mx-auto" data-aos="fade-up" data-aos-duration="800">
+            <span class="sub-label text-uppercase tracking-widest fw-bold d-inline-block mb-2">Elite Media & Visual Solutions</span>
+            <h2 class="display-5 fw-black text-navy-modifier tracking-tight lh-12 mt-1 mb-2">Our Professional Services</h2>
+            <!--<div class="accent-center-line mx-auto"></div>-->
+            <!--<p class="text-secondary-modifier mt-3 mb-0 fs-5 lh-16">-->
+            <!--    Bespoke cinematic storytelling, fine art press solutions, and elite asset delivery.-->
+            <!--</p>-->
+        </div>
+
+        <!-- Optimized Media Layout Matrix Grid -->
+        <!--<div class="ultra-grid">-->
             
-<!--            <div class="config-main">-->
-<!--                <header class="section-header">-->
-<!--                    <span class="badge">Premium Signage</span>-->
-<!--                    <h1>Customize Your Sign</h1>-->
-<!--                    <p>Select your specifications below for an instant wholesale quote.</p>-->
-<!--                </header>-->
+            <!-- Service Block 1: Cinematic Video Production (Featured Wide Aspect) -->
+        <!--    <div class="grid-item grid-featured" data-aos="fade-up" data-aos-duration="800">-->
+        <!--        <div class="service-card-wrapper h-100 position-relative overflow-hidden">-->
+        <!--            <div class="image-holder">-->
+        <!--                <img src="{% static 'images/sign_design.jpeg' %}" alt="Cinematic Video Production" class="img-fluid continuous-zoom">-->
+        <!--                <div class="card-overlay-shade"></div>-->
+        <!--            </div>-->
+        <!--            <div class="item-text text-white">-->
+        <!--                <h3 class="h4 fw-bold mb-1">Cinematic Video</h3>-->
+        <!--                <p class="opacity-80 small mb-0 tracking-wide">Multi-Part Corporate Series</p>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--    </div>-->
 
-<!--                <form class="sign-form">-->
-<!--                    <div class="form-grid">-->
-<!--                        <div class="field-block">-->
-<!--                            <label for="material">Material Selection</label>-->
-<!--                            <div class="select-wrapper">-->
-<!--                                <select id="material">-->
-<!--                                    <option value="acrylic" data-base="15.00">Acrylic</option>-->
-<!--                                    <option value="aluminum" data-base="12.00">Aluminum</option>-->
-<!--                                    <option value="coroplast" data-base="2.00" selected>Coroplast</option>-->
-<!--                                    <option value="foam-core" data-base="8.00">Foam Core</option>-->
-<!--                                    <option value="hdu-board" data-base="25.00">HDU Board</option>-->
-<!--                                    <option value="poly-carbonate" data-base="18.00">Poly Carbonate</option>-->
-<!--                                    <option value="metal" data-base="14.00">Metal</option>-->
-<!--                                    <option value="vinyl" data-base="5.00">Vinyl</option>-->
-<!--                                    <option value="wood" data-base="20.00">Wood</option>-->
-<!--                                </select>-->
-<!--                            </div>-->
-<!--                        </div>-->
+            <!-- Service Block 2: Fine Art Press & Large Format Printing -->
+        <!--    <div class="grid-item" data-aos="fade-up" data-aos-delay="50" data-aos-duration="800">-->
+        <!--        <div class="service-card-wrapper h-100 position-relative overflow-hidden">-->
+        <!--            <div class="image-holder">-->
+        <!--                <img src="{% static 'images/wideformatprinters.jpg' %}" alt="Wide Format Fine Art Press" class="img-fluid continuous-zoom">-->
+        <!--                <div class="card-overlay-shade"></div>-->
+        <!--            </div>-->
+        <!--            <div class="item-text text-white">-->
+        <!--                <h3 class="h4 fw-bold mb-1">Fine Art Press</h3>-->
+        <!--                <p class="opacity-80 small mb-0 tracking-wide">Premium Wide Format Printing</p>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--    </div>-->
 
-<!--                        <div class="form-row">-->
-<!--                            <div class="field-block flex-2">-->
-<!--                                <label for="size">Dimensions (Width x Height)</label>-->
-<!--                                <select id="size">-->
-<!--                                    <option value="6x24" data-price="0.50">6" x 24"</option>-->
-<!--                                    <option value="12x12" data-price="0.75">12" x 12"</option>-->
-<!--                                    <option value="12x18" data-price="0.99">12" x 18"</option>-->
-<!--                                    <option value="18x12" data-price="0.99" selected>18" x 12" (Standard)</option>-->
-<!--                                    <option value="18x24" data-price="1.50">18" x 24"</option>-->
-<!--                                    <option value="24x6" data-price="0.50">24" x 6"</option>-->
-<!--                                    <option value="24x12" data-price="1.20">24" x 12"</option>-->
-<!--                                    <option value="24x18" data-price="1.50">24" x 18"</option>-->
-<!--                                    <option value="24x24" data-price="2.00">24" x 24"</option>-->
-<!--                                    <option value="24x36" data-price="3.50">24" x 36"</option>-->
-<!--                                    <option value="36x12" data-price="2.00">36" x 12"</option>-->
-<!--                                    <option value="36x18" data-price="2.80">36" x 18"</option>-->
-<!--                                    <option value="36x24" data-price="4.00">36" x 24"</option>-->
-<!--                                    <option value="48x24" data-price="6.00">48" x 24"</option>-->
-<!--                                    <option value="48x48" data-price="12.00">48" x 48"</option>-->
-<!--                                </select>-->
-<!--                            </div>-->
-<!--                            <div class="field-block flex-1">-->
-<!--                                <label for="qty">Quantity</label>-->
-<!--                                <input type="number" id="qty" value="1" min="1">-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
+            <!-- Service Block 3: Executive Portraiture & Corporate Photography -->
+        <!--    <div class="grid-item" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">-->
+        <!--        <div class="service-card-wrapper h-100 position-relative overflow-hidden">-->
+        <!--            <div class="image-holder">-->
+        <!--                <img src="{% static 'images/custom_apparel.jpeg' %}" alt="Corporate Photography" class="img-fluid continuous-zoom">-->
+        <!--                <div class="card-overlay-shade"></div>-->
+        <!--            </div>-->
+        <!--            <div class="item-text text-white">-->
+        <!--                <h3 class="h4 fw-bold mb-1">Corporate Photo</h3>-->
+        <!--                <p class="opacity-80 small mb-0 tracking-wide">Executive Asset Portfolios</p>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--    </div>-->
 
-<!--                    <div class="trust-icons">-->
-<!--                        <div class="icon-item"><span>✓</span> Fast Turnaround</div>-->
-<!--                        <div class="icon-item"><span>✓</span> UV Resistant</div>-->
-<!--                        <div class="icon-item"><span>✓</span> Bulk Discount</div>-->
-<!--                    </div>-->
-<!--                </form>-->
-<!--            </div>-->
+            <!-- Service Block 4: Precision Laser Etching & Engraving -->
+        <!--    <div class="grid-item" data-aos="fade-up" data-aos-delay="150" data-aos-duration="800">-->
+        <!--        <div class="service-card-wrapper h-100 position-relative overflow-hidden">-->
+        <!--            <div class="image-holder">-->
+        <!--                <img src="{% static 'images/laser-engraved-plaque.png' %}" alt="Laser Engraving Tech" class="img-fluid continuous-zoom">-->
+        <!--                <div class="card-overlay-shade"></div>-->
+        <!--            </div>-->
+        <!--            <div class="item-text text-white">-->
+        <!--                <h3 class="h4 fw-bold mb-1">Laser Engraving</h3>-->
+        <!--                <p class="opacity-80 small mb-0 tracking-wide">Precision Architectural Etching</p>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--    </div>-->
 
-<!--            <div class="config-sidebar">-->
-<!--                <div class="price-card">-->
-<!--                    <h3>Order Summary</h3>-->
-<!--                    <hr>-->
-<!--                    <div class="price-breakdown">-->
-<!--                        <span class="price-label" style="color:#000;">Unit Price:</span>-->
-<!--                        <div class="price-values">-->
-<!--                            <span class="was-price" id="was-price">$6.64</span>-->
-<!--                            <span class="now-price" id="unit-price">$2.99</span>-->
-<!--                        </div>-->
-<!--                    </div>-->
-                    
-<!--                    <div class="total-section">-->
-<!--                        <span>Estimated Total:</span>-->
-<!--                        <span class="grand-total" id="grand-total">$2.99</span>-->
-<!--                    </div>-->
+            <!-- Service Block 5: UV Flatbed Surface Printing -->
+        <!--    <div class="grid-item" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">-->
+        <!--        <div class="service-card-wrapper h-100 position-relative overflow-hidden">-->
+        <!--            <div class="image-holder">-->
+        <!--                <img src="{% static 'images/UV-Printing-on-Acrylic.png' %}" alt="UV Ink Printing" class="img-fluid continuous-zoom">-->
+        <!--                <div class="card-overlay-shade"></div>-->
+        <!--            </div>-->
+        <!--            <div class="item-text text-white">-->
+        <!--                <h3 class="h4 fw-bold mb-1">UV Ink Printing</h3>-->
+        <!--                <p class="opacity-80 small mb-0 tracking-wide">Durable Specialty Media Graphics</p>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--    </div>-->
 
-                    <!--<button class="primary-btn" style="color: #f1c40f;">Configure & Add to Cart</button>-->
-<!--                    <a href="{% url 'scratch' %}">-->
-<!--                        <button class="primary-btn" style="color: #f1c40f;">Start From Scratch</button>-->
-<!--                    </a>-->
-<!--                </div>-->
+            <!-- Service Block 6: Finishing & Archival Lamination -->
+        <!--    <div class="grid-item" data-aos="fade-up" data-aos-delay="250" data-aos-duration="800">-->
+        <!--        <div class="service-card-wrapper h-100 position-relative overflow-hidden">-->
+        <!--            <div class="image-holder">-->
+        <!--                <img src="{% static 'images/Lamination-Print-Company-Islington.jpg' %}" alt="Archival Lamination Finishing" class="img-fluid continuous-zoom">-->
+        <!--                <div class="card-overlay-shade"></div>-->
+        <!--            </div>-->
+        <!--            <div class="item-text text-white">-->
+        <!--                <h3 class="h4 fw-bold mb-1">Archival Lamination</h3>-->
+        <!--                <p class="opacity-80 small mb-0 tracking-wide">Protective & Exhibition Finishing</p>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--    </div>-->
 
-<!--                <div class="help-box">-->
-<!--                    <p>Need a custom bulk quote?</p>-->
-<!--                    <a href="tel:+513-385-4000">Contact Specialist</a>-->
-<!--                </div>-->
-<!--            </div>-->
+            <!-- Service Block 7: Asset Deployment & Installation -->
+        <!--    <div class="grid-item" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">-->
+        <!--        <div class="service-card-wrapper h-100 position-relative overflow-hidden">-->
+        <!--            <div class="image-holder">-->
+        <!--                <img src="{% static 'images/installation-1-1024x457.jpg' %}" alt="On-Site Visual Asset Setup" class="img-fluid continuous-zoom">-->
+        <!--                <div class="card-overlay-shade"></div>-->
+        <!--            </div>-->
+        <!--            <div class="item-text text-white">-->
+        <!--                <h3 class="h4 fw-bold mb-1">Media Deployment</h3>-->
+        <!--                <p class="opacity-80 small mb-0 tracking-wide">Expert Site Setup & Installation</p>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--    </div>-->
 
+            <!-- CTA Service Block 8: Dynamic Enterprise Booking Callout -->
+            <!--<div class="grid-item cta-gold-card" data-aos="fade-up" data-aos-delay="350" data-aos-duration="800">-->
+            <!--    <div class="cta-inner-box h-100 p-4 p-xl-5 d-flex flex-column align-items-center justify-content-center text-center position-relative">-->
+            <!--        <div class="cta-decorative-corner"></div>-->
+            <!--        <h3 class="text-white fw-black h4 mb-2 tracking-tight">Production Retainers</h3>-->
+            <!--        <p class="text-white-75 small mb-4 lh-15">Flexible ongoing creative support allocations tailored for growing corporate brands.</p>-->
+            <!--        <a href="#" class="btn btn-outline-white-glass text-uppercase fw-bold px-4 py-2-5 tracking-wider">Book Session</a>-->
+            <!--    </div>-->
+            <!--</div>-->
+
+        <!--</div>-->
+    </div>
+</section>
+
+<!-- Category Filter -->
+<nav class="filter-nav text-center my-4">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="photography">Photography</button>
+    <button class="filter-btn" data-filter="videography">Videography</button>
+    <button class="filter-btn" data-filter="printing">Printing</button>
+    <button class="filter-btn" data-filter="traditional">Traditional</button>
+</nav>
+
+<!-- Service Grid -->
+<div class="shop-grid" id="serviceGrid">
+    <!-- Photography (6 Items) -->
+    <div class="grid-item" data-category="photography"><div class="card-ui"><img src="{% static 'images/photo1.jpg' %}" alt="Portrait"><div class="card-info"><h3>Birthday Photo</h3><p>$50.00</p><button class="btn-add">Add to Cart</button></div></div></div>
+    <div class="grid-item" data-category="photography"><div class="card-ui"><img src="{% static 'images/photo2.jpg' %}" alt="Event"><div class="card-info"><h3>Event Photo</h3><p>$150.00</p><button class="btn-add">Add to Cart</button></div></div></div>
+    <div class="grid-item" data-category="photography"><div class="card-ui"><img src="{% static 'images/photo3.jpg' %}" alt="Landscape"><div class="card-info"><h3>Photoshoot</h3><p>$40.00</p><button class="btn-add">Add to Cart</button></div></div></div>
+    <div class="grid-item" data-category="photography"><div class="card-ui"><img src="{% static 'images/photo-main.jpg' %}" alt="Product"><div class="card-info"><h3>Product Shot</h3><p>$30.00</p><button class="btn-add">Add to Cart</button></div></div></div>
+    <div class="grid-item" data-category="photography"><div class="card-ui"><img src="{% static 'images/photo4.jpg' %}" alt="Fashion"><div class="card-info"><h3>Fashion Shoot</h3><p>$200.00</p><button class="btn-add">Add to Cart</button></div></div></div>
+    <div class="grid-item" data-category="photography"><div class="card-ui"><img src="{% static 'images/photo5.jpg' %}" alt="Headshot"><div class="card-info"><h3>Wedding shoot</h3><p>$60.00</p><button class="btn-add">Add to Cart</button></div></div></div>
+
+    <!-- Videography (3 Items) -->
+    <div class="grid-item" data-category="videography"><div class="card-ui"><img src="{% static 'images/photo3.jpg' %}" alt="Ad"><div class="card-info"><h3>Ad Commercial</h3><p>$500.00</p><button class="btn-add">Add to Cart</button></div></div></div>
+    <div class="grid-item" data-category="videography"><div class="card-ui"><img src="{% static 'images/photo5.jpg' %}" alt="Event Vid"><div class="card-info"><h3>Event Video</h3><p>$300.00</p><button class="btn-add">Add to Cart</button></div></div></div>
+    <div class="grid-item" data-category="videography"><div class="card-ui"><img src="{% static 'images/photo1.jpg' %}" alt="Cinematic"><div class="card-info"><h3>Cinematic Story</h3><p>$700.00</p><button class="btn-add">Add to Cart</button></div></div></div>
+    
+    <!-- Videography (3 Items) -->
+<!--<div class="grid-item" data-category="videography">-->
+<!--    <div class="card-ui">-->
+<!--        <video class="card-video" autoplay muted loop playsinline poster="{% static 'images/video-thumb1.jpg' %}">-->
+<!--            <source src="{% static 'images/wedding.mp4' %}" type="video/mp4">-->
+<!--        </video>-->
+<!--        <div class="card-info">-->
+<!--            <h3>Ad Commercial</h3>-->
+<!--            <p>$500.00</p>-->
+<!--            <button class="btn-add">Add to Cart</button>-->
 <!--        </div>-->
 <!--    </div>-->
-<!--</section>-->
+<!--</div>-->
 
+<!--<div class="grid-item" data-category="videography">-->
+<!--    <div class="card-ui">-->
+<!--        <video class="card-video" autoplay muted loop playsinline poster="{% static 'images/video-thumb2.jpg' %}">-->
+<!--            <source src="{% static 'images/event.mp4' %}" type="video/mp4">-->
+<!--        </video>-->
+<!--        <div class="card-info">-->
+<!--            <h3>Event Video</h3>-->
+<!--            <p>$300.00</p>-->
+<!--            <button class="btn-add">Add to Cart</button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
-<section id="about" class="py-10 bg-light">
-    <div class="container">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-6">
-                <div class="image-stack position-relative">
-                    <img src="static/images/accutech.png" class="img-fluid rounded-5 shadow-2xl" alt="Sign Workshop">
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <h6 class="text-orange fw-bold text-uppercase ls-2">Who We Are</h6>
-                <h2 class="display-5 fw-bold text-navy mb-4">Precision Driven. <br>Client Focused.</h2>
-                <p class="text-muted fs-5">Based in the heart of the region, we started with a single wide-format printer and a vision to provide better signage solutions. Today, we are a full-scale fabrication house specializing in everything from LED displays to custom vehicle wraps.</p>
-                <div class="row g-4 mt-2">
-                    <div class="col-md-6">
-                        <div class="d-flex align-items-center p-3 bg-white rounded-3 shadow-sm border-start border-orange border-4">
-                            <i class="fas fa-certificate text-orange fa-2x me-3"></i>
-                            <span class="fw-bold">Certified Installers</span>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="d-flex align-items-center p-3 bg-white rounded-3 shadow-sm border-start border-success border-4">
-                            <i class="fas fa-leaf text-success fa-2x me-3"></i>
-                            <span class="fw-bold">Eco-Safe UV Inks</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<!--<div class="grid-item" data-category="videography">-->
+<!--    <div class="card-ui">-->
+<!--        <video class="card-video" autoplay muted loop playsinline poster="{% static 'images/video-thumb3.jpg' %}">-->
+<!--            <source src="{% static 'images/cinematic.mp4' %}" type="video/mp4">-->
+<!--        </video>-->
+<!--        <div class="card-info">-->
+<!--            <h3>Cinematic Story</h3>-->
+<!--            <p>$700.00</p>-->
+<!--            <button class="btn-add">Add to Cart</button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
-<section class="stats-bar py-4 bg-navy text-white text-center">
-    <div class="container">
-        <div class="row g-4">
-            <div class="col-md-3">
-                <h2 class="fw-bold text-warning mb-0">500+</h2>
-                <p class="small text-uppercase mb-0">Projects Completed</p>
-            </div>
-            <div class="col-md-3">
-                <h2 class="fw-bold text-warning mb-0">25+</h2>
-                <p class="small text-uppercase mb-0">Years Experience</p>
-            </div>
-            <div class="col-md-3">
-                <h2 class="fw-bold text-warning mb-0">100%</h2>
-                <p class="small text-uppercase mb-0">Custom Designs</p>
-            </div>
-            <div class="col-md-3">
-                <h2 class="fw-bold text-warning mb-0">24h</h2>
-                <p class="small text-uppercase mb-0">Quote Turnaround</p>
-            </div>
-        </div>
-    </div>
-</section>
+    <!-- Printing (16 Items) -->
+    <div class="grid-item" data-category="printing"><div class="card-ui"><img src="{% static 'images/cap.jpg' %}" alt="Cap"><div class="card-info"><h3>Custom Cap</h3><p>$25.00</p><button class="btn-add">Add to Cart</button></div></div></div>
+    <div class="grid-item" data-category="printing"><div class="card-ui"><img src="{% static 'images/mug.jpg' %}" alt="Mug"><div class="card-info"><h3>Ceramic Mug</h3><p>$15.00</p><button class="btn-add">Add to Cart</button></div></div></div>
+    <div class="grid-item" data-category="printing"><div class="card-ui"><img src="{% static 'images/hoodie.jpg' %}" alt="Hoodie"><div class="card-info"><h3>Custom Hoodie</h3><p>$45.00</p><button class="btn-add">Add to Cart</button></div></div></div>
+    <div class="grid-item" data-category="printing"><div class="card-ui"><img src="{% static 'images/tshirt.jpg' %}" alt="T-Shirt"><div class="card-info"><h3>Basic T-Shirt</h3><p>$20.00</p><button class="btn-add">Add to Cart</button></div></div></div>
+    <!-- (Repeat above pattern for remaining 12 items...) -->
 
-<section class="sign-shop-ultra">
-    <div class="fluid-wrap">
-        <div class="centered-header">
-            <span class="sub-label">Elite Signage & Visual Solutions</span>
-            <h2>Our Professional Services</h2>
-            <div class="gold-center-line"></div>
-            <p>Precision branding, high-format printing, and expert installation.</p>
-        </div>
+    <!-- Traditional Dress (3 Items) -->
+    <div class="grid-item" data-category="traditional"><div class="card-ui"><img src="{% static 'images/dress1.jpg' %}" alt="Dress"><div class="card-info"><h3>Royal Outfit</h3><p>$120.00</p><button class="btn-add">Add to Cart</button></div></div></div>
+    <div class="grid-item" data-category="traditional"><div class="card-ui"><img src="{% static 'images/dress2.jpg' %}" alt="Dress"><div class="card-info"><h3>Silk Traditional</h3><p>$150.00</p><button class="btn-add">Add to Cart</button></div></div></div>
+    <div class="grid-item" data-category="traditional"><div class="card-ui"><img src="{% static 'images/dress3.jpg' %}" alt="Dress"><div class="card-info"><h3>Festival Wear</h3><p>$90.00</p><button class="btn-add">Add to Cart</button></div></div></div>
+    <div class="grid-item" data-category="traditional"><div class="card-ui"><img src="{% static 'images/dress4.jpg' %}" alt="Dress"><div class="card-info"><h3>Festival Wear</h3><p>$90.00</p><button class="btn-add">Add to Cart</button></div></div></div>
+    <div class="grid-item" data-category="traditional"><div class="card-ui"><img src="{% static 'images/dress5.jpg' %}" alt="Dress"><div class="card-info"><h3>Festival Wear</h3><p>$90.00</p><button class="btn-add">Add to Cart</button></div></div></div>
+    <div class="grid-item" data-category="traditional"><div class="card-ui"><img src="{% static 'images/dress6.jpg' %}" alt="Dress"><div class="card-info"><h3>Festival Wear</h3><p>$90.00</p><button class="btn-add">Add to Cart</button></div></div></div>
+    <div class="grid-item" data-category="traditional"><div class="card-ui"><img src="{% static 'images/dress7.jpg' %}" alt="Dress"><div class="card-info"><h3>Festival Wear</h3><p>$90.00</p><button class="btn-add">Add to Cart</button></div></div></div>
+</div>
 
-        <div class="ultra-grid">
-            <div class="grid-item">
-                <div class="image-holder">
-                    <img src="static/images/custom_apparel.jpeg" alt="Custom T-Shirt Printing">
-                </div>
-                <div class="item-text">
-                    <h3>Custom Apparel</h3>
-                    <p>T-Shirts & Promo Products</p>
-                </div>
-            </div>
+<section class="process-master py-5 py-md-6 bg-process-neutral overflow-hidden position-relative">
+    <div class="process-bg-grid"></div>
 
-            <div class="grid-item">
-                <div class="image-holder">
-                    <img src="static/images/sign_design.jpeg" alt="Sign Design Services">
-                </div>
-                <div class="item-text">
-                    <h3>Sign Design</h3>
-                    <p>Creative Visual Branding</p>
-                </div>
-            </div>
-
-            <div class="grid-item">
-                <div class="image-holder">
-                    <img src="static/images/installation-1-1024x457.jpg" alt="Professional Sign Installation">
-                </div>
-                <div class="item-text">
-                    <h3>Sign Installations</h3>
-                    <p>Expert On-Site Setup</p>
-                </div>
-            </div>
-
-            <div class="grid-item">
-                <div class="image-holder">
-                    <img src="static/images/wideformatprinters.jpg" alt="Wide Format Printing">
-                </div>
-                <div class="item-text">
-                    <h3>Wide Format Printing</h3>
-                    <p>Banners & Large Graphics</p>
-                </div>
-            </div>
-
-            <div class="grid-item">
-                <div class="image-holder">
-                    <img src="static/images/laser-engraved-plaque.png" alt="Laser Engraving">
-                </div>
-                <div class="item-text">
-                    <h3>Laser Engraver</h3>
-                    <p>Precision Etching Tech</p>
-                </div>
-            </div>
-
-            <div class="grid-item">
-                <div class="image-holder">
-                    <img src="static/images/UV-Printing-on-Acrylic.png" alt="UV Ink Printing">
-                </div>
-                <div class="item-text">
-                    <h3>UV Ink Printing</h3>
-                    <p>Durable Surface Printing</p>
-                </div>
-            </div>
-
-            <div class="grid-item">
-                <div class="image-holder">
-                    <img src="static/images/Lamination-Print-Company-Islington.jpg" alt="Professional Lamination">
-                </div>
-                <div class="item-text">
-                    <h3>Lamination</h3>
-                    <p>Protective Finishing</p>
-                </div>
-            </div>
-
-            <div class="grid-item cta-gold">
-                <div class="cta-inner-box">
-                    <h3>Special Financing</h3>
-                    <p>Flexible Payment Options</p>
-                    <a href="{% url 'contact' %}" class="cta-link">Inquire Now</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="py-10 bg-light">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold">Our Simple <span class="text-navy">3-Step Process</span></h2>
-        </div>
-        <div class="row text-center g-4">
-            <div class="col-md-4">
-                <div class="process-step">
-                    <div class="step-num">1</div>
-                    <h4 class="fw-bold mt-3">Consultation</h4>
-                    <p class="text-muted">We discuss your goals, dimensions, and material needs.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="process-step">
-                    <div class="step-num">2</div>
-                    <h4 class="fw-bold mt-3">Design & Proof</h4>
-                    <p class="text-muted">Our graphic designers create a visual mockup for your approval.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="process-step">
-                    <div class="step-num">3</div>
-                    <h4 class="fw-bold mt-3">Fabrication</h4>
-                    <p class="text-muted">We build and install your sign using high-end technology.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="sign-shop-catalog">
-    <div class="fluid-container">
-        <div class="catalog-header">
-            <span class="gold-text">Browse Template Categories</span>
-            <h2>Custom Signage Solutions</h2>
-            <div class="gold-divider"></div>
-            <p>Select a category to view professional templates and custom options.</p>
-        </div>
-
-        <div class="catalog-grid">
-            <div class="category-card">
-                <div class="photo-frame">
-                    <img src="static/images/yard-signs.jpg" alt="Yard Signs">
-                </div>
-                <div class="card-label">
-                    <h3>Yard Signs</h3>
-                </div>
-            </div>
-
-            <div class="category-card">
-                <div class="photo-frame">
-                    <img src="static/images/political-signs.jpg" alt="Political Signs">
-                </div>
-                <div class="card-label">
-                    <h3>Political Signs</h3>
-                </div>
-            </div>
-
-            <div class="category-card">
-                <div class="photo-frame">
-                    <img src="static/images/real-estate-signs.jpg" alt="Real Estate Signs">
-                </div>
-                <div class="card-label">
-                    <h3>Real Estate Signs</h3>
-                </div>
-            </div>
-
-            <div class="category-card">
-                <div class="photo-frame">
-                    <img src="static/images/care_express_magnetics.png" alt="Car Magnets">
-                </div>
-                <div class="card-label">
-                    <h3>Car Magnets</h3>
-                </div>
-            </div>
-
-            <div class="category-card">
-                <div class="photo-frame">
-                    <img src="static/images/sandwich-boards.jpg" alt="Sandwich Board Panels">
-                </div>
-                <div class="card-label">
-                    <h3>Sandwich Boards</h3>
-                </div>
-            </div>
-
-            <div class="category-card">
-                <div class="photo-frame">
-                    <img src="static/images/joseph-toyota.png" alt="Banners">
-                </div>
-                <div class="card-label">
-                    <h3>Banners</h3>
-                </div>
-            </div>
-
-            <div class="category-card">
-                <div class="photo-frame">
-                    <img src="static/images/door-hangers.jpg" alt="Door Hangers">
-                </div>
-                <div class="card-label">
-                    <h3>Door Hangers</h3>
-                </div>
-            </div>
-
-            <div class="category-card">
-                <div class="photo-frame">
-                    <img src="static/images/blank-yard-signs.jpg" alt="Blank Yard Signs">
-                </div>
-                <div class="card-label">
-                    <h3>Blank Yard Signs</h3>
-                </div>
-            </div>
-
-            <div class="category-card">
-                <div class="photo-frame">
-                    <img src="static/images/parking-signs.jpg" alt="Parking Signs">
-                </div>
-                <div class="card-label">
-                    <h3>Parking Signs</h3>
-                </div>
-            </div>
-
-            <div class="category-card">
-                <div class="photo-frame">
-                    <img src="static/images/sign-riders.jpg" alt="Sign Riders">
-                </div>
-                <div class="card-label">
-                    <h3>Sign Riders</h3>
-                </div>
-            </div>
-
-            <div class="category-card">
-                <div class="photo-frame">
-                    <img src="static/images/street-signs.jpeg" alt="Street Signs">
-                </div>
-                <div class="card-label">
-                    <h3>Street Signs</h3>
-                </div>
-            </div>
-
-            <div class="category-card">
-                <div class="photo-frame">
-                    <img src="static/images/bumper-stickers.jpg" alt="Bumper Stickers">
-                </div>
-                <div class="card-label">
-                    <h3>Bumper Stickers</h3>
-                </div>
-            </div>
-
-            <div class="category-card">
-                <div class="photo-frame">
-                    <img src="static/images/business-cards.jpeg" alt="Business Cards">
-                </div>
-                <div class="card-label">
-                    <h3>Business Cards</h3>
-                </div>
-            </div>
-
-            <div class="category-card">
-                <div class="photo-frame">
-                    <img src="static/images/roll-labels.jpg" alt="Roll Labels">
-                </div>
-                <div class="card-label">
-                    <h3>Roll Labels</h3>
-                </div>
-            </div>
-            
-            <div class="category-card">
-                <div class="photo-frame">
-                    <img src="static/images/led_neon.jpg" alt="LED Neon Signs">
-                </div>
-                <div class="card-label">
-                    <h3>LED Neon Signs</h3>
-                </div>
-            </div>
-            
-            <div class="category-card">
-                <div class="photo-frame">
-                    <img src="static/images/key_chains.jpeg" alt="Keychains & Plates">
-                </div>
-                <div class="card-label">
-                    <h3>Keychains & Plates</h3>
-                </div>
-            </div>
-            
-        </div>
-    </div>
-</section>
-
-<section class="py-10 bg-navy text-white overflow-hidden">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-5">
-                <h2 class="display-5 fw-bold">Driven by <br>15 Years of <br>Technical Mastery.</h2>
-            </div>
-            <div class="col-lg-7">
-                <p class="lead opacity-75">Our team consists of structural engineers, graphic designers, and certified installers. We don't just sell signs; we consult on your brand's physical footprint to ensure compliance, safety, and aesthetic perfection.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="products" class="py-5 bg-light">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold display-5">Our Printing & <span class="text-orange">Signage Products</span></h2>
-            <p class="text-muted">High-quality solutions for businesses, events, and personal branding.</p>
+    <div class="container my-sm-2 py-2">
+        <!-- Header Zone -->
+        <div class="text-center mb-5 max-width-600 mx-auto" data-aos="fade-up" data-aos-duration="800">
+            <span class="text-uppercase tracking-widest fw-bold process-pretitle mb-2 d-inline-block">The Voiage Hub Blueprint</span>
+            <h2 class="display-5 fw-black text-navy-modifier tracking-tight lh-12">
+                Our <span class="text-gradient-process">Execution Workflow</span>
+            </h2>
         </div>
         
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-3">
-                <div class="product-card">
-                    <i class="fas fa-lightbulb text-orange"></i>
-                    <h3>LED Message Signs</h3>
-                    <p>Electronic displays to catch every eye.</p>
+        <!-- Connected Cards Row Layout -->
+        <div class="row g-4 justify-content-center process-cards-row position-relative">
+            
+            <!-- Step 1: Photography -->
+            <div class="col-xl-4 col-md-6 col-sm-10" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+                <div class="process-card-step h-100 position-relative">
+                    <div class="step-num-badge font-monospace">01</div>
+                    <div class="step-icon-inner mb-4"><i class="fas fa-camera-retro"></i></div>
+                    
+                    <h3 class="h4 fw-bold text-navy-modifier mb-3">Photography</h3>
+                    <p class="text-muted-modifier mb-0 lh-16">
+                        Capturing life's milestones with artistic precision. We specialize in <strong>Wedding portraits, Graduation ceremonies, vibrant Birthday events, and intimate Baby Shower sessions</strong>.
+                    </p>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="product-card">
-                    <i class="fas fa-tshirt text-orange"></i>
-                    <h3>Custom Apparel</h3>
-                    <p>T-Shirts, Hoodies & Hats with UV ink.</p>
+            
+            <!-- Step 2: Videography -->
+            <div class="col-xl-4 col-md-6 col-sm-10" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+                <div class="process-card-step h-100 position-relative">
+                    <div class="step-num-badge font-monospace">02</div>
+                    <div class="step-icon-inner mb-4"><i class="fas fa-video"></i></div>
+                    
+                    <h3 class="h4 fw-bold text-navy-modifier mb-3">Cinematic Videography</h3>
+                    <p class="text-muted-modifier mb-0 lh-16">
+                        We transform moments into cinema. Expert coverage for <strong>Weddings, professional Graduation films, live Event reels, and heartfelt Baby Shower narratives</strong>.
+                    </p>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="product-card">
-                    <i class="fas fa-car text-orange"></i>
-                    <h3>Vehicle Lettering</h3>
-                    <p>Turn your car into a mobile billboard.</p>
+            
+            <!-- Step 3: Printing & Apparel -->
+            <div class="col-xl-4 col-md-6 col-sm-10" data-aos="fade-up" data-aos-delay="300" data-aos-duration="800">
+                <div class="process-card-step h-100 position-relative">
+                    <div class="step-num-badge font-monospace">03</div>
+                    <div class="step-icon-inner mb-4"><i class="fas fa-print"></i></div>
+                    
+                    <h3 class="h4 fw-bold text-navy-modifier mb-3">Custom Print & Apparel</h3>
+                    <p class="text-muted-modifier mb-0 lh-16">
+                        High-fidelity output for your unique style. Premium <strong>Mugs, branded Hats, cozy Hoodies, bespoke T-Shirts, and elegant Traditional Kurtis</strong> delivered with professional care.
+                    </p>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="product-card">
-                    <i class="fas fa-cut text-orange"></i>
-                    <h3>Laser Engraving</h3>
-                    <p>Precision engraving on wood, metal & plastic.</p>
-                </div>
-            </div>
+            
         </div>
     </div>
 </section>
 
-<section id="materials" class="py-5 bg-dark text-white">
-    <div class="container">
-        <h2 class="text-center mb-5">Quality <span class="text-warning">Materials</span> for Every Sign</h2>
-        <div class="d-flex flex-wrap justify-content-center gap-3">
-            <span class="material-tag">Acrylic</span>
-            <span class="material-tag">Aluminum</span>
-            <span class="material-tag">Coroplast</span>
-            <span class="material-tag">Foam Core</span>
-            <span class="material-tag">HDU Board</span>
-            <span class="material-tag">Poly Carbonate</span>
-            <span class="material-tag">Metal</span>
-            <span class="material-tag">Vinyl</span>
-            <span class="material-tag">Wood</span>
-        </div>
-    </div>
-</section>
+<section class="media-mastery-showcase py-6 py-lg-7 position-relative overflow-hidden bg-navy-core text-white">
+    <!-- Subtle architectural background lines -->
+    <div class="showcase-bg-lines"></div>
 
-<section id="capabilities" class="py-10 bg-white">
-    <div class="container">
-        <div class="text-center mb-6">
-            <h2 class="display-4 fw-black text-navy">SpecialIZED Solutions</h2>
-            <p class="text-muted">A comprehensive ecosystem for your brand's physical presence.</p>
-        </div>
-        <div class="row g-4">
-            <div class="col-lg-4">
-                <div class="bento-card h-100 bg-navy text-white p-5 rounded-5 d-flex flex-column justify-content-between">
-                    <div>
-                        <div class="icon-box-orange mb-4 d-inline-block p-3 bg-orange rounded-4 text-white"><i class="fas fa-bolt fa-2x"></i></div>
-                        <h3>LED & Digital</h3>
-                        <p class="opacity-75">Programmable electronic message centers with ultra-bright Nits rating for daylight visibility.</p>
-                        <ul class="list-unstyled small mb-4">
-                            <li><i class="fas fa-check text-orange me-2"></i> Wireless Control</li>
-                            <li><i class="fas fa-check text-orange me-2"></i> Weather-Proof Seal</li>
-                        </ul>
-                    </div>
-                    <a href="{% url 'product_detail' 'led-message-signs' %}" class="btn btn-warning w-100">Configure Sign</a>
+    <div class="container position-relative z-index-10">
+        <div class="row g-4 g-xl-5 align-items-center">
+            
+            <!-- Structural Accent Header Left Column -->
+            <div class="col-lg-5 col-xl-6">
+                <div class="header-split-block" data-aos="fade-up" data-aos-duration="800">
+                    <span class="gold-pretitle text-uppercase tracking-widest fw-bold d-block mb-3">
+                        Voiage Hub Expertise
+                    </span>
+                    <h2 class="display-5 fw-black text-white tracking-tight lh-tight mb-0">
+                        Crafting Moments through <br class="d-none d-sm-inline"><span class="text-gold-accent">Technical Excellence.</span>
+                    </h2>
+                    <div class="gold-accent-bar mt-4 d-none d-lg-block"></div>
                 </div>
             </div>
-            <div class="col-lg-8">
-                <div class="row g-4 h-100">
-                    <div class="col-md-6">
-                        <div class="bento-card bg-light p-4 rounded-5 h-100 border-0">
-                            <i class="fas fa-truck-moving text-orange fa-2x mb-3"></i>
-                            <h4>Fleet Branding</h4>
-                            <p class="small text-muted">3M Certified vehicle wraps that turn your fleet into mobile billboards.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="bento-card bg-light p-4 rounded-5 h-100 border-0">
-                            <i class="fas fa-building text-orange fa-2x mb-3"></i>
-                            <h4>Architectural</h4>
-                            <p class="small text-muted">Custom channel letters and monument signs that define your building.</p>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="bento-card bg-orange text-white p-4 rounded-5 d-flex align-items-center justify-content-between">
-                            <div class="w-75">
-                                <h4>UV-Cured Apparel & Merch</h4>
-                                <p class="mb-0 opacity-90">High-fidelity printing on premium workwear and promotional garments.</p>
+            
+            <!-- Value Proposition Text & Service Pillars Right Column -->
+            <div class="col-lg-7 col-xl-6">
+                <div class="content-split-block ps-lg-4" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+                    <p class="lead-modifier text-light-slate mb-4">
+                        At Voiage Hub, we bridge the gap between creative storytelling and physical legacy. From high-resolution event capture and cinematic production to bespoke apparel and fine-art printing, our team ensures every detail reflects the magnitude of your special occasion.
+                    </p>
+                    
+                    <!-- Dynamic Service Architecture Matrix -->
+                    <div class="row g-3 service-pill-matrix mt-2">
+                        <!-- Pillar: Photography -->
+                        <div class="col-12 col-sm-4">
+                            <div class="service-pill-item p-3 d-flex align-items-center gap-3">
+                                <div class="pill-icon-box flex-shrink-0">
+                                    <i class="bi bi-camera"></i>
+                                </div>
+                                <div class="pill-text-box">
+                                    <h4 class="h6 fw-bold mb-0">Event Photo</h4>
+                                </div>
                             </div>
-                            <i class="fas fa-tshirt fa-4x opacity-25"></i>
+                        </div>
+                        
+                        <!-- Pillar: Video Series -->
+                        <div class="col-12 col-sm-4">
+                            <div class="service-pill-item p-3 d-flex align-items-center gap-3">
+                                <div class="pill-icon-box flex-shrink-0">
+                                    <i class="bi bi-film"></i>
+                                </div>
+                                <div class="pill-text-box">
+                                    <h4 class="h6 fw-bold mb-0">Cinematic Video</h4>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Pillar: Printing -->
+                        <div class="col-12 col-sm-4">
+                            <div class="service-pill-item p-3 d-flex align-items-center gap-3">
+                                <div class="pill-icon-box flex-shrink-0">
+                                    <i class="bi bi-printer"></i>
+                                </div>
+                                <div class="pill-text-box">
+                                    <h4 class="h6 fw-bold mb-0">Custom Apparel</h4>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </section>
 
-<section class="py-10 bg-white">
-    <div class="container">
-        <h2 class="fw-bold mb-5 text-center">Industry-Specific Solutions</h2>
-        <div class="row g-3">
-            <div class="col-md-3">
-                <div class="industry-card bg-light p-4 text-center rounded-3">
-                    <i class="fas fa-hospital-alt text-orange mb-3"></i>
-                    <h6>Healthcare</h6>
+<section id="about-hub" class="vh-about-section py-6 py-lg-8 position-relative overflow-hidden">
+
+    <!-- Background -->
+    <div class="vh-bg-grid"></div>
+    <div class="vh-glow vh-glow-1"></div>
+    <div class="vh-glow vh-glow-2"></div>
+
+    <div class="container position-relative z-3">
+
+        <div class="row align-items-center g-5">
+
+            <!-- IMAGE SIDE (HIGHLIGHTED) -->
+            <div class="col-lg-7">
+
+                <div class="vh-image-stack">
+
+                    <img src="{% static 'images/videography-main.jpg' %}" 
+                         class="vh-main-img"
+                         alt="Voiage Hub Photography & Videography">
+
+                    <!-- Floating Tag -->
+                    <div class="vh-tag tag-top">
+                        <i class="bi bi-camera-reels-fill"></i>
+                        Cinematic Production
+                    </div>
+
+                    <!-- Floating Tag -->
+                    <div class="vh-tag tag-bottom">
+                        <i class="bi bi-camera-fill"></i>
+                        Photography Studio
+                    </div>
+
                 </div>
+
             </div>
-            <div class="col-md-3">
-                <div class="industry-card bg-light p-4 text-center rounded-3">
-                    <i class="fas fa-utensils text-orange mb-3"></i>
-                    <h6>Hospitality</h6>
+
+            <!-- CONTENT SIDE (MINIMAL) -->
+            <div class="col-lg-5">
+
+                <span class="vh-mini-badge">VOIAGE HUB STUDIO</span>
+
+                <h2 class="vh-title">
+                    We Capture
+                    <span>Real Emotions</span>
+                </h2>
+
+                <p class="vh-text">
+                    Photography & videography for weddings, birthdays, graduations,
+                    baby showers, corporate events and celebrations.
+                </p>
+
+                <p class="vh-text">
+                    Cinematic visuals designed to preserve your most meaningful moments.
+                </p>
+
+                <!-- FEATURES (ICON STYLE) -->
+                <div class="vh-icon-list">
+
+                    <div class="vh-icon-item">
+                        <i class="bi bi-camera"></i>
+                        <span>Photography</span>
+                    </div>
+
+                    <div class="vh-icon-item">
+                        <i class="bi bi-film"></i>
+                        <span>Videography</span>
+                    </div>
+
+                    <div class="vh-icon-item">
+                        <i class="bi bi-star"></i>
+                        <span>Editing & Retouch</span>
+                    </div>
+
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="industry-card bg-light p-4 text-center rounded-3">
-                    <i class="fas fa-shopping-cart text-orange mb-3"></i>
-                    <h6>Retail Centers</h6>
+
+                <!-- CTA -->
+                <div class="vh-btn-group">
+
+                    <a href="#" class="vh-btn-primary">
+                        View Portfolio
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                    <a href="#" class="vh-btn-outline">
+                        Contact Us
+                    </a>
+
                 </div>
+
             </div>
-            <div class="col-md-3">
-                <div class="industry-card bg-light p-4 text-center rounded-3">
-                    <i class="fas fa-warehouse text-orange mb-3"></i>
-                    <h6>Industrial</h6>
-                </div>
-            </div>
+
         </div>
+
     </div>
+
 </section>
 
-<section class="py-6 bg-navy text-white text-center">
-    <div class="container px-lg-5">
-        <i class="fas fa-quote-left text-orange fa-3x mb-4"></i>
-        <h2 class="display-6 italic fw-light mb-4">"Our mission is to empower local businesses by providing high-impact visual communication that drives growth and builds community pride."</h2>
-        <h5 class="text-warning fw-bold">— Management Team</h5>
-    </div>
-</section>
+<section class="vh-showcase-section py-6 py-lg-8 position-relative overflow-hidden">
 
-<section id="services" class="py-10 bg-white">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6 mb-4 mb-lg-0">
-                <img src="static/images/about_sign.jpeg" alt="Sign Fabrication" class="img-fluid rounded-5 shadow-lg">
-            </div>
-            <div class="col-lg-6 px-lg-5">
-                <h2 class="fw-bold mb-4">A Full-Service Sign Company</h2>
-                <p>We provide comprehensive sign services to meet all your signage needs. From <strong>Sign Design</strong> and <strong>Fabrication</strong> to <strong>Installation</strong> and <strong>Maintenance</strong>, our team ensures your brand stands out.</p>
-                <ul class="service-list list-unstyled">
-                    <li><i class="fas fa-check-circle text-orange me-2"></i> Wide Format & UV Ink Printing</li>
-                    <li><i class="fas fa-check-circle text-orange me-2"></i> Professional Lamination Services</li>
-                    <li><i class="fas fa-check-circle text-orange me-2"></i> Custom Financing Available</li>
-                    <li><i class="fas fa-check-circle text-orange me-2"></i> Indoor & Outdoor Experts</li>
-                </ul>
-                <div class="p-4 bg-orange-light rounded-4 mt-4">
-                    <p class="mb-0 italic text-dark">"One of our quality LED Message Signs. Thank you Anderson Parks!"</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    <!-- Background Layers -->
+    <div class="vh-bg-gradient"></div>
+    <div class="vh-grid-bg"></div>
+    <div class="vh-orb vh-orb-1"></div>
+    <div class="vh-orb vh-orb-2"></div>
 
-<section class="py-10 bg-white">
-    <div class="container">
-        <h2 class="text-center fw-black mb-5">From Concept to Concrete</h2>
-        <div class="row g-0 timeline-row">
-            <div class="col-md-4 timeline-step">
-                <div class="step-blob">01</div>
-                <h5>Strategic Analysis</h5>
-                <p class="small text-muted">Site survey, permit zoning laws, and visibility calculations.</p>
-            </div>
-            <div class="col-md-4 timeline-step">
-                <div class="step-blob">02</div>
-                <h5>Technical Proofing</h5>
-                <p class="small text-muted">High-fidelity 3D mockups and color-match calibration.</p>
-            </div>
-            <div class="col-md-4 timeline-step">
-                <div class="step-blob">03</div>
-                <h5>Expert Deployment</h5>
-                <p class="small text-muted">Precision installation with final electrical safety certification.</p>
-            </div>
-        </div>
-    </div>
-</section>
+    <div class="container position-relative z-3">
 
-<section id="products-recap" class="py-6 bg-navy text-white">
-    <div class="container">
+        <!-- Header -->
         <div class="text-center mb-5">
-            <h2 class="display-5 fw-black">Our Specialized Solutions</h2>
-            <div class="heading-line mx-auto"></div>
+            <span class="vh-top-tag">OUR VISUAL WORK</span>
+            <h2 class="vh-section-title">
+                Moments We <span>Captured Beautifully</span>
+            </h2>
         </div>
-        <div class="row g-4">
-            <div class="col-md-3">
-                <div class="service-card-modern">
-                    <i class="fas fa-bolt"></i>
-                    <h4>LED Signs</h4>
-                    <p>Digital message centers that grab attention 24/7.</p>
-                </div>
+
+        <!-- GRID -->
+        <div class="vh-gallery-grid">
+
+            <div class="vh-item large">
+                <img src="{% static 'images/wedding.jpg' %}" alt="">
+                <div class="vh-overlay"></div>
+                <div class="vh-label">Wedding Photography</div>
             </div>
-            <div class="col-md-3">
-                <div class="service-card-modern">
-                    <i class="fas fa-truck-moving"></i>
-                    <h4>Vehicle Wraps</h4>
-                    <p>High-performance vinyl for your mobile fleet.</p>
-                </div>
+
+            <div class="vh-item">
+                <img src="{% static 'images/photo1.jpg' %}" alt="">
+                <div class="vh-overlay"></div>
+                <div class="vh-label">Birthday Shoot</div>
             </div>
-            <div class="col-md-3">
-                <div class="service-card-modern">
-                    <i class="fas fa-building"></i>
-                    <h4>Outdoor Signs</h4>
-                    <p>Durable building signs that withstand the elements.</p>
-                </div>
+
+            <div class="vh-item">
+                <img src="{% static 'images/graduation.jpg' %}" alt="">
+                <div class="vh-overlay"></div>
+                <div class="vh-label">Graduation</div>
             </div>
-            <div class="col-md-3">
-                <div class="service-card-modern">
-                    <i class="fas fa-print"></i>
-                    <h4>Large Format</h4>
-                    <p>Banners, posters, and wall murals at scale.</p>
-                </div>
+
+            <div class="vh-item tall">
+                <img src="{% static 'images/videography.jpg' %}" alt="">
+                <div class="vh-overlay"></div>
+                <div class="vh-label">Cinematic Videography</div>
+            </div>
+
+            <div class="vh-item">
+                <img src="{% static 'images/babyshower.jpg' %}" alt="">
+                <div class="vh-overlay"></div>
+                <div class="vh-label">Baby Shower</div>
+            </div>
+
+            <div class="vh-item">
+                <img src="{% static 'images/event.jpg' %}" alt="">
+                <div class="vh-overlay"></div>
+                <div class="vh-label">Events</div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<section id="products" class="py-6 bg-white position-relative overflow-hidden">
+    <div class="container position-relative z-index-10">
+        <!-- Section Header -->
+        <div class="text-center mb-6">
+            <span class="gold-sub-stamp">OUR CORE SERVICES</span>
+            <h2 class="display-5 fw-black text-navy-modifier mt-2">The Voiage Hub <span class="text-gold-modifier">Collection</span></h2>
+            <div class="gold-divider-line mx-auto"></div>
+        </div>
+        
+        <!-- The Adaptive Matrix -->
+        <div class="product-matrix">
+            <!-- Photography -->
+            <div class="premium-card">
+                <div class="icon-box"><i class="bi bi-camera"></i></div>
+                <h3>Photography</h3>
+                <p>Weddings, Graduations, Birthdays, and Baby Showers captured in high-definition.</p>
+            </div>
+
+            <!-- Traditional Dress -->
+            <div class="premium-card">
+                <div class="icon-box"><i class="bi bi-gem"></i></div>
+                <h3>Traditional Wear</h3>
+                <p>Curated Traditional Kurtis and ceremonial outfits for every cultural milestone.</p>
+            </div>
+
+            <!-- Videography -->
+            <div class="premium-card">
+                <div class="icon-box"><i class="bi bi-film"></i></div>
+                <h3>Videography</h3>
+                <p>Cinematic coverage for weddings, events, and special personal narratives.</p>
+            </div>
+
+            <!-- Printing -->
+            <div class="premium-card">
+                <div class="icon-box"><i class="bi bi-printer"></i></div>
+                <h3>Custom Printing</h3>
+                <p>Branded Mugs, Hats, Hoodies, and T-shirts crafted with premium materials.</p>
             </div>
         </div>
     </div>
 </section>
 
-<section class="py-10 bg-white">
-    <div class="container">
-        <h2 class="text-center fw-black mb-5">What Our Clients Say</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="testimonial-card p-4">
-                    <p class="small italic">"The LED message center changed our business. We saw a 20% increase in walk-ins within the first month."</p>
-                    <hr>
-                    <h6 class="mb-0 fw-bold">Sarah Jenkins</h6>
-                    <small>Owner, Downtown Cafe</small>
+
+<section id="capabilities" class="py-6 py-lg-8 position-relative overflow-hidden bg-studio-dark text-white">
+    <!-- Fine-line technical architectural background structure -->
+    <div class="studio-vector-grid"></div>
+    <div class="studio-ambient-glow"></div>
+
+    <div class="container position-relative z-index-20">
+        <div class="row g-4 g-xl-5">
+            
+            <!-- Left Fixed Column: Sticky Context Header on Desktop -->
+            <div class="col-lg-4 col-xl-5">
+                <div class="studio-sticky-header pe-xl-4" data-aos="fade-up" data-aos-duration="1000">
+                    <span class="gold-pretitle text-uppercase tracking-widest fw-bold d-block mb-3">
+                        Voiage Hub Ecosystem
+                    </span>
+                    <h2 class="display-4 fw-black text-white tracking-tight lh-tight mb-4">
+                        Specialized <br class="d-none d-lg-inline"><span class="text-gold-gradient-fill">Creative Solutions.</span>
+                    </h2>
+                    <p class="lead-text text-slate-muted mb-0">
+                        A pristine blend of artistic vision and technical precision. We curate memories and custom apparel, providing high-end production for weddings, graduations, events, and individual milestones.
+                    </p>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="testimonial-card p-4">
-                    <p class="small italic">"Professional, fast, and the quality of the vinyl is top-notch. Our fleet looks amazing."</p>
-                    <hr>
-                    <h6 class="mb-0 fw-bold">Mark Thompson</h6>
-                    <small>Fleet Manager, Logistics Plus</small>
+            
+            <!-- Right Column: Premium Asymmetric Cards -->
+            <div class="col-lg-8 col-xl-7">
+                <div class="studio-cards-column d-flex flex-column gap-4">
+                    
+                    <!-- Suite 1: Cinematic Videography -->
+                    <div class="premium-studio-panel p-4 p-md-5" data-aos="fade-up" data-aos-delay="100" data-aos-duration="900">
+                        <div class="panel-border-line"></div>
+                        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start gap-4">
+                            <div class="panel-main-body">
+                                <div class="panel-meta-index text-gold mb-3">01 // CINEMA</div>
+                                <h3 class="h3 fw-bold text-white tracking-tight mb-3">Cinematic Videography</h3>
+                                <p class="text-slate-muted small mb-0 lh-16">
+                                    Heartfelt narratives for weddings, baby showers, and graduations. We transform live events into cinematic journeys with professional-grade resolution and emotional storytelling.
+                                </p>
+                            </div>
+                            <div class="panel-action-frame flex-shrink-0 pt-1">
+                                <a href="#" class="studio-circle-btn d-flex align-items-center justify-content-center" aria-label="Explore Videography">
+                                    <i class="bi bi-arrow-up-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Suite 2: Event Photography -->
+                    <div class="premium-studio-panel p-4 p-md-5" data-aos="fade-up" data-aos-delay="200" data-aos-duration="900">
+                        <div class="panel-border-line"></div>
+                        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start gap-4">
+                            <div class="panel-main-body">
+                                <div class="panel-meta-index text-gold mb-3">02 // IMAGERY</div>
+                                <h3 class="h3 fw-bold text-white tracking-tight mb-3">Event Photography</h3>
+                                <p class="text-slate-muted small mb-0 lh-16">
+                                    Artistic capture of your most important milestones. From elegant wedding portraits to vibrant birthday celebrations, we ensure your legacy is preserved in high-fidelity.
+                                </p>
+                            </div>
+                            <div class="panel-action-frame flex-shrink-0 pt-1">
+                                <a href="#" class="studio-circle-btn d-flex align-items-center justify-content-center" aria-label="Explore Photography">
+                                    <i class="bi bi-arrow-up-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Suite 3: Custom Printing & Apparel -->
+                    <div class="premium-studio-panel p-4 p-md-5" data-aos="fade-up" data-aos-delay="300" data-aos-duration="900">
+                        <div class="panel-border-line"></div>
+                        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start gap-4">
+                            <div class="panel-main-body">
+                                <div class="panel-meta-index text-gold mb-3">03 // INDUSTRIAL</div>
+                                <h3 class="h3 fw-bold text-white tracking-tight mb-3">Bespoke Printing & Apparel</h3>
+                                <p class="text-slate-muted small mb-0 lh-16">
+                                    Wearable memories and personalized gifts. Expert printing on premium T-shirts, hoodies, mugs, and hats, alongside beautifully crafted traditional cultural attire.
+                                </p>
+                            </div>
+                            <div class="panel-action-frame flex-shrink-0 pt-1">
+                                <a href="#" class="studio-circle-btn d-flex align-items-center justify-content-center" aria-label="Explore Printing">
+                                    <i class="bi bi-arrow-up-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="testimonial-card p-4">
-                    <p class="small italic">"They handled our complex permit process and installation without a single hitch. Highly recommend."</p>
-                    <hr>
-                    <h6 class="mb-0 fw-bold">Dr. Emily Reed</h6>
-                    <small>Director, West Medical Center</small>
-                </div>
-            </div>
+
         </div>
     </div>
 </section>
 
-<section class="py-10 bg-navy text-white text-center">
-    <div class="container">
-        <h2 class="display-5 fw-black mb-4">Ready to <span class="text-warning">Stand Out?</span></h2>
-        <p class="lead mb-5 px-lg-5">Join hundreds of local businesses that trust us for their signage and branding needs. Get a free custom quote today.</p>
-        <a href="{% url 'contact' %}" class="btn btn-warning btn-lg px-5 py-3 fw-bold">Request a Free Quote</a>
+<section id="process" class="py-6 py-lg-8 bg-white position-relative">
+    <div class="container position-relative z-index-10">
+        
+        <!-- Header -->
+        <div class="text-center mb-6 mb-lg-7">
+            <span class="gold-pretitle text-uppercase tracking-widest fw-bold d-block mb-2">Production Pipeline</span>
+            <h2 class="display-5 fw-black text-navy-modifier tracking-tight">From Concept to Concrete</h2>
+        </div>
+
+        <!-- Timeline Workflow -->
+        <div class="row g-4 timeline-engine">
+            
+            <!-- Step 1: Creative Strategy -->
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="50">
+                <div class="timeline-card p-4 h-100 position-relative">
+                    <div class="step-counter mb-4">01</div>
+                    <h4 class="h5 fw-bold text-navy-modifier mb-3">Creative Scoping</h4>
+                    <p class="text-secondary-modifier small lh-16 mb-0">
+                        We begin by aligning your vision with our creative process, defining aesthetic requirements and project milestones for your media and apparel goals.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Step 2: Technical Production -->
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="150">
+                <div class="timeline-card p-4 h-100 position-relative">
+                    <div class="step-counter mb-4">02</div>
+                    <h4 class="h5 fw-bold text-navy-modifier mb-3">Precision Execution</h4>
+                    <p class="text-secondary-modifier small lh-16 mb-0">
+                        Our team executes your project using industry-leading capture technology and professional-grade printing hardware, ensuring every detail meets Voiage Hub standards.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Step 3: Final Deployment -->
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="250">
+                <div class="timeline-card p-4 h-100 position-relative">
+                    <div class="step-counter mb-4">03</div>
+                    <h4 class="h5 fw-bold text-navy-modifier mb-3">Deliverable Finalization</h4>
+                    <p class="text-secondary-modifier small lh-16 mb-0">
+                        We finalize and deliver your high-impact media or finished apparel products, ensuring they are primed for your audience and brand engagement.
+                    </p>
+                </div>
+            </div>
+
+        </div>
     </div>
 </section>
+
+{% load static %}
+
+<section id="voiage-services" class="voiage-services position-relative overflow-hidden">
+
+    <!-- Background Elements -->
+    <div class="vs-grid"></div>
+    <div class="vs-glow vs-glow-1"></div>
+    <div class="vs-glow vs-glow-2"></div>
+
+    <div class="container position-relative z-3">
+
+        <!-- HEADER -->
+        <div class="services-header text-center mx-auto">
+
+            <span class="services-subtitle">
+                VOIAGE HUB • PREMIUM CREATIVE STUDIO
+            </span>
+
+            <h2 class="services-title">
+                Creative Visual <span>Solutions</span>
+            </h2>
+
+            <p class="services-description">
+                Professional photography, cinematic videography,
+                custom apparel printing, merchandise branding
+                and premium media production for modern brands.
+            </p>
+
+            <div class="services-divider mx-auto"></div>
+
+        </div>
+
+        <!-- SERVICES GRID -->
+        <div class="row g-4 justify-content-center">
+
+            <!-- CARD 1 -->
+            <div class="col-6 col-md-6 col-lg-3">
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+                        <i class="bi bi-camera-reels-fill"></i>
+                    </div>
+
+                    <h3>
+                        Cinematic Videography
+                    </h3>
+
+                    <p>
+                        Commercial films, drone cinematics,
+                        reels and storytelling production.
+                    </p>
+
+                    <a href="#" class="service-btn">
+                        Explore
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="col-6 col-md-6 col-lg-3">
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+                        <i class="bi bi-camera-fill"></i>
+                    </div>
+
+                    <h3>
+                        Photography
+                    </h3>
+
+                    <p>
+                        Luxury portrait, fashion,
+                        corporate and product photography.
+                    </p>
+
+                    <a href="#" class="service-btn">
+                        Explore
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="col-6 col-md-6 col-lg-3">
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+                        <i class="bi bi-printer-fill"></i>
+                    </div>
+
+                    <h3>
+                        Apparel Printing
+                    </h3>
+
+                    <p>
+                        Hoodie, t-shirt, cap and
+                        traditional dress printing solutions.
+                    </p>
+
+                    <a href="#" class="service-btn">
+                        Explore
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- CARD 4 -->
+            <div class="col-6 col-md-6 col-lg-3">
+
+                <div class="service-card">
+
+                    <div class="service-icon">
+                        <i class="bi bi-bag-fill"></i>
+                    </div>
+
+                    <h3>
+                        Merchandise Branding
+                    </h3>
+
+                    <p>
+                        Mug printing, gift branding,
+                        packaging and promotional products.
+                    </p>
+
+                    <a href="#" class="service-btn">
+                        Explore
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="voiage-showcase-section position-relative overflow-hidden">
+
+    <!-- Decorative Background -->
+    <div class="vs-grid"></div>
+    <div class="vs-glow vs-glow-1"></div>
+    <div class="vs-glow vs-glow-2"></div>
+
+    <div class="container position-relative z-3">
+
+        <div class="row align-items-center g-5">
+
+            <!-- LEFT CONTENT -->
+            <div class="col-lg-6">
+
+                <div class="vs-content">
+
+                    <span class="vs-badge">
+                        VOIAGE HUB • PRINT • PHOTO • VIDEO
+                    </span>
+
+                    <h2 class="vs-title">
+                        Creating Moments
+                        <span>That Last Forever</span>
+                    </h2>
+
+                    <p class="vs-description">
+                        Voiage Hub delivers premium photography, cinematic videography,
+                        custom apparel printing, and traditional dress collections.
+                        From weddings and graduations to birthday celebrations and baby showers,
+                        we transform your memories into timeless visual experiences.
+                    </p>
+
+                    <!-- FEATURES -->
+                    <div class="vs-feature-list">
+
+                        <div class="vs-feature-item">
+                            <div class="vs-icon">
+                                <i class="bi bi-camera-fill"></i>
+                            </div>
+
+                            <div>
+                                <h5>Professional Photography</h5>
+                                <p>
+                                    Wedding, graduation, birthday, baby shower,
+                                    and event photography with creative direction.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="vs-feature-item">
+                            <div class="vs-icon">
+                                <i class="bi bi-film"></i>
+                            </div>
+
+                            <div>
+                                <h5>Cinematic Videography</h5>
+                                <p>
+                                    High-quality event films and storytelling videos
+                                    crafted with cinematic editing and production.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="vs-feature-item">
+                            <div class="vs-icon">
+                                <i class="bi bi-bag-fill"></i>
+                            </div>
+
+                            <div>
+                                <h5>Custom Printing & Traditional Dress</h5>
+                                <p>
+                                    Premium hoodies, mugs, caps, t-shirts,
+                                    hats, and traditional dresses with custom branding.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- BUTTONS -->
+                    <div class="vs-buttons">
+
+                        <a href="#" class="vs-btn-primary">
+                            Book Your Session
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+
+                        <a href="#" class="vs-btn-outline">
+                            Explore Services
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="col-lg-6">
+
+                <div class="vs-card-wrapper">
+
+                    <div class="vs-main-card">
+
+                        <div class="vs-mini-badge">
+                            <i class="bi bi-stars"></i>
+                            Creative Studio Experience
+                        </div>
+
+                        <h3>
+                            Why Clients
+                            Choose Voiage Hub
+                        </h3>
+
+                        <p class="vs-card-text">
+                            We combine creativity, modern production,
+                            premium printing, and professional storytelling
+                            to deliver unforgettable experiences.
+                        </p>
+
+                        <!-- STATS -->
+                        <div class="vs-stats-grid">
+
+                            <div class="vs-stat-box">
+                                <h4>1000+</h4>
+                                <span>Events Captured</span>
+                            </div>
+
+                            <div class="vs-stat-box">
+                                <h4>4K</h4>
+                                <span>Cinematic Video</span>
+                            </div>
+
+                            <div class="vs-stat-box">
+                                <h4>24/7</h4>
+                                <span>Creative Support</span>
+                            </div>
+
+                            <div class="vs-stat-box">
+                                <h4>5000+</h4>
+                                <span>Custom Prints Delivered</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="voiage-testimonials" class="voiage-testimonials position-relative overflow-hidden">
+
+    <!-- Background Elements -->
+    <div class="testimonial-grid"></div>
+    <div class="testimonial-glow glow-left"></div>
+    <div class="testimonial-glow glow-right"></div>
+
+    <div class="container position-relative z-3">
+
+        <!-- SECTION HEADER -->
+        <div class="testimonial-header text-center mx-auto">
+
+            <span class="testimonial-subtitle">
+                VOIAGE HUB • CLIENT STORIES
+            </span>
+
+            <h2 class="testimonial-title">
+                Trusted By <span>Modern Brands</span>
+            </h2>
+
+            <p class="testimonial-description">
+                Businesses, creators and organizations trust
+                Voiage Hub for premium photography,
+                cinematic videography and custom branding solutions.
+            </p>
+
+            <div class="testimonial-divider mx-auto"></div>
+
+        </div>
+
+        <!-- TESTIMONIAL GRID -->
+        <div class="row g-4 justify-content-center">
+
+            <!-- CARD 1 -->
+            <div class="col-lg-4 col-md-6">
+
+                <div class="testimonial-card">
+
+                    <div class="quote-icon">
+                        <i class="bi bi-quote"></i>
+                    </div>
+
+                    <div class="stars">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+
+                    <p class="testimonial-text">
+                        “Voiage Hub transformed our brand visuals completely.
+                        Their cinematic videography and editing quality helped
+                        our business gain massive social media engagement.”
+                    </p>
+
+                    <div class="client-info">
+
+                        <div class="client-avatar">
+                            A
+                        </div>
+
+                        <div>
+                            <h5>Alex Morgan</h5>
+                            <span>Creative Director • Nova Media</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="col-lg-4 col-md-6">
+
+                <div class="testimonial-card">
+
+                    <div class="quote-icon">
+                        <i class="bi bi-quote"></i>
+                    </div>
+
+                    <div class="stars">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+
+                    <p class="testimonial-text">
+                        “The photography quality was exceptional.
+                        Every image looked premium, professional
+                        and perfectly aligned with our brand identity.”
+                    </p>
+
+                    <div class="client-info">
+
+                        <div class="client-avatar">
+                            S
+                        </div>
+
+                        <div>
+                            <h5>Sophia Carter</h5>
+                            <span>Founder • Urban Attire</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="col-lg-4 col-md-6">
+
+                <div class="testimonial-card">
+
+                    <div class="quote-icon">
+                        <i class="bi bi-quote"></i>
+                    </div>
+
+                    <div class="stars">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+
+                    <p class="testimonial-text">
+                        “Their apparel printing and merchandise branding
+                        exceeded our expectations. The hoodie and mug
+                        prints looked luxurious and high-end.”
+                    </p>
+
+                    <div class="client-info">
+
+                        <div class="client-avatar">
+                            D
+                        </div>
+
+                        <div>
+                            <h5>Daniel Reeves</h5>
+                            <span>Marketing Lead • Elevate Studio</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
 
 {% endblock %}
